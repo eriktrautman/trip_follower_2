@@ -8,6 +8,7 @@ gem 'rails', '3.2.11'
 gem 'sqlite3'
 gem 'rspec-rails'
 gem 'bcrypt-ruby'
+gem 'simple_form'
 
 group :test do
 	gem 'capybara'
