@@ -1,0 +1,5 @@
+<%= simple_form_for(:session, url: sessions_path) do |f| %>
+	<%= f.input :email, label: "Email", placeholder: 'user@example.com' %>
+	<%= f.input :password, label: "Password" %>
+	<%= f.button :submit, id: "commit", value: "Sign In" %>
+<% end %>

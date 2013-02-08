@@ -107,7 +107,7 @@ describe User do
 		it { should_not be_valid }
 	end
 
-	describe "return value of authenticate method" do
+	describe "return value of #authenticate" do
 		before { user.save }
 		let(:found_user) { User.find_by_email(user.email)}
 
@@ -118,5 +118,23 @@ describe User do
 		context "with invalid password" do
 			it { should_not == found_user.authenticate("invalid") }
 		end
+	end
+
+	context "with capitalized email" do
+		it "should save downcased" do
+			new_email = "USER@example.com"
+			user.email = new_email
+			user.save
+			user.reload.email.should == new_email.downcase
+		end
+	end
+
+	describe "after successful save" do
+		before do
+			user.save
+		end
+
+		it { should respond_to(:session_token) }
+		its(:session_token) { should_not be_nil }
 	end
 end
