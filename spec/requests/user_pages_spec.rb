@@ -75,6 +75,7 @@ describe "UserPages" do
 
 				it { should have_selector('h1', text: user.fname ) }
 				it { should have_selector('div.alert.alert-success') }
+				it { should have_link('Sign Out') }
 
 			end
 
@@ -137,6 +138,7 @@ describe "UserPages" do
 
 				it { should have_selector('h1', text: user.fname ) }
 				it { should have_selector('div.alert.alert-success') }
+				it { should have_link('Sign Out') }
 
 			end
 

@@ -47,6 +47,7 @@ describe "Authentication" do
 		end
 	end
 
+
 	describe "authorization" do
 
 		context "when user isn't signed in" do
