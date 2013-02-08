@@ -9,6 +9,7 @@ gem 'sqlite3'
 gem 'rspec-rails'
 gem 'bcrypt-ruby'
 gem 'simple_form'
+gem 'bootstrap-sass'
 
 group :test do
 	gem 'capybara'

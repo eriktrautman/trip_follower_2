@@ -1,0 +1,9 @@
+<%= simple_form_for(@user) do |f| %>
+	<%= f.input :fname, label: "First Name", placeholder: 'Example' %>
+	<%= f.input :lname, label: "Last Name", placeholder: 'User' %>
+	<!-- <%= f.input :alias, label: "Alias" %> -->
+	<%= f.input :email, label: "Email Address", placeholder: 'user@example.com' %>
+	<%= f.input :password, label: "Password" %>
+	<%= f.input :password_confirmation, label: "Confirm Password" %>
+	<%= f.button :submit, id: "commit", value: "Create my account!" %>
+<% end %>

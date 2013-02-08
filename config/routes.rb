@@ -1,5 +1,8 @@
 TripFollower2::Application.routes.draw do
 
-  resources :users, except: [ :index ]
+  root to: 'static_pages#home'
+
+  resources :users
+
 
 end

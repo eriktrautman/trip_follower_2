@@ -4,6 +4,28 @@ describe "UserPages" do
 
 	subject { page }
 
+	# ----------------------------------------------------------------------------
+	describe "#index" do
+
+		let(:user) { FactoryGirl.create(:user) }
+
+		before(:each) do
+			visit users_path
+			5.times { FactoryGirl.create(:user) }
+		end
+
+		it { source.should have_selector( 'title', text: "Users" ) }
+		it { should have_selector( 'h1', text: "users" ) }
+
+		it "should list every user" do
+			User.all.each do |user|
+				page.should have_selector('a', href: user_path(user) )
+			end
+		end
+
+	end
+
+	# ----------------------------------------------------------------------------
 	describe "#show" do
 
 		let(:user) { FactoryGirl.create(:user) }
@@ -29,40 +51,115 @@ describe "UserPages" do
 
 		describe "with valid information" do
 			before(:each) do
-				fill_in(:fname, with: "example")
-				fill_in(:lname, with: "user")
-				fill_in(:email, with: "user@example.com")
-				fill_in(:password, with: "foobar")
-				fill_in(:password_confirmation, with: "foobar")
+				fill_in("user_fname", with: "example")
+				fill_in("user_lname", with: "user")
+				fill_in("user_email", with: "user@example.com")
+				fill_in("user_password", with: "foobar")
+				fill_in("user_password_confirmation", with: "foobar")
 			end
 
 			it "should create the user" do
-				expect{ click_button(:submit) }.to change(User, :count).by(1)
+				expect{ click_button("commit") }.to change(User, :count).by(1)
+
 			end
 
 			describe "after saving the user" do
 				before(:each) do
-					click_button(:submit)
-					let(:user) { User.find_by_email( "user@example.com" ) }
+					click_button("commit")
+				end
+				let(:user) { User.find_by_email( "user@example.com" ) }
+
+				it "should redirect to user's show page" do
+					current_path.should == user_path(user)
+				end
+
+				it { should have_selector('h1', text: user.fname ) }
+				it { should have_selector('div.alert.alert-success') }
+
+			end
+
+		end
+
+		describe "with invalid information" do
+			before(:each) do
+				click_button("commit")
+			end
+
+			it "should not add the user" do
+				expect{ click_button("commit") }.not_to change(User, :count)
+			end
+
+			it { should have_selector('div.alert.alert-error') }
+
+		end
+
+	end
+  
+  # ----------------------------------------------------------------------------
+	describe "#edit" do
+
+		let(:user) { FactoryGirl.create(:user) }
+
+		before(:each) do
+			visit edit_user_path(user)
+			fill_in("user_password", with: "foobar")
+			fill_in("user_password_confirmation", with: "foobar")
+		end
+
+		it { should have_selector( 'title', text: "Edit" ) }
+		it { should have_selector( 'h1', text: "Edit" ) }
+		it { should have_selector( 'nav' ) } # MOVE THIS LATER
+
+		context "form" do
+
+			it "should be autopopulated" do
+				pending
+			end
+
+			it "should update the user" do
+				fill_in("user_fname", with: "baz")
+				click_button("commit")
+				user.reload.fname.should eq("baz")
+			end
+
+			it "should not create a new user" do
+				expect{ click_button("commit") }.not_to change(User, :count)
+			end
+
+			describe "after saving the user" do
+				before(:each) do
+					click_button("commit")
 				end
 
 				it "should redirect to user's show page" do
-					assert_redirected_to users_path(user)
+					current_path.should == user_path(user)
 				end
 
-				it { should have_selector('div.alert.alert-success', text: 'Welcome') }
+				it { should have_selector('h1', text: user.fname ) }
+				it { should have_selector('div.alert.alert-success') }
 
 			end
 
 
+			describe "with invalid information" do
+				before(:each) do
+					fill_in("user_email", with: "x")
+				end
 
-			#create user, render the flash and redirect to the show page
+				it "should not add the user" do
+					expect{ click_button("commit") }.not_to change(User, :count)
+				end
+
+				it "should display an error" do
+					click_button("commit")
+					subject.should have_selector('div.alert.alert-error')
+				end
+
+			end
 
 		end
 
-		describe "with invalid information"
-			#not create user, render the flash and stay on the new page with autofilled info
-
 	end
-  
+
+
 end
