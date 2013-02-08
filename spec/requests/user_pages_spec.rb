@@ -31,6 +31,7 @@ describe "UserPages" do
 		let(:user) { FactoryGirl.create(:user) }
 
 		before(:each) do
+			sign_in(user)
 			visit user_path(user)
 		end
 
@@ -76,6 +77,7 @@ describe "UserPages" do
 				it { should have_selector('h1', text: user.fname ) }
 				it { should have_selector('div.alert.alert-success') }
 				it { should have_link('Sign Out') }
+				it { should_not have_selector('h1', text: "Sign In") }
 
 			end
 
@@ -95,13 +97,14 @@ describe "UserPages" do
 		end
 
 	end
-  
+
   # ----------------------------------------------------------------------------
 	describe "#edit" do
 
 		let(:user) { FactoryGirl.create(:user) }
 
 		before(:each) do
+			sign_in(user)
 			visit edit_user_path(user)
 			fill_in("user_password", with: "foobar")
 			fill_in("user_password_confirmation", with: "foobar")
@@ -112,10 +115,6 @@ describe "UserPages" do
 		it { should have_selector( 'nav' ) } # MOVE THIS LATER
 
 		context "form" do
-
-			it "should be autopopulated" do
-				pending
-			end
 
 			it "should update the user" do
 				fill_in("user_fname", with: "baz")
@@ -138,7 +137,7 @@ describe "UserPages" do
 
 				it { should have_selector('h1', text: user.fname ) }
 				it { should have_selector('div.alert.alert-success') }
-				it { should have_link('Sign Out') }
+				it { should have_link('Sign Out', href: signout_path) }
 
 			end
 

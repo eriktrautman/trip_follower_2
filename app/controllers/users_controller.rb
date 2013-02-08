@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+	before_filter :signed_in_user, only: [:show, :edit, :update, :destroy]
+	before_filter :correct_user, only: [:edit, :update, :destroy]
+
 
 	def index
 		@users = User.all
@@ -38,6 +41,20 @@ class UsersController < ApplicationController
 			flash.now[:error] = "There was a problem with the information you entered"
 			render :edit
 		end
+	end
+
+	private
+
+	def signed_in_user
+		unless signed_in?
+			store_location
+			flash[:notice] = "Please Sign In"
+			redirect_to signin_url
+		end
+	end
+
+	def correct_user
+		redirect_to root_path unless current_user?(User.find_by_id(params[:id]))
 	end
 
 end

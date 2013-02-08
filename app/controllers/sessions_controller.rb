@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
 		if user && user.authenticate(params[:session][:password])
 			flash[:success] = "You are now signed in"
 			sign_in(user)
-			redirect_to user
+			redirect_to_smartly user
 		else
 			flash[:error] = "The information you entered is incorrect"
 			render :new
@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
 
 	def destroy
 		cookies.delete(:session_token)
-		self.current_user = nil
+		current_user = nil
 		redirect_to root_url
 	end
 

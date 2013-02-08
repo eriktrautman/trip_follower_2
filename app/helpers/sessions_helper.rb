@@ -11,11 +11,30 @@ module SessionsHelper
 
 	def current_user
 		@current_user ||= User.find_by_session_token(cookies[:session_token])
-		@current_user
 	end
 
 	def current_user=(user)
 		@current_user = user
+	end
+
+	def current_user?(user)
+		#puts "************************************************"
+		#puts current_user
+		#puts user
+		#puts "************************************************"
+		current_user == user
+	end
+
+	def store_location
+		session[:return_to] = request.url
+	end
+
+	def redirect_to_smartly(path)
+		unless session[:return_to].nil?
+			redirect_to session[:return_to]
+		else
+			redirect_to path
+		end
 	end
 
 end

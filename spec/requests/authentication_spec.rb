@@ -1,18 +1,19 @@
 require 'spec_helper'
 
 describe "Authentication" do
-  
+
 	subject { page }
 
 	describe "signin page" do
 
-		before(:each) do 
+		before(:each) do
 			visit signin_path
 		end
 
 		it { should have_selector('title', text: 'Sign In' ) }
 		it { should have_selector('label.email') }
 		it { should have_selector('label.password') }
+		it { should have_link('Create', href: new_user_path) }
 
 		describe "with invalid information" do
 
@@ -24,7 +25,7 @@ describe "Authentication" do
 				current_path.should == sessions_path
 			end
 
-			it "should display errors" do 
+			it "should display errors" do
 				page.should have_selector('div.alert.alert-error')
 			end
 
@@ -50,6 +51,8 @@ describe "Authentication" do
 
 	describe "authorization" do
 
+		let(:user) { FactoryGirl.create(:user) }
+
 		context "when user isn't signed in" do
 
 			describe "when visiting a non-protected (index) page" do
@@ -60,6 +63,39 @@ describe "Authentication" do
 
 				it { should have_link('Sign In', href: signin_path) }	
 				it { should_not have_link('Sign Out', href: signout_path) }
+
+			end
+
+			describe "when visiting another user's protected edit page" do
+
+				let(:other_user) { FactoryGirl.create(:user) }
+
+				before { visit edit_user_path(other_user) }
+
+				it "should redirect back to root" do
+					current_path == root_path
+				end
+			end
+
+			describe "when visiting the user's (protected) edit page" do
+
+				before do
+					visit edit_user_path(user)
+				end
+
+				it "should be prompted to signin" do
+					current_path.should == signin_path
+				end
+
+				describe "after signing in" do
+
+					before { sign_in(user) }
+
+					it "should be redirected to original page" do
+						current_path.should == edit_user_path(user)
+					end
+
+				end
 
 			end
 
@@ -83,8 +119,4 @@ describe "Authentication" do
 			end
 		end
 	end
-
-	it "needs to test for smart redirects"
-	it "needs to test for user authorization to view profile pages"
-	it "redirect after signin to my home page if not a smart redirect"
 end
