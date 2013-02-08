@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe User do
 
-		let(:user) { User.new(fname: "Example", lname: "User", 
-				email: "user@example.com", password: "foobar", 
+		let(:user) { User.new(fname: "Example", lname: "User",
+				email: "user@example.com", password: "foobar",
 				password_confirmation: "foobar") }
 
 	subject { user }
@@ -13,11 +13,18 @@ describe User do
 	it { should respond_to(:email) }
 	it { should respond_to(:password_digest) }
 
+	it { should respond_to(:life_threads) }
+
 	it { should be_valid }
 
 	context "when the firstname is blank" do
 		before { user.fname = " " }
 		it { should_not be_valid }
+	end
+
+	context "when the last name is blank allow " do
+		before { user.lname = " " }
+		it { should be_valid }
 	end
 
 	context "when the email is blank" do
@@ -45,23 +52,14 @@ describe User do
 		it { should_not be_valid }
 	end
 
-	context "when first name is too short" do
-		before { user.fname = "a" }
-		it { should_not be_valid }
-	end
 
 	context "when last name is too long" do
 		before { user.lname = "a"*25 }
 		it { should_not be_valid }
 	end
 
-	context "when last name is too short" do
-		before { user.lname = "a" }
-		it { should_not be_valid }
-	end
-
 	context "when password is too long" do
-		before do 
+		before do
 			user.password = "a"*17
 			user.password_confirmation = user.password
 		end
@@ -70,7 +68,7 @@ describe User do
 	end
 
 	context "when password is too short" do
-		before do 
+		before do
 			user.password = "a"*5
 			user.password_confirmation = user.password
 		end
@@ -94,7 +92,7 @@ describe User do
       addresses.each do |valid_address|
         user.email = valid_address
         user.should be_valid
-      end      
+      end
     end
   end
 

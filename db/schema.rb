@@ -11,7 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130208040904) do
+ActiveRecord::Schema.define(:version => 20130208190743) do
+
+  create_table "life_threads", :force => true do |t|
+    t.integer  "creator_id"
+    t.string   "name"
+    t.string   "tagline"
+    t.text     "description"
+    t.text     "hashtag"
+    t.date     "s_date"
+    t.date     "e_date"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "fname"
