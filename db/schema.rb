@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130208190743) do
+ActiveRecord::Schema.define(:version => 20130208200122) do
 
   create_table "life_threads", :force => true do |t|
     t.integer  "creator_id"
@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(:version => 20130208190743) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  add_index "life_threads", ["hashtag"], :name => "index_life_threads_on_hashtag"
 
   create_table "users", :force => true do |t|
     t.string   "fname"

@@ -40,6 +40,32 @@ describe LifeThread do
       it { should_not be_valid }
     end
 
+    context "when tagline is too long" do
+      before { thread.tagline = "a"*141 }
+      it { should_not be_valid }
+    end
+
+    context "when description is too long" do
+      before { thread.description = "a"*1001 }
+      it { should_not be_valid }
+    end
+
+    context "when end date is before start date" do
+      before do
+        thread.s_date = Date.new(2013,1,1)
+        thread.e_date = Date.new(2012,12,12)
+      end
+      it { should_not be_valid }
+    end
+
+    context "when end date is same as start date" do
+      before do
+        thread.s_date = Date.new(2013,1,1)
+        thread.e_date = Date.new(2013,1,1)
+      end
+      it { should be_valid }
+    end
+
   end
 
 end
