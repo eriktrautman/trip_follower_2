@@ -32,7 +32,11 @@ footer {
 
 }
 
-container {
+.container {
   height: 100%;
-  padding: 40px;
+  margin-left: 20px;
+}
+
+small {
+  font-size: .7em;
 }
