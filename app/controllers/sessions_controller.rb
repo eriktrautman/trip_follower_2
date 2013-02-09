@@ -18,8 +18,7 @@ class SessionsController < ApplicationController
 	end
 
 	def destroy
-		cookies.delete(:session_token)
-		current_user = nil
+		sign_out
 		redirect_to root_url
 	end
 

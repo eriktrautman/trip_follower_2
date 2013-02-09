@@ -18,10 +18,6 @@ module SessionsHelper
 	end
 
 	def current_user?(user)
-		#puts "************************************************"
-		#puts current_user
-		#puts user
-		#puts "************************************************"
 		current_user == user
 	end
 
@@ -35,6 +31,20 @@ module SessionsHelper
 		else
 			redirect_to path
 		end
+	end
+
+	def signed_in_user
+		unless signed_in?
+			store_location
+			flash[:notice] = "Please Sign In"
+			redirect_to signin_url
+		end
+	end
+
+	def sign_out
+		cookies.delete(:session_token)
+		current_user = nil
+		session[:return_to] = nil
 	end
 
 end

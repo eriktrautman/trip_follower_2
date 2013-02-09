@@ -3,3 +3,35 @@
 <h1>
 	<%= "#{@user.fname} #{@user.lname}" %>
 </h1>
+
+<div class="row">
+  <aside class="span4">
+    <div id="profile-pic">
+      <%= image_tag("rails.png") %>
+    </div>
+    <hr />
+    <div id="my-threads">
+      <h3>
+        My <%= @life_threads.count %> Trips:
+      </h3>
+      <ul>
+        <%= render @life_threads %>
+      </ul>
+  </aside>
+
+  <div class="span8">
+    <h3>
+      Trip Feed:
+    </h3>
+    <% if @followed_trips.nil? %>
+      <h4>
+        Follow <%= link_to "people", "#" %> or <%= link_to "trips", "#"%>
+        to see them appear in your feed!
+      </h4>
+    <% else %>
+      <h4>
+        Content Goes HERE!
+      </h4>
+    <% end %>
+  </div>
+</div>

@@ -6,3 +6,7 @@ def sign_in(user)
   # Sign in when not using Capybara as well.
   cookies[:session_token] = user.session_token
 end
+
+def sign_out
+  visit signout_path
+end

@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(:version => 20130208200122) do
     t.string   "name"
     t.string   "tagline"
     t.text     "description"
-    t.text     "hashtag"
+    t.string   "hashtag"
     t.date     "s_date"
     t.date     "e_date"
     t.datetime "created_at",  :null => false

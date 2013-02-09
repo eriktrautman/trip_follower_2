@@ -4,9 +4,10 @@ TripFollower2::Application.routes.draw do
 
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
+  resources :life_threads, only: [:show, :new, :create, :destroy]
 
-  match "/signin", to: 'sessions#new'
-  match "/signout", to: 'sessions#destroy', via: :delete
-  match "/signup", to: 'users#new'
+  get "/signin", to: 'sessions#new'
+  delete "/signout", to: 'sessions#destroy'
+  get "/signup", to: 'users#new'
 
 end

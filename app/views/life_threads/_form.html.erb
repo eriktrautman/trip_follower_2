@@ -1,0 +1,11 @@
+<%= simple_form_for(@thread) do |f| %>
+  <%= f.input :name, label: "Thread Name", placeholder: 'Bermuda Beaches' %>
+  <%= f.input :hashtag, label: "Hashtag", placeholder: 'bermudabeaches' %>
+  <%= f.input :tagline, label: "Tagline",
+        placeholder: "Greatest Vacation Ever" %>
+  <%= f.input :description, label: "Description",
+        placeholder: 'We put 12 awesome people in a beach house. Epic trip.' %>
+  <%= f.input :s_date, label: "Start Date" %>
+  <%= f.input :e_date, label: "End Date" %>
+  <%= f.button :submit, id: "commit", value: "Submit" %>
+<% end %>

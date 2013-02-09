@@ -29,14 +29,22 @@ describe "UserPages" do
 	describe "#show" do
 
 		let(:user) { FactoryGirl.create(:user) }
+		let(:thread1) { FactoryGirl.create(:life_thread, creator: user, name: "Lorem Ipsum") }
+		let(:thread2) { FactoryGirl.create(:life_thread, creator: user, name: "Dolor Sit Amet") }
 
 		before(:each) do
+			# forcing creation of threads
+			thread1
+			thread2
+
 			sign_in(user)
 			visit user_path(user)
 		end
 
 		it { source.should have_selector( 'title', text: user.fname ) }
 		it { should have_selector( 'h1', text: user.fname ) }
+		it { should have_link( thread1.name, href: life_thread_path(thread1) ) }
+		it { should have_link( thread2.name, href: life_thread_path(thread2) ) }
 
 	end
 

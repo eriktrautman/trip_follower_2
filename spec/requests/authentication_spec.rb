@@ -115,8 +115,22 @@ describe "Authentication" do
 
 				it { should have_link('Sign Out', href: signout_path) }
 				it { should_not have_link('Sign In', href: signin_path) }
+				it { should have_link('New Trip', href: new_life_thread_path) }
 
 			end
+
+			describe "after signing out" do
+
+				before do
+					visit new_life_thread_path
+					click_link "Sign Out"
+				end
+
+				xspecify "the session[:return_to] should be cleared" do
+					session[:return_to].should be_nil
+				end
+			end
+
 		end
 	end
 end

@@ -5,7 +5,7 @@ class CreateLifeThreads < ActiveRecord::Migration
       t.string :name
       t.string :tagline
       t.text :description
-      t.text :hashtag
+      t.string :hashtag
       t.date :s_date
       t.date :e_date
 

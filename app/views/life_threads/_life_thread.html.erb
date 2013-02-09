@@ -1,0 +1,8 @@
+<li>
+  <%= link_to life_thread.name, life_thread_path(life_thread) %>
+   #<%= link_to life_thread.hashtag, "#" %>
+  <br/>
+  <small>
+    Created on <%= life_thread.created_at.strftime "%A, %-B %-d, %y" %>
+  </small>
+</li>
