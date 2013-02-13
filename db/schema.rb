@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20130213053720) do
     t.string   "hashtag"
     t.integer  "creator_id"
     t.integer  "life_thread_id"
+    t.string   "tagline"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
   end

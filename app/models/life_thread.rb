@@ -5,9 +5,11 @@ class LifeThread < ActiveRecord::Base
   has_many :events
 
   validates :name, length: { in: 4..24 }
+  validates :name, presence: true
   validates :tagline, length: { maximum: 140 }, allow_blank: true
   validates :description, length: { maximum: 1000 }, allow_blank: true
   validates :hashtag, length: { in: 1..64 }
+  validates :hashtag, presence: true
 
   validate :validate_end_date_after_start_date
 

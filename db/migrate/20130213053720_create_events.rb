@@ -6,6 +6,7 @@ class CreateEvents < ActiveRecord::Migration
     	t.string :hashtag
     	t.integer :creator_id
     	t.integer :life_thread_id
+      t.string :tagline
 
       t.timestamps
     end

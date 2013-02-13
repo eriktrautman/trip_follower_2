@@ -30,7 +30,7 @@ describe LifeThread do
   describe "validations" do
 
     context "when name is not present" do
-      before { thread.name = " " }
+      before { thread.name = "     " }
       it { should_not be_valid }
     end
 
