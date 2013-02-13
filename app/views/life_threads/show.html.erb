@@ -4,6 +4,14 @@
   <%= "#{@life_thread.name}" %>
 </h1>
 
+<% if current_user == @life_thread.creator %>
+	<div>
+		<%= link_to "Delete", life_thread_path(@life_thread), method: :delete %>
+		|
+		<%= link_to "Edit", edit_life_thread_path(@life_thread) %>
+	</div>
+<% end %>	
+
 <h3>
   <%= "#{@life_thread.tagline}"%>
 </h3>

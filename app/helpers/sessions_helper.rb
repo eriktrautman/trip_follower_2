@@ -33,6 +33,7 @@ module SessionsHelper
 		end
 	end
 
+	# before filter for signin calls this
 	def signed_in_user
 		unless signed_in?
 			store_location
