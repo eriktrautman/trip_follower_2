@@ -31,7 +31,7 @@ class LifeThreadsController < ApplicationController
       flash[:success] = "Successfully updated"
       redirect_to @life_thread
     else
-      flash[:error] = @life_thread.errors.full_messages.first
+      flash.now[:error] = @life_thread.errors.full_messages.first
       render :edit
     end
   end

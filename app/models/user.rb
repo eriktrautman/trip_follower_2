@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
 	before_save :create_session_token
 
   has_many :life_threads, foreign_key: :creator_id
+  has_many :events, foreign_key: :creator_id
 
   [ :fname, :email, :password, :password_confirmation ].each do |field| validates field, presence: true
   end

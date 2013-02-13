@@ -15,4 +15,11 @@ FactoryGirl.define do
     association :creator, factory: :user
   end
 
+  factory :event do
+    sequence(:name) { |n| "Event #{n}" }
+    sequence(:hashtag) { |n| "tag#{n}" }
+    association :creator, factory: :user
+    association :life_thread, factory: :life_thread
+  end
+
 end

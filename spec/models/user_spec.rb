@@ -14,6 +14,7 @@ describe User do
 	it { should respond_to(:password_digest) }
 
 	it { should respond_to(:life_threads) }
+	it { should respond_to(:events) }
 
 	it { should be_valid }
 

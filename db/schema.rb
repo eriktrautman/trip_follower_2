@@ -11,7 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130208200122) do
+ActiveRecord::Schema.define(:version => 20130213053720) do
+
+  create_table "events", :force => true do |t|
+    t.string   "name"
+    t.date     "date"
+    t.string   "hashtag"
+    t.integer  "creator_id"
+    t.integer  "life_thread_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "events", ["hashtag"], :name => "index_events_on_hashtag"
 
   create_table "life_threads", :force => true do |t|
     t.integer  "creator_id"

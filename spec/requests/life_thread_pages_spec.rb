@@ -30,6 +30,7 @@ describe "LifeThreadPages" do
     describe "with valid information" do
       before(:each) do
         fill_in("life_thread_name", with: "example thread")
+        fill_in("life_thread_hashtag", with: "tag1")
       end
 
       it "should create the thread" do

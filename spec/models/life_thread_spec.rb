@@ -3,7 +3,8 @@ require 'spec_helper'
 describe LifeThread do
 
   let(:user) { FactoryGirl.create(:user) }
-  subject(:thread) { user.life_threads.new(name: "Example Thread") }
+  subject(:thread) { user.life_threads.new( name: "Example Thread",
+                                            hashtag: "tag1" ) }
 
   it { should respond_to(:name) }
   it { should respond_to(:tagline) }
@@ -14,6 +15,9 @@ describe LifeThread do
 
   it { should respond_to(:creator_id) }
   it { should respond_to(:creator) }
+  it { should respond_to(:events) }
+
+  it { should be_valid }  
 
   describe "accessible attributes" do
     it "should not allow access to creator_id" do
@@ -37,6 +41,16 @@ describe LifeThread do
 
     context "when name is too short" do
       before { thread.name = "a"*3 }
+      it { should_not be_valid }
+    end
+
+    context "when hashtag is too long" do
+      before { thread.hashtag = "a"*65 }
+      it { should_not be_valid }
+    end
+
+    context "when hashtag is too short" do
+      before { thread.hashtag = "" }
       it { should_not be_valid }
     end
 
