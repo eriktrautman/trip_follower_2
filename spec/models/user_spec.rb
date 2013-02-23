@@ -2,30 +2,24 @@ require 'spec_helper'
 
 describe User do
 
-		let(:user) { User.new(fname: "Example", lname: "User",
+		let(:user) { User.new(username: "foobar",
 				email: "user@example.com", password: "foobar",
 				password_confirmation: "foobar") }
 
 	subject { user }
 
-	it { should respond_to(:fname) }
-	it { should respond_to(:lname) }
+	it { should respond_to(:username) }
 	it { should respond_to(:email) }
 	it { should respond_to(:password_digest) }
 
-	it { should respond_to(:life_threads) }
+	it { should respond_to(:trips) }
 	it { should respond_to(:events) }
 
 	it { should be_valid }
 
-	context "when the firstname is blank" do
-		before { user.fname = " " }
+	context "when the username is blank" do
+		before { user.username = " " }
 		it { should_not be_valid }
-	end
-
-	context "when the last name is blank allow " do
-		before { user.lname = " " }
-		it { should be_valid }
 	end
 
 	context "when the email is blank" do
@@ -48,14 +42,8 @@ describe User do
 		it { should_not be_valid }
 	end
 
-	context "when first name is too long" do
-		before { user.fname = "a"*25 }
-		it { should_not be_valid }
-	end
-
-
-	context "when last name is too long" do
-		before { user.lname = "a"*25 }
+	context "when username is too long" do
+		before { user.username = "a"*25 }
 		it { should_not be_valid }
 	end
 

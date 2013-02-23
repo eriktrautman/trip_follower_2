@@ -18,15 +18,17 @@ ActiveRecord::Schema.define(:version => 20130213053720) do
     t.date     "date"
     t.string   "hashtag"
     t.integer  "creator_id"
-    t.integer  "life_thread_id"
+    t.integer  "trip_id"
     t.string   "tagline"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.binary   "picture"
+    t.integer  "location_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   add_index "events", ["hashtag"], :name => "index_events_on_hashtag"
 
-  create_table "life_threads", :force => true do |t|
+  create_table "trips", :force => true do |t|
     t.integer  "creator_id"
     t.string   "name"
     t.string   "tagline"
@@ -34,25 +36,27 @@ ActiveRecord::Schema.define(:version => 20130213053720) do
     t.string   "hashtag"
     t.date     "s_date"
     t.date     "e_date"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.boolean  "public_view",       :default => true
+    t.boolean  "whitelist_posters", :default => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
   end
 
-  add_index "life_threads", ["hashtag"], :name => "index_life_threads_on_hashtag"
+  add_index "trips", ["hashtag"], :name => "index_trips_on_hashtag"
 
   create_table "users", :force => true do |t|
-    t.string   "fname"
-    t.string   "lname"
-    t.string   "alias"
+    t.string   "username"
     t.string   "email"
+    t.string   "tagline"
     t.string   "password_digest"
     t.integer  "profile_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-    t.string   "session_token",   :null => false
+    t.string   "session_token",                      :null => false
+    t.boolean  "site_admin",      :default => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
-  add_index "users", ["session_token"], :name => "index_users_on_session_token"
+  add_index "users", ["session_token"], :name => "index_users_on_session_token", :unique => true
 
 end

@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe LifeThreadsController do
+describe TripsController do
 
 end

@@ -1,0 +1,12 @@
+<li>
+  <big>
+    <%= link_to trip.name, trip_path(trip) %>
+  </big>
+  <small><em>
+    #<%= link_to trip.hashtag, "#" %>
+  </em></small>
+  <br/>
+  <small><em>
+    Created on <%= trip.created_at.strftime "%A, %-B %-d, %y" %>
+  </em></small>
+</li>

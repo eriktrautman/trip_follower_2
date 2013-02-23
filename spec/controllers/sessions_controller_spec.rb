@@ -5,7 +5,7 @@ describe SessionsController do
   describe "#destroy" do
 
     before do
-      session[:return_to] = new_life_thread_path
+      session[:return_to] = new_trip_path
       delete :destroy
     end
 

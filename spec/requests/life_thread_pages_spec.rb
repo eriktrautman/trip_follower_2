@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-describe "LifeThreadPages" do
+describe "TripPages" do
 
   subject { page }
 
   context "when user is not signed in" do
 
-    before { visit new_life_thread_path }
+    before { visit new_trip_path }
 
     it "should redirect to the signin page" do
       current_path.should == signin_path
@@ -21,7 +21,7 @@ describe "LifeThreadPages" do
 
     before(:each) do
       sign_in(user)
-      visit new_life_thread_path
+      visit new_trip_path
     end
 
     it { should have_selector( 'title', text: "Create" ) }
@@ -29,15 +29,15 @@ describe "LifeThreadPages" do
 
     describe "with valid information" do
       before(:each) do
-        fill_in("life_thread_name", with: "example thread")
-        fill_in("life_thread_hashtag", with: "tag1")
+        fill_in("trip_name", with: "example trip")
+        fill_in("trip_hashtag", with: "tag1")
       end
 
-      it "should create the thread" do
-        expect{ click_button("commit") }.to change(LifeThread, :count).by(1)
+      it "should create the trip" do
+        expect{ click_button("commit") }.to change(Trip, :count).by(1)
       end
 
-      describe "after saving the thread" do
+      describe "after saving the trip" do
         before(:each) do
           click_button("commit")
         end
@@ -46,7 +46,7 @@ describe "LifeThreadPages" do
           current_path.should == user_path(user)
         end
 
-        it { should have_selector('h1', text: user.fname ) }
+        it { should have_selector('h1', text: user.username ) }
         it { should have_selector('div.alert.alert-success') }
 
       end
@@ -58,8 +58,8 @@ describe "LifeThreadPages" do
         click_button("commit")
       end
 
-      it "should not add the thread" do
-        expect{ click_button("commit") }.not_to change(LifeThread, :count)
+      it "should not add the trip" do
+        expect{ click_button("commit") }.not_to change(Trip, :count)
       end
 
       it { should have_selector('div.alert.alert-error') }
@@ -71,7 +71,7 @@ describe "LifeThreadPages" do
   describe "#edit" do
 
     let(:user) { FactoryGirl.create(:user) }
-    let(:life_thread) { FactoryGirl.create(:life_thread, creator: user) }
+    let(:trip) { FactoryGirl.create(:trip, creator: user) }
 
     context "when user is signed in" do
 
@@ -79,9 +79,9 @@ describe "LifeThreadPages" do
         sign_in(user)
       end
 
-      context "when editing his own thread" do
+      context "when editing his own trip" do
 
-        before { visit edit_life_thread_path(life_thread) }
+        before { visit edit_trip_path(trip) }
       
         it { should have_selector('title', text: 'Edit') }
         it { should have_selector('h1', text: 'Edit') }
@@ -95,7 +95,7 @@ describe "LifeThreadPages" do
           it "should reflect those changes upon submission" do
 
             click_button("commit")
-            life_thread.reload.name.should == "test"
+            trip.reload.name.should == "test"
 
           end
         end
@@ -113,12 +113,12 @@ describe "LifeThreadPages" do
         end
       end
 
-      context "when editing another user's thread" do
+      context "when editing another user's trip" do
 
         let(:other_user) { FactoryGirl.create(:user) }
         before do
           sign_in(other_user)
-          visit edit_life_thread_path(life_thread)
+          visit edit_trip_path(trip)
         end
 
         it "should redirect to root with errors" do
@@ -131,7 +131,7 @@ describe "LifeThreadPages" do
     context "when user is not signed in" do
 
       before do
-        visit edit_life_thread_path(life_thread)
+        visit edit_trip_path(trip)
       end
 
       it "should redirect back to root" do
@@ -144,33 +144,33 @@ describe "LifeThreadPages" do
   describe "#show" do
 
     let(:user) { FactoryGirl.create(:user) }
-    let(:life_thread) { FactoryGirl.create(:life_thread, creator: user) }
+    let(:trip) { FactoryGirl.create(:trip, creator: user) }
 
-    context "user's own thread" do
+    context "user's own trip" do
 
       before do
-        visit life_thread_path(life_thread)
+        visit trip_path(trip)
       end
 
-      it { should have_selector('title', text: life_thread.name) }
-      it { should have_selector('h1', text: life_thread.name ) }
+      it { should have_selector('title', text: trip.name) }
+      it { should have_selector('h1', text: trip.name ) }
 
       context "when user is signed in" do
         
         before do
           sign_in user
-          visit life_thread_path(life_thread)
+          visit trip_path(trip)
         end
 
-        it { should have_link('Delete', href: life_thread_path(life_thread), 
+        it { should have_link('Delete', href: trip_path(trip), 
                                         method: :delete) }
-        it { should have_link('Edit', href: edit_life_thread_path(life_thread))}
+        it { should have_link('Edit', href: edit_trip_path(trip))}
       
       end
 
       context "when user is not signed in" do
 
-        it { should_not have_link('delete', href: life_thread_path(life_thread),
+        it { should_not have_link('delete', href: trip_path(trip),
                                             method: :delete) }
 
       end

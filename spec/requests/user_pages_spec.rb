@@ -29,22 +29,22 @@ describe "UserPages" do
 	describe "#show" do
 
 		let(:user) { FactoryGirl.create(:user) }
-		let(:thread1) { FactoryGirl.create(:life_thread, creator: user, name: "Lorem Ipsum") }
-		let(:thread2) { FactoryGirl.create(:life_thread, creator: user, name: "Dolor Sit Amet") }
+		let(:trip1) { FactoryGirl.create(:trip, creator: user, name: "Lorem Ipsum") }
+		let(:trip2) { FactoryGirl.create(:trip, creator: user, name: "Dolor Sit Amet") }
 
 		before(:each) do
-			# forcing creation of threads
-			thread1
-			thread2
+			# forcing creation of trips
+			trip1
+			trip2
 
 			sign_in(user)
 			visit user_path(user)
 		end
 
-		it { source.should have_selector( 'title', text: user.fname ) }
-		it { should have_selector( 'h1', text: user.fname ) }
-		it { should have_link( thread1.name, href: life_thread_path(thread1) ) }
-		it { should have_link( thread2.name, href: life_thread_path(thread2) ) }
+		it { source.should have_selector( 'title', text: user.username ) }
+		it { should have_selector( 'h1', text: user.username ) }
+		it { should have_link( trip1.name, href: trip_path(trip1) ) }
+		it { should have_link( trip2.name, href: trip_path(trip2) ) }
 
 	end
 
@@ -60,8 +60,7 @@ describe "UserPages" do
 
 		describe "with valid information" do
 			before(:each) do
-				fill_in("user_fname", with: "example")
-				fill_in("user_lname", with: "user")
+				fill_in("user_username", with: "example")
 				fill_in("user_email", with: "user@example.com")
 				fill_in("user_password", with: "foobar")
 				fill_in("user_password_confirmation", with: "foobar")
@@ -82,7 +81,7 @@ describe "UserPages" do
 					current_path.should == user_path(user)
 				end
 
-				it { should have_selector('h1', text: user.fname ) }
+				it { should have_selector('h1', text: user.username ) }
 				it { should have_selector('div.alert.alert-success') }
 				it { should have_link('Sign Out') }
 				it { should_not have_selector('h1', text: "Sign In") }
@@ -125,9 +124,9 @@ describe "UserPages" do
 		context "form" do
 
 			it "should update the user" do
-				fill_in("user_fname", with: "baz")
+				fill_in("user_username", with: "baz")
 				click_button("commit")
-				user.reload.fname.should eq("baz")
+				user.reload.username.should eq("baz")
 			end
 
 			it "should not create a new user" do
@@ -143,7 +142,7 @@ describe "UserPages" do
 					current_path.should == user_path(user)
 				end
 
-				it { should have_selector('h1', text: user.fname ) }
+				it { should have_selector('h1', text: user.username ) }
 				it { should have_selector('div.alert.alert-success') }
 				it { should have_link('Sign Out', href: signout_path) }
 

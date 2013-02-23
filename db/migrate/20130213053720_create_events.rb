@@ -5,8 +5,10 @@ class CreateEvents < ActiveRecord::Migration
     	t.date :date
     	t.string :hashtag
     	t.integer :creator_id
-    	t.integer :life_thread_id
+    	t.integer :trip_id
       t.string :tagline
+      t.binary :picture
+      t.integer :location_id
 
       t.timestamps
     end

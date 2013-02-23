@@ -3,8 +3,8 @@ It's all new and better than anything you've ever seen.
 
 TODO:
 
-Threads >> Trips
-> rename all threads to trips, including tests
+trips >> Trips
+> rename all trips to trips, including tests
 
 Database Cleanup
 > squeeze all migrations into one, reset the database
@@ -18,39 +18,39 @@ User pages:
 
 Authorization:
 > Admin users
-> threads have admin user(s) added or deleted by the creator
+> trips have admin user(s) added or deleted by the creator
 > Admins can whitelist non-admin users to post in the trip
-  > Admins see all options for editing a thread
-> Admins automatically follow threads for which they are admins
+  > Admins see all options for editing a trip
+> Admins automatically follow trips for which they are admins
 
 
 Following:
 > Users can follow users
-> Users can follow public threads
+> Users can follow public trips
 > Following someone follows all their trips
 > I can unfollow any individual trips
 > I automatically follow my trips (but cannot unfollow them)
 
 Privacy:
-> Threads default to public view / public post
-> threads may be changed by creator to public view / whitelist post
-> Public view threads are followable (eg all now)
+> trips default to public view / public post
+> trips may be changed by creator to public view / whitelist post
+> Public view trips are followable (eg all now)
 
 Event Pages:
 > Create events models
 > Specs
-> Integrate events with threads and user pages
+> Integrate events with trips and user pages
 > admins can create and edit their own events
 
 Posts: (a temporary testing thing)
-> Match posts to threads and events via hashtag
+> Match posts to trips and events via hashtag
 
 Accessories:
 > User profiles
 > User photos
-> Thread photos
+> trip photos
 > Event photos
 > Event locations (lat lng)
-> settings: decide whether a thread is whitelist
+> settings: decide whether a trip is whitelist
 
 

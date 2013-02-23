@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.find(params[:id])
-		@life_threads = @user.life_threads
+		@trips = @user.trips
 	end
 
 	def new

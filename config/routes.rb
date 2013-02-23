@@ -4,7 +4,7 @@ TripFollower2::Application.routes.draw do
 
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
-  resources :life_threads
+  resources :trips
   resources :events, except: [:new, :show]
 
   get "/signin", to: 'sessions#new'

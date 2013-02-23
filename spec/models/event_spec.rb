@@ -3,8 +3,8 @@ require 'spec_helper'
 describe Event do
   
   let(:user) { FactoryGirl.create(:user) }
-  let(:life_thread) { FactoryGirl.create(:life_thread, creator: user) }
-  subject(:event) { life_thread.events.build(	name: "Example", 
+  let(:trip) { FactoryGirl.create(:trip, creator: user) }
+  subject(:event) { trip.events.build(	name: "Example", 
   																						creator_id: user.id,
   																						hashtag: "event1", 
   																						date: Date.new(2012,1,1)
@@ -16,8 +16,8 @@ describe Event do
   it { should respond_to(:tagline) }
   it { should respond_to(:creator_id) }
   it { should respond_to(:creator) }
-  it { should respond_to(:life_thread_id ) }
-  it { should respond_to(:life_thread) }
+  it { should respond_to(:trip_id ) }
+  it { should respond_to(:trip) }
 
   it { should be_valid }
 

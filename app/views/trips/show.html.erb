@@ -1,0 +1,25 @@
+<% content_for(:title) { @trip.name } %>
+
+<h1>
+  <%= "#{@trip.name}" %>
+</h1>
+
+<% if current_user == @trip.creator %>
+	<div>
+		<%= link_to "Delete", trip_path(@trip), method: :delete %>
+		|
+		<%= link_to "Edit", edit_trip_path(@trip) %>
+	</div>
+<% end %>	
+
+<h3>
+  <%= "#{@trip.tagline}"%>
+</h3>
+<p>
+  <strong>
+    <%= "#{@trip.hashtag}" %>
+  </strong>
+</p>
+<p>
+  <%= "#{@trip.description}" %>
+</p>
