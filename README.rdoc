@@ -3,37 +3,44 @@ It's all new and better than anything you've ever seen.
 
 TODO:
 
-Threads pages:
-#edit
-#destroy
+Threads >> Trips
+> rename all threads to trips, including tests
+
+Database Cleanup
+> squeeze all migrations into one, reset the database
+> seed the database
 
 User pages:
-> delete buttons for threads
+> Edit link in navbar for signed in user
+> Edit the user information, including email and username
+> 
+
 
 Authorization:
 > Admin users
-> threads have admin user(s)
-> Admins can approve events generated from non-admin users
-> admins can create their own events
-> Admins follow private threads for which they are admins
-> Multiple admins can be added to a thread (by other admins)
-> Private threads can be followed by an admin authorizing the follow
-> Current user can delete
+> threads have admin user(s) added or deleted by the creator
+> Admins can whitelist non-admin users to post in the trip
+  > Admins see all options for editing a thread
+> Admins automatically follow threads for which they are admins
+
+
+Following:
+> Users can follow users
+> Users can follow public threads
+> Following someone follows all their trips
+> I can unfollow any individual trips
+> I automatically follow my trips (but cannot unfollow them)
+
+Privacy:
+> Threads default to public view / public post
+> threads may be changed by creator to public view / whitelist post
+> Public view threads are followable (eg all now)
 
 Event Pages:
 > Create events models
 > Specs
 > Integrate events with threads and user pages
-
-Following:
-> Users can follow users
-> Users can follow public threads (offer option to follow owner)
-> Following someone follows all their trips
-> I can unfollow any individual trips
-
-Privacy:
-> Threads can be public or private
-> Public threads are followable
+> admins can create and edit their own events
 
 Posts: (a temporary testing thing)
 > Match posts to threads and events via hashtag
@@ -44,6 +51,6 @@ Accessories:
 > Thread photos
 > Event photos
 > Event locations (lat lng)
-> settings: decide whether a thread can be submitted to with or without admin approval
+> settings: decide whether a thread is whitelist
 
 
