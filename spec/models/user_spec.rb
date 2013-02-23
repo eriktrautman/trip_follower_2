@@ -11,6 +11,8 @@ describe User do
 	it { should respond_to(:username) }
 	it { should respond_to(:email) }
 	it { should respond_to(:password_digest) }
+	it { should respond_to(:tagline) }
+	it { should respond_to(:site_admin) }
 
 	it { should respond_to(:trips) }
 	it { should respond_to(:events) }

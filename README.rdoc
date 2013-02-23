@@ -3,13 +3,6 @@ It's all new and better than anything you've ever seen.
 
 TODO:
 
-trips >> Trips
-> rename all trips to trips, including tests
-
-Database Cleanup
-> squeeze all migrations into one, reset the database
-> seed the database
-
 User pages:
 > Edit link in navbar for signed in user
 > Edit the user information, including email and username
@@ -17,11 +10,17 @@ User pages:
 
 
 Authorization:
-> Admin users
+> Admin users for trips
 > trips have admin user(s) added or deleted by the creator
-> Admins can whitelist non-admin users to post in the trip
+	> link to trip creator control panel for creators only
+	> the link leads to the trip's admin index page with an add admin form above the list and delete buttons next to each of them
+> Admins can whitelist non-admin users to post in the trip (if enabled)
   > Admins see all options for editing a trip
+  > Admins see a link to the admin control panel atop the trip show page
+  	> whitelist is its own controller
+  	> it should be a part of the admin's control panel
 > Admins automatically follow trips for which they are admins
+> Only admins should be allowed to go to admin protected pages
 
 
 Following:
@@ -52,5 +51,13 @@ Accessories:
 > Event photos
 > Event locations (lat lng)
 > settings: decide whether a trip is whitelist
+> typeahead for any user adding
+> nest forms for admin and creator control panels??
 
+Annoyances:
+> date fields for trip creation forms
+> footer that floats
 
+Polish:
+> CSS the crap out of it
+> Landing page improvement -- the initial signup should be awesome
