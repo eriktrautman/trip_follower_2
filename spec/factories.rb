@@ -12,6 +12,10 @@ FactoryGirl.define do
     sequence(:description) { |n| "Lorem ipsum dolor sit amet, consectetur adipisicing elit. At minus doloribus numquam ratione facere tempora atque reiciendis ut iure sapiente optio earum unde nostrum illo repellendus velit delectus vel quidem."}
     sequence(:hashtag) { |n| "tag#{n}" }
     association :creator, factory: :user
+
+    after(:create) do |trip|
+      FactoryGirl.create(:trip_admin, user: trip.creator, trip: trip)
+    end
   end
 
   factory :event do
@@ -19,6 +23,11 @@ FactoryGirl.define do
     sequence(:hashtag) { |n| "tag#{n}" }
     association :creator, factory: :user
     association :trip, factory: :trip
+  end
+
+  factory :trip_admin do
+    user
+    trip
   end
 
 end

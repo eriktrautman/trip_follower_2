@@ -3,6 +3,13 @@ It's all new and better than anything you've ever seen.
 
 TODO:
 
+PRESSING:
+> Make the remove button work for admins
+> Make an add-admin box
+> List the whitelist
+> Make remove buttons work with the whitelist
+> Make add-whitelist box
+
 User pages:
 > Edit link in navbar for signed in user
 > Edit the user information, including email and username
@@ -14,6 +21,7 @@ Authorization:
 > trips have admin user(s) added or deleted by the creator
 	> link to trip creator control panel for creators only
 	> the link leads to the trip's admin index page with an add admin form above the list and delete buttons next to each of them
+	> test the opposite -- that non-admins or creators cannot access options
 > Admins can whitelist non-admin users to post in the trip (if enabled)
   > Admins see all options for editing a trip
   > Admins see a link to the admin control panel atop the trip show page
@@ -60,4 +68,16 @@ Annoyances:
 
 Polish:
 > CSS the crap out of it
+> Admin and creator settings windows should probably be nifty dropdowns instead of full page redirects
 > Landing page improvement -- the initial signup should be awesome
+> Grey out disabled settings like private post in trip edit form
+> Create hover tooltips for the whitelisting
+> Typeaheads!
+> Make trip whitelisting and admin adds into an ajax form
+
+ISSUES:
+> Model calls from edit form??
+> Security hole in authorization helper?
+
+TIL
+> Factories have an aftercreate method to get around simple annoyances like requiring a current user in order to make the creator of a trip an admin too

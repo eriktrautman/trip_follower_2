@@ -13,6 +13,8 @@ describe User do
 	it { should respond_to(:password_digest) }
 	it { should respond_to(:tagline) }
 	it { should respond_to(:site_admin) }
+	it { should respond_to(:trip_adminships) }
+	it { should respond_to(:administrated_trips) }
 
 	it { should respond_to(:trips) }
 	it { should respond_to(:events) }

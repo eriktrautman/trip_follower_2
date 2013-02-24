@@ -3,6 +3,9 @@
 <h1>
   <%= "#{@trip.name}" %>
 </h1>
+<p>
+  <em>Created by <%= @trip.creator.username %></em>
+</p>
 
 <% if current_user == @trip.creator %>
 	<div>
@@ -10,7 +13,11 @@
 		|
 		<%= link_to "Edit", edit_trip_path(@trip) %>
 	</div>
-<% end %>	
+<% elsif current_user && current_user.administrates(@trip)%>	
+  <div>
+    <%= link_to "Edit", edit_trip_path(@trip) %>
+  </div>
+<% end %>
 
 <h3>
   <%= "#{@trip.tagline}"%>

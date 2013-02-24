@@ -1,11 +1,49 @@
 <%= simple_form_for(@trip) do |f| %>
-  <%= f.input :name, label: "Trip Name", placeholder: 'Bermuda Beaches' %>
-  <%= f.input :hashtag, label: "Hashtag", placeholder: 'bermudabeaches' %>
-  <%= f.input :tagline, label: "Tagline",
-        placeholder: "Greatest Vacation Ever" %>
-  <%= f.input :description, label: "Description",
-        placeholder: 'We put 12 awesome people in a beach house. Epic trip.' %>
-  <%= f.input :s_date, label: "Start Date" %>
-  <%= f.input :e_date, label: "End Date" %>
-  <%= f.button :submit, id: "commit", value: "Submit" %>
+  <%= f.input :name, 
+  						label: "Trip Name", 
+  						placeholder: 'Bermuda Beaches' %>
+  <%= f.input :hashtag, 
+  						label: "Hashtag", 
+  						placeholder: 'bermudabeaches' %>
+  <%= f.input :tagline, 
+  						label: "Tagline",
+        			placeholder: "Greatest Vacation Ever" %>
+  <%= f.input :description, 
+  						label: "Description",
+        			placeholder: 'We put 12 awesome people in a beach house. Epic trip.' %>
+  <%= f.input :s_date, 
+  						label: "Start Date" %>
+  <%= f.input :e_date, 
+  						label: "End Date" %>
+
+  <%= f.button 	:submit, 
+  							id: "commit", 
+  							value: "Submit" %>
+
+  <% if current_user && current_user.administrates(@trip) %>
+  	<h2>Advanced Options:</h2>
+
+    <!-- IS THIS EVIL MODEL CALLING FROM THE VIEW???  -->
+    <% if @trip.creator == current_user %>  
+    	<%= f.input :public_view, 
+    							label: "View", 
+    							as: :radio_buttons, 
+    							disabled: true, 
+    							hint: 'This setting is currently unavailable', 
+    							collection: [['Public', true], ['Private', false]] %>
+    	<%= f.input :whitelist_posters, 
+    							label: "Posting", 
+    							as: :radio_buttons,
+    							collection: [['Public', false], ['Private', true]], 
+    							hint: 'Private trips will only allow contributions from "whitelisted" accounts' %>
+      <h4>Trip Admins:</h4>
+        <ul id="admin-list">
+          <%= render partial: "admin", collection: @admins %>
+        </ul>
+    <% end %>
+
+  	<%= f.button :submit, id: "commit", value: "Submit" %>
+
+  <% end %>
+
 <% end %>

@@ -1,0 +1,10 @@
+
+<% if trip_creator(admin) %>
+	<li><%= admin.username %> (creator)</li>
+<% else %>
+	<li>
+		<%= admin.username %> | 
+		<%= link_to "remove", trip_trip_admin_path(admin), method: :delete %>
+	</li>
+
+<% end %>

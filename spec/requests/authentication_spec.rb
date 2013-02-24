@@ -118,19 +118,6 @@ describe "Authentication" do
 				it { should have_link('New Trip', href: new_trip_path) }
 
 			end
-
-			describe "after signing out" do
-
-				before do
-					visit new_trip_path
-					click_link "Sign Out"
-				end
-
-				xspecify "the session[:return_to] should be cleared" do
-					session[:return_to].should be_nil
-				end
-			end
-
 		end
 	end
 end

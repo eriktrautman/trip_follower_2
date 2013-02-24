@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130213053720) do
+ActiveRecord::Schema.define(:version => 20130224030921) do
 
   create_table "events", :force => true do |t|
     t.string   "name"
@@ -27,6 +27,17 @@ ActiveRecord::Schema.define(:version => 20130213053720) do
   end
 
   add_index "events", ["hashtag"], :name => "index_events_on_hashtag"
+
+  create_table "trip_admins", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "trip_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "trip_admins", ["trip_id"], :name => "index_trip_admins_on_trip_id"
+  add_index "trip_admins", ["user_id", "trip_id"], :name => "index_trip_admins_on_user_id_and_trip_id", :unique => true
+  add_index "trip_admins", ["user_id"], :name => "index_trip_admins_on_user_id"
 
   create_table "trips", :force => true do |t|
     t.integer  "creator_id"

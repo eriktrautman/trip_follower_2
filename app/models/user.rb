@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
 
   has_many :trips, foreign_key: :creator_id
   has_many :events, foreign_key: :creator_id
+  has_many :trip_adminships, class_name: "TripAdmin", foreign_key: :user_id
+  has_many :administrated_trips, through: :trip_adminships, source: :trip
 
   [ :username, :email, :password, :password_confirmation ].each do |field| validates field, presence: true
   end
@@ -17,6 +19,10 @@ class User < ActiveRecord::Base
 					message: "Password lengths must be between 6-16 characters"  }
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 	validates :email, format: { with: VALID_EMAIL_REGEX }, uniqueness: true
+
+	def administrates(trip)
+		self.administrated_trips.include?(trip)
+	end
 
 	private
 		def create_session_token

@@ -1,8 +1,10 @@
 class Trip < ActiveRecord::Base
-  attr_accessible :name, :tagline, :description, :s_date, :e_date, :hashtag
+  attr_accessible :name, :tagline, :description, :s_date, :e_date, :hashtag, :whitelist_posters, :public_view
 
   belongs_to :creator, class_name: "User", foreign_key: :creator_id
   has_many :events
+  has_many :trip_admins
+  has_many :admins, through: :trip_admins, source: :user
 
   validates :name, length: { in: 4..24 }
   validates :name, presence: true

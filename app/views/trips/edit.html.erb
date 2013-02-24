@@ -1,6 +1,11 @@
-<% content_for(:title) { "Edit Trip"} %>
+<% content_for(:title) { "Trip Settings"} %>
 <h1>
-  Edit Trip: <%= @trip.name %>
+  Trip Settings: <%= @trip.name %>
 </h1>
+<p>
+	<em>Created by <%= @trip.creator.username %></em>
+</p>
 
 <%= render partial: 'form' %>
+
+<%= render partial: 'creator_settings_form' %>

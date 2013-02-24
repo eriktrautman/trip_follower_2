@@ -14,6 +14,8 @@ describe Trip do
   it { should respond_to(:hashtag) }
   it { should respond_to(:public_view) }
   it { should respond_to(:whitelist_posters) }
+  it { should respond_to(:trip_admins) }
+  it { should respond_to(:admins) }
 
   it { should respond_to(:creator_id) }
   it { should respond_to(:creator) }
