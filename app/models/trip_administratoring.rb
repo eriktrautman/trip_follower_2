@@ -1,4 +1,4 @@
-class TripAdmin < ActiveRecord::Base
+class TripAdministratoring < ActiveRecord::Base
 	attr_accessible :user, :trip
 
 	belongs_to :user

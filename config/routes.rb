@@ -5,7 +5,7 @@ TripFollower2::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :trips do
-  	resources :trip_admins, only: [:create, :destroy]
+  	resources :trip_administratorings, only: [:create, :destroy]
     resources :trip_whitelistings, only: [:create, :destroy]
   end
   resources :events, except: [:new, :show]

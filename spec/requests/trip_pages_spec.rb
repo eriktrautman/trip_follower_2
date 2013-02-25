@@ -175,7 +175,7 @@ describe "TripPages" do
           
           before do
             sign_in(other_user)
-            TripAdmin.create(user: other_user, trip: trip)
+            TripAdministratoring.create(user: other_user, trip: trip)
             visit edit_trip_path(trip)
           end
 
@@ -257,7 +257,7 @@ describe "TripPages" do
       let(:admin_user) { FactoryGirl.create(:user) }
 
       before do
-        TripAdmin.create(user: admin_user, trip: trip)
+        TripAdministratoring.create(user: admin_user, trip: trip)
         sign_in admin_user
         visit trip_path(trip)
       end

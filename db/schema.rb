@@ -28,16 +28,16 @@ ActiveRecord::Schema.define(:version => 20130225010235) do
 
   add_index "events", ["hashtag"], :name => "index_events_on_hashtag"
 
-  create_table "trip_admins", :force => true do |t|
+  create_table "trip_administratorings", :force => true do |t|
     t.integer  "user_id"
     t.integer  "trip_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  add_index "trip_admins", ["trip_id"], :name => "index_trip_admins_on_trip_id"
-  add_index "trip_admins", ["user_id", "trip_id"], :name => "index_trip_admins_on_user_id_and_trip_id", :unique => true
-  add_index "trip_admins", ["user_id"], :name => "index_trip_admins_on_user_id"
+  add_index "trip_administratorings", ["trip_id"], :name => "index_trip_administratorings_on_trip_id"
+  add_index "trip_administratorings", ["user_id", "trip_id"], :name => "index_trip_administratorings_on_user_id_and_trip_id", :unique => true
+  add_index "trip_administratorings", ["user_id"], :name => "index_trip_administratorings_on_user_id"
 
   create_table "trip_whitelistings", :force => true do |t|
     t.integer  "user_id"

@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe TripAdmin do
+describe TripAdministratoring do
 	let(:user) { FactoryGirl.create(:user) }
 	let(:trip) { FactoryGirl.create(:trip) }
-	let(:admin) { TripAdmin.new(user: user, trip: trip) }
+	let(:admin) { TripAdministratoring.new(user: user, trip: trip) }
 
 	subject { admin }
 

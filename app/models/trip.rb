@@ -3,8 +3,8 @@ class Trip < ActiveRecord::Base
 
   belongs_to :creator, class_name: "User", foreign_key: :creator_id
   has_many :events, dependent: :destroy
-  has_many :trip_admins, dependent: :destroy
-  has_many :admins, through: :trip_admins, source: :user
+  has_many :trip_administratorings, dependent: :destroy
+  has_many :admins, through: :trip_administratorings, source: :user
   has_many :trip_whitelistings, dependent: :destroy
   has_many :whitelisted_users, through: :trip_whitelistings, source: :user
 
@@ -18,7 +18,7 @@ class Trip < ActiveRecord::Base
   validate :validate_end_date_after_start_date
 
   def remove_admin(user)
-    self.trip_admins.where("user_id = ?", user.id).first.destroy
+    self.trip_administratorings.where("user_id = ?", user.id).first.destroy
   end
 
   def remove_whitelisting(user)

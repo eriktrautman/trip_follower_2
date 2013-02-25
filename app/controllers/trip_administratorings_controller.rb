@@ -1,12 +1,13 @@
-class TripAdminsController < ApplicationController
+class TripAdministratoringsController < ApplicationController
   before_filter :is_trip_creator, only: [:create, :destroy]
 
 
-	# Expects an AJAX request to create TripAdmin, returns Admin user
+	# Expects an AJAX request to create TripAdministratoring
+	# Returns the Admin user upon success
 	def create
 		user = User.find_by_username(params[:username])
 		trip = Trip.find(params[:trip_id])
-		tripadmin = TripAdmin.new(user: user, trip: trip)
+		tripadmin = TripAdministratoring.new(user: user, trip: trip)
 		if user && trip && tripadmin.save
 			respond_to do |format|
 				format.json { render json: user }

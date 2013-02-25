@@ -10,7 +10,7 @@ class TripsController < ApplicationController
   def create
     @trip = current_user.trips.new(params[:trip])
     if @trip.save
-      TripAdmin.create!(user: current_user, trip: @trip)
+      TripAdministratoring.create!(user: current_user, trip: @trip)
       TripWhitelisting.create!(user: current_user, trip: @trip)
       flash[:success] = "Your trip has been created!"
       redirect_to current_user
@@ -65,7 +65,7 @@ class TripsController < ApplicationController
 
     def trip_admin
       trip = Trip.find_by_id(params[:id])
-      unless trip.admins.include?(current_user)
+      unless trip && trip.admins.include?(current_user)
         flash[:error] = "Permission Denied"
         redirect_to root_path
       end

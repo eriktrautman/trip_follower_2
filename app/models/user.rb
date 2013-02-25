@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   has_many :trips, foreign_key: :creator_id, dependent: :destroy
   has_many :events, foreign_key: :creator_id, dependent: :destroy
-  has_many :trip_adminships, class_name: "TripAdmin", foreign_key: :user_id, dependent: :destroy
+  has_many :trip_adminships, class_name: "TripAdministratoring", foreign_key: :user_id, dependent: :destroy
   has_many :administrated_trips, through: :trip_adminships, source: :trip
   has_many :trip_whitelistings, dependent: :destroy
   has_many :whitelisted_trips, through: :trip_whitelistings,

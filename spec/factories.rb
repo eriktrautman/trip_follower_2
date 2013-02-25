@@ -14,7 +14,7 @@ FactoryGirl.define do
     association :creator, factory: :user
 
     after(:create) do |trip|
-      FactoryGirl.create(:trip_admin, user: trip.creator, trip: trip)
+      FactoryGirl.create(:trip_administratoring, user: trip.creator, trip: trip)
     end
   end
 
@@ -25,7 +25,7 @@ FactoryGirl.define do
     association :trip, factory: :trip
   end
 
-  factory :trip_admin do
+  factory :trip_administratoring do
     user
     trip
   end
