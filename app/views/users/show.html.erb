@@ -17,6 +17,17 @@
       <ul>
         <%= render @trips %>
       </ul>
+      <hr>
+    </div>
+    <div id="my-contributorships">
+      <h3>
+        Member of:
+      </h3>
+      <ul>
+        <%= render partial: 'trips/trip', collection: @trips_contributed_to %>
+      </ul>
+      <hr>
+    </div>
   </aside>
 
   <div class="span8">

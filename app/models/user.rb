@@ -18,10 +18,11 @@ class User < ActiveRecord::Base
   end
 	validates :username, length: { maximum: 24,
 					message: "Name lengths must be between 2-24 characters"  }
+	validates :username, uniqueness: { case_sensitive: false }
 	validates :password, length: { in: 6..16,
 					message: "Password lengths must be between 6-16 characters"  }
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-	validates :email, format: { with: VALID_EMAIL_REGEX }, uniqueness: true
+	validates :email, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
 
 	def administrates(trip)
 		self.administrated_trips.include?(trip)

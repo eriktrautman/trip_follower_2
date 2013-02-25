@@ -6,25 +6,11 @@ TODO:
 PRESSING:
 > Port the docs over to evernote before deleting records of functionality!
 
-User pages:
-> Finish landing page benefit boxes
-> case insensitivity to usernames uniqueness
-
 
 Authorization:
-> Verify with testing!
-> Admin users for trips
-> trips have admin user(s) added or deleted by the creator
-	> link to trip creator control panel for creators only
-	> the link leads to the trip's admin index page with an add admin form above the list and delete buttons next to each of them
-	> test the opposite -- that non-admins or creators cannot access options
-> Admins can whitelist non-admin users to post in the trip (if enabled)
-  > Admins see all options for editing a trip
-  > Admins see a link to the admin control panel atop the trip show page
-  	> whitelist is its own controller
-  	> it should be a part of the admin's control panel
-> Admins automatically follow trips for which they are admins
-> Only admins should be allowed to go to admin protected pages
+>?UJS? trips have admin user(s) added or deleted by the creator
+>?UJS?Admins can whitelist non-admin users to post in the trip (if enabled)
+
 
 
 Following:
@@ -33,11 +19,16 @@ Following:
 > Following someone follows all their trips
 > I can unfollow any individual trips
 > I automatically follow my trips (but cannot unfollow them)
+> Admins automatically follow trips for which they are admins (but cannot unfollow them)
+> I can view all my followed trips
 
 Privacy:
 > trips default to public view / public post
 > trips may be changed by creator to public view / whitelist post
 > Public view trips are followable (eg all now)
+
+Users:
+> Enable Gravatars for user pictures
 
 Event Pages:
 > Create events models
@@ -71,16 +62,21 @@ Polish:
 > Typeaheads!
 > Make trip whitelisting and admin adds into an ajax form
 > On trip edit admin options, make the enter key in the admin textfield add admin instead of submitting the whole form
+> Admins should be able to un-admin themselves
+> Whitelisted users should be able to un-whitelist themselves
 
 
 ISSUES:
-> Model calls from edit form??
-> Security hole in authorization helper?
-> Couldn't render when not using AJAX for my tripadmins destroy render edit_trip_path(params[:trip_id])
-> Working with data- attributes
-> Double firing the radio buttons!
-> Not disabled public view!
-> passing urls to JS using content-tags?
+> Idiomatic enter-to-submit
+
+> XXX Model calls from edit form?? >> Preload assocs using includes
+> XXX Security hole in authorization helper? >> NO, ID is cool BUT eagerly load stuff using includes and it won't fire another model call
+> BOOO Couldn't render when not using AJAX for my tripadmins destroy render edit_trip_path(params[:trip_id])
+> XXX Working with data- attributes >> Data is a global set of data that html5 camel cases and groups together
+> XXX Double firing the radio buttons! >> Labels propagate downwards into the checkbox.... CHANGE button not CLICK button! (keyboard)
+> XXX Not disabled public view!
+> XXX passing urls to JS using content-tags?  => .to_json script tags
+> Unobtrusive Javascript: Hide a real form button if JS is enabled, so non JS users can use the site and I can write regular integration tests... Modernizr -- top HTML tags includes the browser's functionality as classes so you can use CSS to style based on availability of things like JS.
 
 TIL
 > Factories have an aftercreate method to get around simple annoyances like requiring a current user in order to make the creator of a trip an admin too

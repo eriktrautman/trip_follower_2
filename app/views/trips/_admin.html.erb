@@ -1,5 +1,5 @@
 
-<% if trip_creator(admin) %>
+<% if @trip.creator == admin %>
 	<li><em><%= admin.username %> (trip creator)</em></li>
 <% else %>
 	<li id="admin-user-<%= admin.id %>">

@@ -15,6 +15,7 @@ FactoryGirl.define do
 
     after(:create) do |trip|
       FactoryGirl.create(:trip_administratoring, user: trip.creator, trip: trip)
+      FactoryGirl.create(:trip_whitelisting, user: trip.creator, trip: trip)
     end
   end
 
@@ -26,6 +27,11 @@ FactoryGirl.define do
   end
 
   factory :trip_administratoring do
+    user
+    trip
+  end
+
+  factory :trip_whitelisting do
     user
     trip
   end

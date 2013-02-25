@@ -10,6 +10,7 @@ class UsersController < ApplicationController
 	def show
 		@user = User.find(params[:id])
 		@trips = @user.trips
+		@trips_contributed_to = @user.whitelisted_trips.where("trips.creator_id != ?", @user.id).includes(:admins)
 	end
 
 	def new

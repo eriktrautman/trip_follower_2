@@ -159,7 +159,7 @@ var PrivacyAndPostingLibrary = (function(){
 
 		$.ajax( {
 			url: url, 
-			type: 'PUT', 
+			type: 'POST', 
 			dataType: "json",
 			data: data,
 			success: function(trip){
@@ -177,11 +177,11 @@ var PrivacyAndPostingLibrary = (function(){
 	}
 
 	function addPrivacyListeners(){
-		$("div#trip-posting-radio-inputs").on("click", "input", function(e){
+		$("div#trip-posting-radio-inputs").on("change", "input", function(e){
 
 			$("span.ajax-success").remove();
 			var val = $(e.target).val();
-			var data = { "trip": {"whitelist_posters": val } };
+			var data = { "trip": {"whitelist_posters": val }, "_method": "put" };
 
 			Trip.updateAttribute(data, function(trip){
 			// console.log($(e.target));

@@ -25,25 +25,20 @@ class TripsController < ApplicationController
   end
 
   def edit
-    @trip = Trip.find(params[:id])
-    @trip_creator = @trip.creator
+    @trip = Trip.includes(:creator).find(params[:id])
     @admins = @trip.admins
     @wl_users = @trip.whitelisted_users
   end
 
   def update
     @trip = Trip.find(params[:id])
-    puts "\n\n\n\n\n\n\n WHATTTT \n\n\n\n\n"
     if @trip.update_attributes(params[:trip])
       respond_to do |format|
-        puts "FORMAT IS     ??????    #{format}!!"
         format.html do
-          puts "IN THE HTML"
           flash[:success] = "Successfully updated"
           redirect_to @trip
         end
         format.json do
-           puts "IN THE JSON"
           render json: @trip
         end
       end
