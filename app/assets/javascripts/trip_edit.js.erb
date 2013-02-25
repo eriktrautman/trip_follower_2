@@ -1,0 +1,75 @@
+// alert("HI");
+var AdminLibrary = (function(){
+
+	function Admin(){
+		var that = this;
+	}
+
+	Admin.add = function(username, callback){
+		var url = $("#admin-url").attr("data-url");
+		console.log(url);
+		$.post(	url, { "username": username },
+			function(admin){
+				if(callback){
+					callback(admin);
+				}
+			}
+		);
+	}
+
+	Admin.remove = function(admin_id, callback){
+		var url = $("#admin-url").attr("data-url");
+		console.log(url);
+		$.ajax( {
+			url: url+"/"+admin_id, 
+			type: 'DELETE', 
+			// data: { "id": admin_id },
+			success: function(admin){
+				if(callback){
+					callback(admin);
+				}
+			},
+			failure: function(){
+				alert("Delete request failed");
+			}
+		});
+	}
+
+	function addAdminListeners(){
+
+		// Listener for additions of admin users via the textbox + button
+		$("#add-admin-button").click(function(){
+			console.log("ADD ADMIN");
+			var username = $("#add-admin").val();
+			Admin.add(username, function(admin){
+				console.log("GOT BACK! HE's :" + admin);
+				console.log(admin);
+				$("input#add-admin").val("");
+				$("ul#admin-list").append("<li id='admin-user-"+admin.id+
+						"'>"+admin.username+
+						" | <a class='remove-admin' data-id='"+
+						admin.id+"'>remove</a></li>");
+			});
+		});	
+
+		// Listener for removals of admin users
+		$("#admin-list").click(function(e){
+			var admin_id = $(e.target).attr("data-id");
+			console.log("Removing " + admin_id);
+			Admin.remove(admin_id, function(admin){
+				console.log("RETURNED! Removed " + admin.username);
+				$("li#admin-user-"+admin.id).remove();
+			});
+		});
+	}
+
+
+	return {
+		Admin: Admin,
+		addAdminListeners: addAdminListeners
+	}
+})();
+
+$(function(){
+	AdminLibrary.addAdminListeners();
+});

@@ -1,0 +1,2 @@
+module TripAdminsHelper
+end

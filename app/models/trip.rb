@@ -15,6 +15,9 @@ class Trip < ActiveRecord::Base
 
   validate :validate_end_date_after_start_date
 
+  def remove_admin(user)
+    self.trip_admins.where("user_id = ?", user.id).first.destroy
+  end
 
   private
 

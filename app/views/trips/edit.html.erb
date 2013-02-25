@@ -1,4 +1,5 @@
 <% content_for(:title) { "Trip Settings"} %>
+<%= content_tag(:div, id: "admin-url", data: {url: trip_trip_admins_url(@trip) } ) {} %> 
 <h1>
   Trip Settings: <%= @trip.name %>
 </h1>
@@ -8,4 +9,4 @@
 
 <%= render partial: 'form' %>
 
-<%= render partial: 'creator_settings_form' %>
+<%= javascript_include_tag "trip_edit" %>

@@ -100,12 +100,20 @@ describe "TripPages" do
             trip.reload.whitelist_posters.should == true
           end
 
+          # IS THERE A GOOD WAY TO TEST AJAX??
           context "after creating an admin user" do
-            before do
 
+            let(:other_user) { FactoryGirl.create(:user, username: "AdminUser1") }
+
+            before do
+              fill_in("add-admin", with: other_user.username)
+              click_button("add-admin-button")
+              sleep(3)
+              visit edit_trip_path(trip)
             end
 
-            xit { should have_selector('li', text: 'AdminUser1') }
+            it { should have_selector('li', text: 'AdminUser1') }
+
           end
 
         end

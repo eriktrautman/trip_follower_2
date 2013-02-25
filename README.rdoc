@@ -4,11 +4,14 @@ It's all new and better than anything you've ever seen.
 TODO:
 
 PRESSING:
-> Make the remove button work for admins
-> Make an add-admin box
+> Test the add and removals
 > List the whitelist
+>> hide if whitelist off
+>> gray out if turning whitelist off
+>> 
 > Make remove buttons work with the whitelist
 > Make add-whitelist box
+> Pull out advanced options since they're all ajax anyway???
 
 User pages:
 > Edit link in navbar for signed in user
@@ -74,10 +77,15 @@ Polish:
 > Create hover tooltips for the whitelisting
 > Typeaheads!
 > Make trip whitelisting and admin adds into an ajax form
+> On trip edit admin options, make the enter key in the admin textfield add admin instead of submitting the whole form
+
 
 ISSUES:
 > Model calls from edit form??
 > Security hole in authorization helper?
+> Couldn't render when not using AJAX for my tripadmins destroy render edit_trip_path(params[:trip_id])
+> Working with data- attributes
 
 TIL
 > Factories have an aftercreate method to get around simple annoyances like requiring a current user in order to make the creator of a trip an admin too
+> To pass data to JS, use the javascript_tag and set the window.varname = '<%= j sample_url %>'; or, better, using content_tag to make a div that just happens to have the data in it

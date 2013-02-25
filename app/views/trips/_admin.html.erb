@@ -1,10 +1,10 @@
 
 <% if trip_creator(admin) %>
-	<li><%= admin.username %> (creator)</li>
+	<li><%= admin.username %> (trip creator)</li>
 <% else %>
-	<li>
+	<li id="admin-user-<%= admin.id %>">
 		<%= admin.username %> | 
-		<%= link_to "remove", trip_trip_admin_path(admin), method: :delete %>
+		<a class="remove-admin" data-id=<%= "#{admin.id}" %> >remove</a>
 	</li>
 
 <% end %>

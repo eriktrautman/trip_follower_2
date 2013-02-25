@@ -14,9 +14,9 @@
 	              Account <b class="caret"></b>
 	            </a>
 	            <ul class="dropdown-menu">
-	              <li>something else</li>
-	              <li><%= link_to "Sign Out", signout_path, method: "delete" %></li>
+                <li class="pad-a"><%= current_user.username %></li>
 	              <li class="divider"></li>
+                <li><%= link_to "Sign Out", signout_path, method: "delete" %></li>
 	            </ul>
 	          </li>
 	        <% else %>
