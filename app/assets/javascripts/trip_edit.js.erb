@@ -9,7 +9,7 @@ var AdminLibrary = (function(){
 		var url = $("#admin-url").attr("data-url");
 		$.post(	url, { "username": username },
 			function(admin){
-				if(!admin){
+				if(!admin.failure){
 					if(callback){
 						callback(admin);
 					}
@@ -24,6 +24,7 @@ var AdminLibrary = (function(){
 		$.ajax( {
 			url: url+"/"+admin_id, 
 			type: 'DELETE', 
+			dataType: "json",
 			success: function(admin){
 				if(!admin.failure){
 					if(callback){
@@ -57,7 +58,6 @@ var AdminLibrary = (function(){
 			var admin_id = $(e.target).attr("data-id");
 
 			Admin.remove(admin_id, function(admin){
-				console.log("RETURNED! Removed " + admin.username);
 				$("li#admin-user-"+admin.id).remove();
 			});
 		});
@@ -98,6 +98,7 @@ var WhitelistLibrary = (function(){
 		$.ajax( {
 			url: url+"/"+whitelisted_user_id, 
 			type: 'DELETE', 
+			dataType: "json",
 			success: function(whitelisted_user){
 				if(!whitelisted_user.failure){
 					if(callback){
@@ -121,7 +122,6 @@ var WhitelistLibrary = (function(){
 				$("input#add-whitelisted-user").val("");
 
 				if(whitelisted_user){
-					console.log(whitelisted_user.length);
 					$("ul#whitelisted-users-list").append("<li id='whitelisted-user-"+whitelisted_user.id+
 							"'>"+whitelisted_user.username+
 							" | <a class='remove-whitelisted-user' data-id='"+
@@ -147,9 +147,64 @@ var WhitelistLibrary = (function(){
 })();
 
 
+// PRIVACY LIBRARY ********************************
+var PrivacyAndPostingLibrary = (function(){
+
+	function Trip(){
+		var that = this;
+	}
+
+	Trip.updateAttribute = function(data, callback){
+		var url = $("#trip-url").attr("data-url");
+
+		$.ajax( {
+			url: url, 
+			type: 'PUT', 
+			dataType: "json",
+			data: data,
+			success: function(trip){
+				console.log("RUNNIG UPDATE");
+				if(!trip.failure){
+					if(callback){
+						callback(trip);
+					}
+				}
+			},
+			failure: function(){
+				alert("Update request failed");
+			}
+		});
+	}
+
+	function addPrivacyListeners(){
+		$("div#trip-posting-radio-inputs").on("click", "input", function(e){
+
+			$("span.ajax-success").remove();
+			var val = $(e.target).val();
+			var data = { "trip": {"whitelist_posters": val } };
+
+			Trip.updateAttribute(data, function(trip){
+			// console.log($(e.target));
+				$(e.target).first().closest("label").append("<span class='ajax-success'>Updated!</span>");
+				if(val == "true"){
+					$("div#whitelist").show();
+				}else{
+					$("div#whitelist").hide();
+				}
+			});
+		});
+	};
+
+	return{
+		addPrivacyListeners: addPrivacyListeners
+	}
+})();
+
+
 
 // EXECUTION SCRIPTS *********************************
 $(function(){
 	AdminLibrary.addAdminListeners();
 	WhitelistLibrary.addWhitelistListeners();
+	PrivacyAndPostingLibrary.addPrivacyListeners();
 });

@@ -4,13 +4,9 @@ It's all new and better than anything you've ever seen.
 TODO:
 
 PRESSING:
-> Test the add and removals
-> List the whitelist
 >> hide if whitelist off
 >> gray out if turning whitelist off
 >> 
-> Make remove buttons work with the whitelist
-> Make add-whitelist box
 > Pull out advanced options since they're all ajax anyway???
 
 User pages:
@@ -85,6 +81,8 @@ ISSUES:
 > Security hole in authorization helper?
 > Couldn't render when not using AJAX for my tripadmins destroy render edit_trip_path(params[:trip_id])
 > Working with data- attributes
+> Double firing the radio buttons!
+> Not disabled public view!
 
 TIL
 > Factories have an aftercreate method to get around simple annoyances like requiring a current user in order to make the creator of a trip an admin too

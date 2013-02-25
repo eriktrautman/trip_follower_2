@@ -16,6 +16,8 @@
 /* COLORS */
 $navGray: rgb(27,27,27);
 $navTextGray: rgb(200,200,200);
+$lightGray: #ccc;
+$successGreen: #0d0;
 
 body {
 	padding-top: 60px;
@@ -34,6 +36,17 @@ small {
   font-size: .7em;
 }
 
+.help-block {
+  font-style: italic;
+  color: $lightGray;
+  padding-left: 20px;
+}
+
+.ajax-success {
+  font-style: italic;
+  color: $successGreen;
+  padding-left: 20px;
+}
 /* HEADER */
 
 #logo {
