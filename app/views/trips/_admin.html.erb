@@ -1,6 +1,6 @@
 
 <% if trip_creator(admin) %>
-	<li><%= admin.username %> (trip creator)</li>
+	<li><em><%= admin.username %> (trip creator)</em></li>
 <% else %>
 	<li id="admin-user-<%= admin.id %>">
 		<%= admin.username %> | 

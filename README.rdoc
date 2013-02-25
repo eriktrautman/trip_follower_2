@@ -16,7 +16,7 @@ PRESSING:
 User pages:
 > Edit link in navbar for signed in user
 > Edit the user information, including email and username
-> 
+> case insensitivity to usernames uniqueness
 
 
 Authorization:

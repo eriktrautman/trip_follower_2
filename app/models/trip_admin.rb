@@ -6,5 +6,6 @@ class TripAdmin < ActiveRecord::Base
 
 	validates :user_id, presence: true
 	validates :trip_id, presence: true
+	validates_uniqueness_of :trip_id, scope: :user_id
 
 end

@@ -28,6 +28,7 @@
     <% if @trip.creator == current_user %> 
 
       <div id="privacy-and-posting">
+        <br />
         <h4>Privacy and Posting:</h4>
       	<%= f.input :public_view, 
       							label: "View", 
@@ -41,6 +42,7 @@
       							collection: [['Public', false], ['Private', true]], 
       							hint: 'Private trips will only allow contributions from "whitelisted" accounts' %>
       </div>
+      <br />
 
       <div id="trip-admins">
         <h4>Trip Admins:</h4>
@@ -51,10 +53,11 @@
           <%= render partial: "admin", collection: @admins %>
         </ul>
       </div>
+      <br />
 
     <% end %>
 
-    <% if @trip.whitelist_posters %>
+    <% if @wl_users %>
       <div id="whitelist">
     <% else %>
       <div style="display:none" id="whitelist">
@@ -68,11 +71,12 @@
         <input type="text" id="add-whitelisted-user" placeholder="ExampleUser" />
         <button id="add-whitelisted-user-button" type="button">Add</button>
         <ul id="whitelisted-users-list">
-          <%= render partial: "whitelist", collection: @whitelisted_user %>
+          <%= render partial: "whitelisted_user", collection: @wl_users %>
         </ul>
 
 
       </div>
+      <br />
 
   	<%= f.button :submit, id: "commit", value: "Submit" %>
 

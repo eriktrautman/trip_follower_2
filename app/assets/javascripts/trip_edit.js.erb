@@ -1,4 +1,4 @@
-// alert("HI");
+// ADMIN LIBRARY ********************************
 var AdminLibrary = (function(){
 
 	function Admin(){
@@ -7,11 +7,12 @@ var AdminLibrary = (function(){
 
 	Admin.add = function(username, callback){
 		var url = $("#admin-url").attr("data-url");
-		console.log(url);
 		$.post(	url, { "username": username },
 			function(admin){
-				if(callback){
-					callback(admin);
+				if(!admin){
+					if(callback){
+						callback(admin);
+					}
 				}
 			}
 		);
@@ -23,10 +24,11 @@ var AdminLibrary = (function(){
 		$.ajax( {
 			url: url+"/"+admin_id, 
 			type: 'DELETE', 
-			// data: { "id": admin_id },
 			success: function(admin){
-				if(callback){
-					callback(admin);
+				if(!admin.failure){
+					if(callback){
+						callback(admin);
+					}
 				}
 			},
 			failure: function(){
@@ -39,11 +41,9 @@ var AdminLibrary = (function(){
 
 		// Listener for additions of admin users via the textbox + button
 		$("#add-admin-button").click(function(){
-			console.log("ADD ADMIN");
 			var username = $("#add-admin").val();
+
 			Admin.add(username, function(admin){
-				console.log("GOT BACK! HE's :" + admin);
-				console.log(admin);
 				$("input#add-admin").val("");
 				$("ul#admin-list").append("<li id='admin-user-"+admin.id+
 						"'>"+admin.username+
@@ -53,9 +53,9 @@ var AdminLibrary = (function(){
 		});	
 
 		// Listener for removals of admin users
-		$("#admin-list").click(function(e){
+		$("#admin-list").on("click", "a", function(e){
 			var admin_id = $(e.target).attr("data-id");
-			console.log("Removing " + admin_id);
+
 			Admin.remove(admin_id, function(admin){
 				console.log("RETURNED! Removed " + admin.username);
 				$("li#admin-user-"+admin.id).remove();
@@ -63,13 +63,93 @@ var AdminLibrary = (function(){
 		});
 	}
 
-
 	return {
 		Admin: Admin,
 		addAdminListeners: addAdminListeners
 	}
 })();
 
+
+
+// WHITELIST LIBRARY ********************************
+var WhitelistLibrary = (function(){
+
+	function Whitelist(){
+		var that = this;
+	}
+
+	Whitelist.add = function(username, callback){
+		var url = $("#whitelist-url").attr("data-url");
+
+		$.post(	url, { "username": username },
+			function(whitelisted_user){
+				if(!whitelisted_user.failure){
+					if(callback){
+						callback(whitelisted_user);
+					}
+				}
+			}
+		);
+	}
+
+	Whitelist.remove = function(whitelisted_user_id, callback){
+		var url = $("#whitelist-url").attr("data-url");
+
+		$.ajax( {
+			url: url+"/"+whitelisted_user_id, 
+			type: 'DELETE', 
+			success: function(whitelisted_user){
+				if(!whitelisted_user.failure){
+					if(callback){
+						callback(whitelisted_user);
+					}
+				}
+			},
+			failure: function(){
+				alert("Delete request failed");
+			}
+		});
+	}
+
+	function addWhitelistListeners(){
+
+		// Listener for additions of whitelisted users via the textbox + button
+		$("#add-whitelisted-user-button").click(function(){
+			var username = $("#add-whitelisted-user").val();
+
+			Whitelist.add(username, function(whitelisted_user){
+				$("input#add-whitelisted-user").val("");
+
+				if(whitelisted_user){
+					console.log(whitelisted_user.length);
+					$("ul#whitelisted-users-list").append("<li id='whitelisted-user-"+whitelisted_user.id+
+							"'>"+whitelisted_user.username+
+							" | <a class='remove-whitelisted-user' data-id='"+
+							whitelisted_user.id+"'>remove</a></li>");
+				}
+			});
+		});	
+
+		// Listener for removals of whitelist users
+		$("#whitelisted-users-list").on("click", "a", function(e){
+			var whitelisted_user_id = $(e.target).attr("data-id");
+
+			Whitelist.remove(whitelisted_user_id, function(whitelisted_user){
+				$("li#whitelisted-user-"+whitelisted_user.id).remove();
+			});
+		});
+	}
+
+	return {
+		Whitelist: Whitelist,
+		addWhitelistListeners: addWhitelistListeners
+	}
+})();
+
+
+
+// EXECUTION SCRIPTS *********************************
 $(function(){
 	AdminLibrary.addAdminListeners();
+	WhitelistLibrary.addWhitelistListeners();
 });

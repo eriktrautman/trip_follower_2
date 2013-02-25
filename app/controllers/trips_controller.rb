@@ -11,6 +11,7 @@ class TripsController < ApplicationController
     @trip = current_user.trips.new(params[:trip])
     if @trip.save
       TripAdmin.create!(user: current_user, trip: @trip)
+      TripWhitelisting.create!(user: current_user, trip: @trip)
       flash[:success] = "Your trip has been created!"
       redirect_to current_user
     else
@@ -27,6 +28,7 @@ class TripsController < ApplicationController
     @trip = Trip.find(params[:id])
     @trip_creator = @trip.creator
     @admins = @trip.admins
+    @wl_users = @trip.whitelisted_users
   end
 
   def update

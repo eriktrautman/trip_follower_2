@@ -109,6 +109,7 @@ describe "TripPages" do
               fill_in("add-admin", with: other_user.username)
               click_button("add-admin-button")
               sleep(3)
+              puts page.html
               visit edit_trip_path(trip)
             end
 

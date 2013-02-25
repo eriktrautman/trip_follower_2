@@ -1,5 +1,7 @@
 <% content_for(:title) { "Trip Settings"} %>
 <%= content_tag(:div, id: "admin-url", data: {url: trip_trip_admins_url(@trip) } ) {} %> 
+<%= content_tag(:div, id: "whitelist-url", data: {url: trip_trip_whitelistings_url(@trip) } ) {} %> 
+
 <h1>
   Trip Settings: <%= @trip.name %>
 </h1>

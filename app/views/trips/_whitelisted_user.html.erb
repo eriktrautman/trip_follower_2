@@ -1,0 +1,10 @@
+<% wl_user = whitelisted_user %>
+<% if trip_creator(wl_user) %>
+	<li><em><%= wl_user.username %> (trip creator)</em></li>
+<% else %>
+	<li id="whitelisted-user-<%= wl_user.id %>">
+		<%= wl_user.username %> | 
+		<a class="remove-whitelisted-user" data-id=<%= "#{wl_user.id}" %> >remove</a>
+	</li>
+
+<% end %>
