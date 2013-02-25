@@ -1,0 +1,63 @@
+<% if current_user && current_user.administrates(@trip) %>
+  <hr/>
+  <h2>Advanced Options:</h2>
+
+  <!-- IS THIS EVIL MODEL CALLING FROM THE VIEW???  -->
+  <% if @trip.creator == current_user %> 
+
+    <div id="privacy-and-posting">
+      <br />
+      <h4>Privacy and Posting:</h4>
+      <%= simple_form_for(@trip) do |x| %>
+        <div id="trip-view-radio-inputs">
+          <%= x.input :public_view, 
+                      label: "Public View", 
+                      as: :radio_buttons,
+                      collection: [['Public', true], ['Private', false]], 
+                      disabled: :true,
+                      hint: 'This option is currently unavailable'  %>
+        </div>
+        <div id="trip-posting-radio-inputs">
+          <%= x.input :whitelist_posters, 
+                      label: "Posting", 
+                      as: :radio_buttons,
+                      collection: [['Public', false], ['Private', true]], 
+                      hint: 'Private trips will only allow contributions from "whitelisted" accounts' %>
+        </div>
+      <% end %>
+    </div>
+
+    <div id="trip-admins">
+      <h4>Trip Admins:</h4>
+      <label for="add-admin">Add Admin</label>
+      <input type="text" id="add-admin" placeholder="ExampleUser" />
+      <button id="add-admin-button" type="button">Add</button>
+      <ul id="admin-list">
+        <%= render partial: "admin", collection: @admins %>
+      </ul>
+    </div>
+    <br />
+
+  <% end %>
+
+  <% if @wl_users %>
+    <div id="whitelist" <%= @trip.whitelist_posters ? '' : 'style=display:none;' %>>
+  <% else %>
+    <div style="display:none" id="whitelist">
+  <% end %>
+
+    <h4>Whitelist:</h4>
+    <p>
+      <em>Posts from these users will be pulled into the trip</em>
+    </p>
+    <label for="add-whitelisted-user">Add to Whitelist</label>
+    <input type="text" id="add-whitelisted-user" placeholder="ExampleUser" />
+    <button id="add-whitelisted-user-button" type="button">Add</button>
+    <ul id="whitelisted-users-list">
+      <%= render partial: "whitelisted_user", collection: @wl_users %>
+    </ul>
+
+  </div>
+  <br />
+
+<% end %>

@@ -4,18 +4,15 @@ It's all new and better than anything you've ever seen.
 TODO:
 
 PRESSING:
->> hide if whitelist off
->> gray out if turning whitelist off
->> 
-> Pull out advanced options since they're all ajax anyway???
+> Port the docs over to evernote before deleting records of functionality!
 
 User pages:
-> Edit link in navbar for signed in user
-> Edit the user information, including email and username
+> Finish landing page benefit boxes
 > case insensitivity to usernames uniqueness
 
 
 Authorization:
+> Verify with testing!
 > Admin users for trips
 > trips have admin user(s) added or deleted by the creator
 	> link to trip creator control panel for creators only
@@ -83,6 +80,7 @@ ISSUES:
 > Working with data- attributes
 > Double firing the radio buttons!
 > Not disabled public view!
+> passing urls to JS using content-tags?
 
 TIL
 > Factories have an aftercreate method to get around simple annoyances like requiring a current user in order to make the creator of a trip an admin too

@@ -12,15 +12,34 @@
  *= require_tree .
  */
 @import 'bootstrap';
-
-/* COLORS */
-$navGray: rgb(27,27,27);
-$navTextGray: rgb(200,200,200);
-$lightGray: #ccc;
-$successGreen: #0d0;
+@import 'colors';
 
 body {
 	padding-top: 60px;
+}
+
+small {
+  font-size: .7em;
+}
+
+select {
+  width: 8em;
+}
+
+.user-form {
+  margin: 35px auto;
+  width: 250px;
+  h1 {
+    margin: 30px auto 10px auto;
+  }
+}
+
+.trip-form {
+  margin: 35px auto;
+  width: 500px;
+  h1 {
+    margin: 30px auto 10px auto;
+  }
 }
 
 .center {
@@ -28,12 +47,36 @@ body {
 }
 
 .container {
-  height: 80%;
-  margin-left: 20px;
+  height: 100%;
+  margin-bottom: 60px;
 }
 
-small {
-  font-size: .7em;
+.container-narrow {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.jumbotron {
+  margin: 60px 0px;
+  text-align: center;
+  h1 {
+    font-size: 5.5em;
+    line-height: 1;
+  }
+  .btn {
+    font-size: 2em;
+    padding: 1em 2em;
+    margin: 1em 0;
+  }
+  .content {
+    margin: 60px;
+  }
+  p.lead {
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    font-weight: 200;
+    line-heigh: 3em;
+  }
 }
 
 .help-block {
@@ -66,22 +109,27 @@ small {
 }
 
 nav .pad-a{
+  font-size: 1.2em;
   padding: 3px 20px;
 }
 
 /* FOOTER */
-footer {
+
+#footer {
   width: 100%;
   margin-top: 45px;
+  margin-bottom: 0px;
   padding-top: 5px;
   border: 2px solid black;
   height: 50px;
   background-color: $navGray;
   color: $navTextGray;
-
-  .debug {
-  bottom: 50px;
-  }
 }
+
+.debug {
+  position: fixed;
+  bottom: 60px;
+}
+
 
 

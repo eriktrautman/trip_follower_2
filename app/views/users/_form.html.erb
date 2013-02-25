@@ -3,5 +3,6 @@
 	<%= f.input :email, label: "Email Address", placeholder: 'user@example.com' %>
 	<%= f.input :password, label: "Password" %>
 	<%= f.input :password_confirmation, label: "Confirm Password" %>
-	<%= f.button :submit, id: "commit", value: "Submit" %>
+	<%= f.button :submit, id: "commit", class: "btn btn-large btn-primary",
+	 							value: "Submit" %>
 <% end %>
