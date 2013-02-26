@@ -16,7 +16,9 @@ describe User do
 	it { should respond_to(:trip_adminships) }
 	it { should respond_to(:administrated_trips) }
 	it { should respond_to(:trip_whitelistings) }
-	it { should respond_to(:whitelisted_trips)}
+	it { should respond_to(:whitelisted_trips) }
+	it { should respond_to(:trip_subscriptions) }
+	it { should respond_to(:subscribed_trips) }
 
 	it { should respond_to(:trips) }
 	it { should respond_to(:events) }

@@ -1,14 +1,14 @@
 <div id="user-following-sidebar">
 	<% unless current_user == @user %>
+
 		<div id="user-following-form">
-
-			<% if current_user.following?(@user) %>
-				<%= render 'unfollow' %>
-			<% else %>
-				<%= render 'follow' %>
-			<% end %>
-
+			<%= render partial: "shared/following_buttons", locals: { user: @user } %>
 		</div>
+
+		<%= javascript_tag do %>
+  		$(TF.UserFollowing.addFollowingListeners($("div#user-following-form")));
+		<% end %>
+
 	<% end %>
 	<div id="user-following-stats">
 		<a href="<%= followers_user_path %>">

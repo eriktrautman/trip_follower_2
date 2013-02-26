@@ -14,8 +14,8 @@ class TripsController < ApplicationController
   def create
     @trip = current_user.trips.new(params[:trip])
     if @trip.save
-      TripAdministratoring.create!(user: current_user, trip: @trip)
-      TripWhitelisting.create!(user: current_user, trip: @trip)
+      @trip.trip_administratorings.create!(user: current_user)
+      @trip.trip_whitelistings.create!(user: current_user)
       flash[:success] = "Your trip has been created!"
       redirect_to current_user
     else

@@ -23,7 +23,12 @@ class User < ActiveRecord::Base
   has_many :reverse_user_followings, class_name: "UserFollowing", foreign_key: :followed_id, dependent: :destroy
   has_many :followers, through: :reverse_user_followings, source: :following_user
 
+  # Trip Subscription Associations
+  has_many :trip_subscriptions, foreign_key: :subscriber_id
+  has_many :subscribed_trips, through: :trip_subscriptions, source: :trip
 
+
+  # VALIDATIONS
   [ :username, :email, :password, :password_confirmation ].each do |field| validates field, presence: true
   end
 	validates :username, length: { maximum: 24,

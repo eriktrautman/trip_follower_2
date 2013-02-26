@@ -1,5 +1,6 @@
+
 // ADMIN LIBRARY ********************************
-var AdminLibrary = (function(){
+TF.AdminLibrary = (function(){
 
 	function Admin(){
 		var that = this;
@@ -51,7 +52,7 @@ var AdminLibrary = (function(){
 						" | <a class='remove-admin' data-id='"+
 						admin.id+"'>remove</a></li>");
 			});
-		});	
+		});
 
 		// Listener for removals of admin users
 		$("#admin-list").on("click", "a", function(e){
@@ -72,7 +73,7 @@ var AdminLibrary = (function(){
 
 
 // WHITELIST LIBRARY ********************************
-var WhitelistLibrary = (function(){
+TF.WhitelistLibrary = (function(){
 
 	function Whitelist(){
 		var that = this;
@@ -128,7 +129,7 @@ var WhitelistLibrary = (function(){
 							whitelisted_user.id+"'>remove</a></li>");
 				}
 			});
-		});	
+		});
 
 		// Listener for removals of whitelist users
 		$("#whitelisted-users-list").on("click", "a", function(e){
@@ -148,7 +149,7 @@ var WhitelistLibrary = (function(){
 
 
 // PRIVACY LIBRARY ********************************
-var PrivacyAndPostingLibrary = (function(){
+TF.PrivacyAndPostingLibrary = (function(){
 
 	function Trip(){
 		var that = this;
@@ -203,8 +204,8 @@ var PrivacyAndPostingLibrary = (function(){
 
 
 // EXECUTION SCRIPTS *********************************
-$(function(){
-	AdminLibrary.addAdminListeners();
-	WhitelistLibrary.addWhitelistListeners();
-	PrivacyAndPostingLibrary.addPrivacyListeners();
-});
+// $(function(){
+// 	AdminLibrary.addAdminListeners();
+// 	WhitelistLibrary.addWhitelistListeners();
+// 	PrivacyAndPostingLibrary.addPrivacyListeners();
+// });

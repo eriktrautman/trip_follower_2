@@ -18,6 +18,8 @@ describe Trip do
   it { should respond_to(:admins) }
   it { should respond_to(:trip_whitelistings) }
   it { should respond_to(:whitelisted_users) }
+  it { should respond_to(:trip_subscriptions) }
+  it { should respond_to(:subscribed_users) }
 
   it { should respond_to(:creator_id) }
   it { should respond_to(:creator) }

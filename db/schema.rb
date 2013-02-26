@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130225214616) do
+ActiveRecord::Schema.define(:version => 20130226175258) do
 
   create_table "events", :force => true do |t|
     t.string   "name"
@@ -38,6 +38,17 @@ ActiveRecord::Schema.define(:version => 20130225214616) do
   add_index "trip_administratorings", ["trip_id"], :name => "index_trip_administratorings_on_trip_id"
   add_index "trip_administratorings", ["user_id", "trip_id"], :name => "index_trip_administratorings_on_user_id_and_trip_id", :unique => true
   add_index "trip_administratorings", ["user_id"], :name => "index_trip_administratorings_on_user_id"
+
+  create_table "trip_subscriptions", :force => true do |t|
+    t.integer  "subscriber_id"
+    t.integer  "trip_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "trip_subscriptions", ["subscriber_id", "trip_id"], :name => "index_trip_subscriptions_on_subscriber_id_and_trip_id", :unique => true
+  add_index "trip_subscriptions", ["subscriber_id"], :name => "index_trip_subscriptions_on_subscriber_id"
+  add_index "trip_subscriptions", ["trip_id"], :name => "index_trip_subscriptions_on_trip_id"
 
   create_table "trip_whitelistings", :force => true do |t|
     t.integer  "user_id"

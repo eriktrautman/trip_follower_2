@@ -12,4 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require TF_lib.js
+//= require_tree .
 //= require bootstrap

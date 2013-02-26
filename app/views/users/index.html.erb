@@ -6,8 +6,9 @@
 
 <ul class="users-list">
 	<%=	render @users %>
+
 	<%= javascript_tag do %>
-		window.current_user = '<%= raw current_user.to_json %>';
-	<% end %>
-	<%= javascript_include_tag "users_display" %>
+    $(TF.UserFollowing.addFollowingListeners($("ul.users-list")));
+  <% end %>
+
 </ul>

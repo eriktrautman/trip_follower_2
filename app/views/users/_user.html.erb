@@ -1,31 +1,4 @@
 <li>
 	<%= link_to "#{user.username}", user %>
-	<% if current_user && current_user != user %>
-		<% if current_user.following?(user) %>
-			<button class="unfollow btn btn-small" 
-							data-id="<%= user.id %>"
-							data-url="<%= user_user_following_path(user, current_user) %>">Unfollow
-			</button>
-			<button class="follow btn btn-small" 
-							data-id="<%= user.id %>"
-							data-current-user-id="<%= current_user.id %>"
-							data-url="<%= user_user_followings_path(user) %>"
-							style="display: none">
-							Follow
-			</button>
-		<% else %>
-			<button class="unfollow btn btn-small" 
-							data-id="<%= user.id %>"
-							data-url="<%= user_user_following_path(user, current_user) %>"
-							style="display: none">
-							Unfollow
-			</button>
-			<button class="follow btn btn-small" 
-							data-id="<%= user.id %>"
-							data-current-user-id="<%= current_user.id %>"
-							data-url="<%= user_user_followings_path(user) %>">
-							Follow
-			</button>
-		<% end %>
-	<% end %>
+	<%= render partial: "shared/following_buttons", locals: {user: user } %>
 </li>

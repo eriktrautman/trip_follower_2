@@ -15,5 +15,12 @@
 	<br />
 	<%= render partial: 'advanced_settings' %>
 
-	<%= javascript_include_tag "trip_edit" %>
+	<!-- <%= javascript_include_tag "trip_edit" %> -->
+	<%= javascript_tag do %>
+		$(function(){
+			TF.AdminLibrary.addAdminListeners();
+			TF.WhitelistLibrary.addWhitelistListeners();
+			TF.PrivacyAndPostingLibrary.addPrivacyListeners();
+		});
+	<% end %>
 </div>

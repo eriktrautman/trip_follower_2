@@ -1,14 +1,26 @@
-// USERS DISPLAY LIBRARY *************************
-TF.FollowingLibrary = (function(){
+// USER FOLLOWING LIBRARY *************************
+TF.UserFollowing = (function(){
 
 	function User(){
 		var that = this;
 	}
 
 	User.follow = function(url, follow_id, callback){
-		$.post( url+".json", { "user_following": { "followed_id": follow_id }}, function(data){
-			if(!data.failure && callback){
-				callback(data);
+		$.ajax( {
+			url: url,
+			type: 'POST',
+			data: { "user_following": { "followed_id": follow_id }},
+			dataType: "json",
+			success: function(data){
+					if(data.failure){
+						console.log("The user could not be followed");
+					}else if(callback){
+						callback(data);
+					}
+				},
+			error: function(request, status, error){
+				console.log("Failed to follow user");
+				console.log(error);
 			}
 		})
 	}
@@ -70,9 +82,3 @@ TF.FollowingLibrary = (function(){
 		yell: yell
 	}
 })();
-
-// $(function(){
-// 	UsersLibrary.addUsersListListeners();
-// 	console.log("LOADED.  Current user: "+ current_user.username);
-
-// });

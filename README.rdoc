@@ -10,25 +10,26 @@ ROADMAP:
 	>> Friday: User Feeds, Research + Integrate Tumblr, 500px
 	>> Saturday:
 
+*************************
 PRESSING:
 > Port the docs over to evernote before deleting records of functionality!
 
-
-Authorization:
->?UJS? trips have admin user(s) added or deleted by the creator
->?UJS?Admins can whitelist non-admin users to post in the trip (if enabled)
-
-
+*************************
 Following:
 > Concerns!!!!
 
-> Users can follow public trips
-> Following someone follows all their trips
-> I can unfollow any individual trips
->> It will ask if I want ot unfollow the user as well if I unfollow the trip
-> I automatically follow my trips (but cannot unfollow them)
-> Admins automatically follow trips for which they are admins (but cannot unfollow them)
-> I can view all my followed trips
+Subscriptions:
+> Show subscribers next to trips
+> Show subscriptions atop trip feed
+> Show subscribe/unsubscribe buttons next to trip displays
+> Users can subscribe to public trips
+> Following someone subscribes to all their trips
+> I can unsubscribe from any individual trips
+>> It will ask if I want to unfollow the user as well if I unfollow the trip
+> I automatically subscribe to my trips (but cannot unfollow them)
+> Admins automatically subscribe to trips for which they are admins (but cannot unsubscribe from them)
+> I can view all my subscribed trips
+>> Pass in button classes to the following forms
 
 Testing TODOs:
 > follower page okay
@@ -36,6 +37,9 @@ Testing TODOs:
 > follower / ing counts okay
 > Index page not signed in shows no follow stuff
 
+Authorization:
+>?UJS? trips have admin user(s) added or deleted by the creator
+>?UJS?Admins can whitelist non-admin users to post in the trip (if enabled)
 
 Privacy:
 > Public view trips are followable (eg all now)
@@ -97,6 +101,9 @@ ISSUES:
 > XXX Unobtrusive Javascript: Hide a real form button if JS is enabled, so non JS users can use the site and I can write regular integration tests... Modernizr -- top HTML tags includes the browser's functionality as classes so you can use CSS to style based on availability of things like JS.
 
 TIL
-> Factories have an aftercreate method to get around simple annoyances like requiring a current user in order to make the creator of a trip an admin too
-> To pass data to JS, use the javascript_tag and set the window.varname = '<%= j sample_url %>'; or, better, using content_tag to make a div that just happens to have the data in it
-> Form_for with nested objects (eg posts comments) just pass array with one of each and it'll infer correctly... also works for link_to
+>>> Factories have an aftercreate method to get around simple annoyances like requiring a current user in order to make the creator of a trip an admin too
+>>> To pass data to JS, use the javascript_tag and set the window.varname = '<%= j sample_url %>'; or, better, using content_tag to make a div that just happens to have the data in it
+>>> Form_for with nested objects (eg posts comments) just pass array with one of each and it'll infer correctly... also works for link_to
+>>> Pass variables to a partial using locals: { var1: val1 } in the render partial call
+>>> Security: Using attr_accessible only protects you from a user setting an attribute for which he should not have any way to set it to anything... eg. "admin".  The other flavor is that they shouldn't be able to mess with other types of things that have IDs specified in params or the URLS... these can only be caught using filters like controller before_filters
+

@@ -3,7 +3,7 @@ require 'spec_helper'
 describe TripAdministratoring do
 	let(:user) { FactoryGirl.create(:user) }
 	let(:trip) { FactoryGirl.create(:trip) }
-	let(:admin) { TripAdministratoring.new(user: user, trip: trip) }
+	let(:admin) { trip.trip_administratorings.create(user: user) }
 
 	subject { admin }
 

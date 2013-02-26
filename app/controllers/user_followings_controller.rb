@@ -6,7 +6,7 @@ class UserFollowingsController < ApplicationController
 		current_user.follow!(@user)
 		respond_to do |format|
 			format.html { redirect_to @user }
-			format.js
+			#format.js
 			format.json { render json: @user }
 		end
 	end
@@ -16,7 +16,7 @@ class UserFollowingsController < ApplicationController
 		current_user.unfollow!(@user)
 		respond_to do |format|
 			format.html { redirect_to @user }
-			format.js { puts "WE DID IT YEAH" }
+			#format.js { puts "WE DID IT YEAH" }
 			format.json { render json: @user }
 		end
 	end
