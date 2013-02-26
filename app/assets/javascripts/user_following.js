@@ -48,7 +48,7 @@ TF.UserFollowing = (function(){
 
 			User.follow(url, follow_id, function(data){
 				$(e.target).hide();
-				$("button.unfollow[data-id="+follow_id+"]").show();
+				$(e.target).siblings("button.unfollow").show();
 				updateFollowerCount(1);
 			});
 		});
@@ -57,11 +57,10 @@ TF.UserFollowing = (function(){
 		parent_element.on("click", "button.unfollow", function(e){
 
 			var url = $(e.target).data("url");
-			var unfollow_id = $(e.target).data("id");
 
 			User.unfollow(url, function(data){
 				$(e.target).hide();
-				$("button.follow[data-id="+unfollow_id+"]").show();
+				$(e.target).siblings("button.follow").show();
 				updateFollowerCount(-1);
 			});
 		});

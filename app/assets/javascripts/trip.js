@@ -36,23 +36,23 @@ TF.Trip = (function(){
     });
   }
 
-  function addSubscriptionListeners(parent_element){
+  function addSubscriptionListeners(button){
     console.log("Adding subscribe listeners");
 
-    parent_element.on("click", "button.subscribe", function(e){
-      var url = $(e.target).data("url");
-      subscribe(url, function(data){
-        $(e.target).hide();
-        $(e.target).siblings("button.unsubscribe").show();
-      });
-    });
-
-    parent_element.on("click", "button.unsubscribe", function(e){
-      var url = $(e.target).data("url");
-      unsubscribe(url, function(data){
-        $(e.target).hide();
-        $(e.target).siblings("button.subscribe").show();
-      });
+    button.on("click", function(e){
+      var target = $(e.target);
+      var url = target.data("url");
+      if(target.hasClass("subscribe")){
+        subscribe(url, function(data){
+          target.hide();
+          target.siblings("button.unsubscribe").show();
+        });
+      }else if(target.hasClass("unsubscribe")){
+        unsubscribe(url, function(data){
+          target.hide();
+          target.siblings("button.subscribe").show();
+        });
+      }
     });
   }
 

@@ -2,29 +2,28 @@
 <!-- *** Future: Pass in the button bootstrap classes *** -->
 <% if current_user && trip.creator != current_user %>
   <% if current_user.subscribed_to?(trip) %>
-    <button class="unsubscribe btn btn-small"
-            data-id="<%= trip.id %>"
+    <button class="unsubscribe btn btn-small btn-trip-<%= trip.id %>"
             data-url="<%= unsubscribe_trip_path(trip) %>">Unsubscribe
     </button>
-    <button class="subscribe btn btn-small"
-            data-id="<%= trip.id %>"
-            data-current-trip-id="<%= current_user.id %>"
+    <button class="subscribe btn btn-small btn-trip-<%= trip.id %>"
             data-url="<%= subscribe_trip_path(trip) %>"
             style="display: none"> <!-- << Here's the difference -->
             subscribe
     </button>
   <% else %>
-    <button class="unsubscribe btn btn-small"
-            data-id="<%= trip.id %>"
+    <button class="unsubscribe btn btn-small btn-trip-<%= trip.id %>"
             data-url="<%= unsubscribe_trip_path(trip) %>"
             style="display: none"> <!-- << Here's the difference -->
             Unsubscribe
     </button>
-    <button class="subscribe btn btn-small"
-            data-id="<%= trip.id %>"
-            data-current-trip-id="<%= current_user.id %>"
+    <button class="subscribe btn btn-small btn-trip-<%= trip.id %>"
             data-url="<%= subscribe_trip_path(trip) %>">
             subscribe
     </button>
   <% end %>
+
+  <%= javascript_tag do %>
+    TF.Trip.addSubscriptionListeners($("button.btn-trip-<%= trip.id %>"));
+  <% end %>
+
 <% end %>
