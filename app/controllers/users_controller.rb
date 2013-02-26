@@ -9,6 +9,8 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.find(params[:id])
+		@followers = @user.followers
+		@followed_users = @user.followed_users
 		@trips = @user.trips
 		@trips_contributed_to = @user.whitelisted_trips.where("trips.creator_id != ?", @user.id).includes(:admins)
 	end
@@ -43,6 +45,16 @@ class UsersController < ApplicationController
 			flash.now[:error] = "There was a problem with the information you entered"
 			render :edit
 		end
+	end
+
+	def followers
+		@user = User.find(params[:id])
+		@followers = @user.followers
+	end
+
+	def followed_users
+		@user = User.find(params[:id])
+		@followed_users = @user.followed_users
 	end
 
 	private

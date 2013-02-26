@@ -10,6 +10,9 @@
       <%= image_tag("rails.png") %>
     </div>
     <hr />
+
+    <%= render partial: 'user_following' %>
+
     <div id="my-trips">
       <h3>
         My <%= @trips.count %> Trips:

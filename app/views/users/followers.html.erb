@@ -1,0 +1,14 @@
+<div class="user-followers">
+	<% content_for(:title) { "Followers"} %>
+	<h1>
+		<% if @user == current_user %>
+			Your Followers
+		<% else %>
+			<%= @user.username %>'s Followers
+		<% end %>
+	</h1>
+
+	<ul>
+		<%= render @followers %>
+	</ul>
+</div>

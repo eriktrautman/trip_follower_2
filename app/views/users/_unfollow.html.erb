@@ -1,0 +1,5 @@
+<%= form_for(current_user.followed_users.find(@user.id), url: user_user_following_path(@user.id, current_user), remote: true, method: :delete) do |f| %>
+	<%= f.submit "Unfollow", class: "btn btn-large btn-primary" %>
+<% end %>
+
+<!-- user_user_following_path(@user.id) -->

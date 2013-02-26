@@ -1,0 +1,5 @@
+<%= form_for(current_user.user_followings.build(followed_id: @user.id), 
+		url: user_user_followings_path(@user.id), remote: true) do |f| %>
+	<%= f.hidden_field :followed_id %>
+	<%= f.submit "Follow", class: "btn btn-large btn-primary" %>
+<% end %>

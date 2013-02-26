@@ -8,11 +8,21 @@ class User < ActiveRecord::Base
 
   has_many :trips, foreign_key: :creator_id, dependent: :destroy
   has_many :events, foreign_key: :creator_id, dependent: :destroy
+
+  # Admin and Whitelisting Associations
   has_many :trip_adminships, class_name: "TripAdministratoring", foreign_key: :user_id, dependent: :destroy
   has_many :administrated_trips, through: :trip_adminships, source: :trip
   has_many :trip_whitelistings, dependent: :destroy
   has_many :whitelisted_trips, through: :trip_whitelistings,
   		source: :trip
+
+  # User Following Associations
+  has_many :user_followings, foreign_key: :follower_id, dependent: :destroy
+  has_many :followed_users, through: :user_followings
+
+  has_many :reverse_user_followings, class_name: "UserFollowing", foreign_key: :followed_id, dependent: :destroy
+  has_many :followers, through: :reverse_user_followings, source: :following_user
+
 
   [ :username, :email, :password, :password_confirmation ].each do |field| validates field, presence: true
   end
@@ -26,6 +36,18 @@ class User < ActiveRecord::Base
 
 	def administrates(trip)
 		self.administrated_trips.include?(trip)
+	end
+
+	def following?(other_user)
+		self.followed_users.include?(other_user)
+	end
+
+	def follow!(other_user)
+		self.user_followings.create!(followed_id: other_user.id)
+	end
+
+	def unfollow!(other_user)
+		UserFollowing.find_by_followed_id(other_user.id).destroy
 	end
 
 	private

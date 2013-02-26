@@ -5,7 +5,7 @@ TODO:
 
 PRESSING:
 > Port the docs over to evernote before deleting records of functionality!
-
+> current user to toggle following
 
 Authorization:
 >?UJS? trips have admin user(s) added or deleted by the creator
@@ -14,13 +14,22 @@ Authorization:
 
 
 Following:
+> Concerns!!!!
 > Users can follow users
 > Users can follow public trips
 > Following someone follows all their trips
 > I can unfollow any individual trips
+>> It will ask if I want ot unfollow the user as well
+> I can unfollow any user I am following
 > I automatically follow my trips (but cannot unfollow them)
 > Admins automatically follow trips for which they are admins (but cannot unfollow them)
 > I can view all my followed trips
+
+Testing TODOs:
+> follower page okay
+> following okay
+> follower / ing counts okay
+
 
 Privacy:
 > trips default to public view / public post
@@ -81,3 +90,4 @@ ISSUES:
 TIL
 > Factories have an aftercreate method to get around simple annoyances like requiring a current user in order to make the creator of a trip an admin too
 > To pass data to JS, use the javascript_tag and set the window.varname = '<%= j sample_url %>'; or, better, using content_tag to make a div that just happens to have the data in it
+> Form_for with nested objects (eg posts comments) just pass array with one of each and it'll infer correctly... also works for link_to

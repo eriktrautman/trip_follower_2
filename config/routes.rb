@@ -2,7 +2,12 @@ TripFollower2::Application.routes.draw do
 
   root to: 'static_pages#home'
 
-  resources :users
+  resources :users do
+    resources :user_followings, only: [:create, :destroy]
+    member do
+      get :followed_users, :followers
+    end
+  end
   resources :sessions, only: [:new, :create, :destroy]
   resources :trips do
   	resources :trip_administratorings, only: [:create, :destroy]
