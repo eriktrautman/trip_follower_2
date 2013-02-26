@@ -30,6 +30,10 @@ select {
   width: 8em;
 }
 
+a:hover {
+  cursor: pointer;
+}
+
 .user-form {
   margin: 35px auto;
   width: 250px;

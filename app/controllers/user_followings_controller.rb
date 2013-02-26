@@ -1,5 +1,5 @@
 class UserFollowingsController < ApplicationController
-	# before_filter :signed_in_user
+	before_filter :signed_in_user
 
 	def create
 		@user = User.find(params[:user_following][:followed_id])
@@ -7,6 +7,7 @@ class UserFollowingsController < ApplicationController
 		respond_to do |format|
 			format.html { redirect_to @user }
 			format.js
+			format.json { render json: @user }
 		end
 	end
 
@@ -16,7 +17,7 @@ class UserFollowingsController < ApplicationController
 		respond_to do |format|
 			format.html { redirect_to @user }
 			format.js { puts "WE DID IT YEAH" }
-			puts "INSIDE ********************************************"
+			format.json { render json: @user }
 		end
 	end
 

@@ -3,24 +3,29 @@ It's all new and better than anything you've ever seen.
 
 TODO:
 
+ROADMAP:
+	>> Tuesday: Following trips, Port to Devise, User Feeds
+	>> Wednesday: Set up OmniAuth, Research Instagram, User Feeds
+	>> Thursday: Integrate Instagram, Research + Integrate Twitter
+	>> Friday: User Feeds, Research + Integrate Tumblr, 500px
+	>> Saturday:
+
 PRESSING:
 > Port the docs over to evernote before deleting records of functionality!
-> current user to toggle following
+
 
 Authorization:
 >?UJS? trips have admin user(s) added or deleted by the creator
 >?UJS?Admins can whitelist non-admin users to post in the trip (if enabled)
 
 
-
 Following:
 > Concerns!!!!
-> Users can follow users
+
 > Users can follow public trips
 > Following someone follows all their trips
 > I can unfollow any individual trips
->> It will ask if I want ot unfollow the user as well
-> I can unfollow any user I am following
+>> It will ask if I want ot unfollow the user as well if I unfollow the trip
 > I automatically follow my trips (but cannot unfollow them)
 > Admins automatically follow trips for which they are admins (but cannot unfollow them)
 > I can view all my followed trips
@@ -29,15 +34,17 @@ Testing TODOs:
 > follower page okay
 > following okay
 > follower / ing counts okay
+> Index page not signed in shows no follow stuff
 
 
 Privacy:
-> trips default to public view / public post
-> trips may be changed by creator to public view / whitelist post
 > Public view trips are followable (eg all now)
 
 Users:
 > Enable Gravatars for user pictures
+
+DEVISE:
+> umm... yeah.
 
 Event Pages:
 > Create events models
@@ -77,6 +84,7 @@ Polish:
 
 ISSUES:
 > Idiomatic enter-to-submit
+> When/where to include custom javascripts (organization...), eg. index users page which needs the listeners for the user buttons.
 
 > XXX Model calls from edit form?? >> Preload assocs using includes
 > XXX Security hole in authorization helper? >> NO, ID is cool BUT eagerly load stuff using includes and it won't fire another model call
@@ -85,7 +93,7 @@ ISSUES:
 > XXX Double firing the radio buttons! >> Labels propagate downwards into the checkbox.... CHANGE button not CLICK button! (keyboard)
 > XXX Not disabled public view!
 > XXX passing urls to JS using content-tags?  => .to_json script tags
-> Unobtrusive Javascript: Hide a real form button if JS is enabled, so non JS users can use the site and I can write regular integration tests... Modernizr -- top HTML tags includes the browser's functionality as classes so you can use CSS to style based on availability of things like JS.
+> XXX Unobtrusive Javascript: Hide a real form button if JS is enabled, so non JS users can use the site and I can write regular integration tests... Modernizr -- top HTML tags includes the browser's functionality as classes so you can use CSS to style based on availability of things like JS.
 
 TIL
 > Factories have an aftercreate method to get around simple annoyances like requiring a current user in order to make the creator of a trip an admin too

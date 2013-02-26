@@ -4,4 +4,10 @@
 	<%= "Listing of all users" %>
 </h1>
 
-<%= render @users %>
+<ul class="users-list">
+	<%=	render @users %>
+	<%= javascript_tag do %>
+		window.current_user = '<%= raw current_user.to_json %>';
+	<% end %>
+	<%= javascript_include_tag "users_display" %>
+</ul>

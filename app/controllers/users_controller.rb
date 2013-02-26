@@ -5,6 +5,8 @@ class UsersController < ApplicationController
 
 	def index
 		@users = User.all
+		@followers = current_user.followers if current_user
+		@followed_users = current_user.followed_users if current_user
 	end
 
 	def show
