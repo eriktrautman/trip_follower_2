@@ -1,0 +1,30 @@
+<!-- *** Be sure to pass in the proper trip -->
+<!-- *** Future: Pass in the button bootstrap classes *** -->
+<% if current_user && trip.creator != current_user %>
+  <% if current_user.subscribed_to?(trip) %>
+    <button class="unsubscribe btn btn-small"
+            data-id="<%= trip.id %>"
+            data-url="<%= unsubscribe_trip_path(trip) %>">Unsubscribe
+    </button>
+    <button class="subscribe btn btn-small"
+            data-id="<%= trip.id %>"
+            data-current-trip-id="<%= current_user.id %>"
+            data-url="<%= subscribe_trip_path(trip) %>"
+            style="display: none"> <!-- << Here's the difference -->
+            subscribe
+    </button>
+  <% else %>
+    <button class="unsubscribe btn btn-small"
+            data-id="<%= trip.id %>"
+            data-url="<%= unsubscribe_trip_path(trip) %>"
+            style="display: none"> <!-- << Here's the difference -->
+            Unsubscribe
+    </button>
+    <button class="subscribe btn btn-small"
+            data-id="<%= trip.id %>"
+            data-current-trip-id="<%= current_user.id %>"
+            data-url="<%= subscribe_trip_path(trip) %>">
+            subscribe
+    </button>
+  <% end %>
+<% end %>

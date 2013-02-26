@@ -68,6 +68,32 @@ class TripsController < ApplicationController
     end
   end
 
+  def subscribe
+    trip = Trip.find(params[:id])
+    if trip.subscribe(current_user)
+      respond_to do |format|
+        format.json { render json: trip }
+      end
+    else
+      respond_to do |format|
+        format.json { render json: { failure: true } }
+      end
+    end
+  end
+
+  def unsubscribe
+    trip = Trip.find(params[:id])
+    if trip.unsubscribe(current_user)
+      respond_to do |format|
+        format.json { render json: trip }
+      end
+    else
+      respond_to do |format|
+        format.json { render json: { failure: true } }
+      end
+    end
+  end
+
   private
 
     def trip_creator

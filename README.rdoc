@@ -12,7 +12,9 @@ ROADMAP:
 
 *************************
 PRESSING:
-> Port the docs over to evernote before deleting records of functionality!
+>>> Trip subscriptions -- create the controller and the routes to let people subscribe to trips and show all their trip subscriptions
+>>> Make the subscribe/unsubscribe buttons reflect this
+> did the ubsubscribe model method where work? if so refactor the admin one
 
 *************************
 Following:
@@ -49,6 +51,9 @@ Users:
 
 DEVISE:
 > umm... yeah.
+
+Trip Pages:
+> Trip hashtag links should display filtered posts
 
 Event Pages:
 > Create events models

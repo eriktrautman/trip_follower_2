@@ -1,18 +1,20 @@
 <li>
-  
+
+  <%= render partial: "shared/trip_subscribe_buttons", locals: { trip: trip } %>
+
   <big>
     <%= link_to trip.name, trip_path(trip) %>
   </big>
   <small><em>
     #<%= link_to trip.hashtag, "#" %>
   </em></small>
-  
-  <% if @user == current_user && 
+
+  <% if @user == current_user &&
         @user != trip.creator &&
         trip.admins.include?(current_user) %>
     <span class="admin-indicator">(admin)</span>
   <% end %>
-  
+
   <br/>
   <small><em>
     Created on <%= trip.created_at.strftime "%A, %-B %-d, %Y" %>

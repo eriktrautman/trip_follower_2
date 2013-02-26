@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 	validates :email, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
 
-	def administrates(trip)
+	def administrates(trip) # SHOULD BE QUESTION MARK METHOD
 		self.administrated_trips.include?(trip)
 	end
 
@@ -54,6 +54,11 @@ class User < ActiveRecord::Base
 	def unfollow!(other_user)
 		UserFollowing.find_by_followed_id(other_user.id).destroy
 	end
+
+  def subscribed_to?(trip)
+    self.subscribed_trips.include?(trip)
+  end
+
 
 	private
 		def create_session_token

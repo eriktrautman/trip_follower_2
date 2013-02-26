@@ -33,6 +33,14 @@ class Trip < ActiveRecord::Base
     self.trip_whitelistings.where("user_id = ?", user.id).first.destroy
   end
 
+  def subscribe(user)
+    self.trip_subscriptions.create(user: user)
+  end
+
+  def unsubscribe(user)
+    self.trip_subscriptions.where("subscriber_id = ?", user.id).first.destroy
+  end
+
   private
 
   def validate_end_date_after_start_date

@@ -6,8 +6,7 @@
 
 <ul class="trips-list">
   <%= render @trips %>
-<!--   <%= javascript_tag do %>
-    window.current_user = '<%= raw current_user.to_json %>';
+  <%= javascript_tag do %>
+    TF.Trip.addSubscriptionListeners($("ul.trips-list"));
   <% end %>
-  <%= javascript_include_tag "users_display" %> -->
 </ul>

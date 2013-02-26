@@ -1,7 +1,7 @@
 <% content_for(:title) { "Trip Settings"} %>
-<%= content_tag(:div, id: "admin-url", data: {url: trip_trip_administratorings_url(@trip) } ) {} %> 
-<%= content_tag(:div, id: "whitelist-url", data: {url: trip_trip_whitelistings_url(@trip) } ) {} %> 
-<%= content_tag(:div, id: "trip-url", data: {url: trip_url(@trip) } ) {} %> 
+<%= content_tag(:div, id: "admin-url", data: {url: trip_trip_administratorings_url(@trip) } ) {} %>
+<%= content_tag(:div, id: "whitelist-url", data: {url: trip_trip_whitelistings_url(@trip) } ) {} %>
+<%= content_tag(:div, id: "trip-url", data: {url: trip_url(@trip) } ) {} %>
 
 <div class="trip-form">
 	<h1>
@@ -15,7 +15,6 @@
 	<br />
 	<%= render partial: 'advanced_settings' %>
 
-	<!-- <%= javascript_include_tag "trip_edit" %> -->
 	<%= javascript_tag do %>
 		$(function(){
 			TF.AdminLibrary.addAdminListeners();
