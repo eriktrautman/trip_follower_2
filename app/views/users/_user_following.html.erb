@@ -1,5 +1,5 @@
-<% unless current_user == @user %>
-	<div id="user-following-sidebar">
+<div id="user-following-sidebar">
+	<% unless current_user == @user %>
 		<div id="user-following-form">
 
 			<% if current_user.following?(@user) %>
@@ -8,17 +8,18 @@
 				<%= render 'follow' %>
 			<% end %>
 
-		</div>	
-		<div id="user-following-stats">
-			<a href="<%= followers_user_path %>">
-				<strong id="followers-count"><%= @followers.count %></strong>
-				Followers
-			</a>
-				| 
-			<a href="<%= followed_users_user_path %>">
-				<strong id="followed-users-count"><%= @followed_users.count %></strong>
-				Following
-			</a>
 		</div>
+	<% end %>
+	<div id="user-following-stats">
+		<a href="<%= followers_user_path %>">
+			<strong id="followers-count"><%= @followers.count %></strong>
+			Followers
+		</a>
+			|
+		<a href="<%= followed_users_user_path %>">
+			<strong id="followed-users-count"><%= @followed_users.count %></strong>
+			Following
+		</a>
 	</div>
-<% end %>
+</div>
+<hr>

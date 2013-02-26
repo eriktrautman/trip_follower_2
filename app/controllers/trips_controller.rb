@@ -3,6 +3,10 @@ class TripsController < ApplicationController
   before_filter :trip_admin, only: [:edit, :update]
   before_filter :trip_creator, only: [:destroy]
 
+  def index
+    @trips = Trip.limit(30)
+  end
+
   def new
     @trip = Trip.new
   end

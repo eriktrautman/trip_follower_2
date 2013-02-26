@@ -1,0 +1,13 @@
+<% content_for(:title) { "Trips" } %>
+
+<h1>
+  <%= "Listing of all trips" %>
+</h1>
+
+<ul class="trips-list">
+  <%= render @trips %>
+<!--   <%= javascript_tag do %>
+    window.current_user = '<%= raw current_user.to_json %>';
+  <% end %>
+  <%= javascript_include_tag "users_display" %> -->
+</ul>

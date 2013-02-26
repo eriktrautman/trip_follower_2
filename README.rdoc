@@ -80,6 +80,7 @@ Polish:
 > On trip edit admin options, make the enter key in the admin textfield add admin instead of submitting the whole form
 > Admins should be able to un-admin themselves
 > Whitelisted users should be able to un-whitelist themselves
+> Paginate trips, users
 
 
 ISSUES:
