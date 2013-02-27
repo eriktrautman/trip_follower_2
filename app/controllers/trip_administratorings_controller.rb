@@ -1,4 +1,5 @@
 class TripAdministratoringsController < ApplicationController
+	before_filter :authenticate_user!
   before_filter :is_trip_creator, only: [:create, :destroy]
 
 

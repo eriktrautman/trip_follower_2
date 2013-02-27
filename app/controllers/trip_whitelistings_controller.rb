@@ -1,4 +1,5 @@
 class TripWhitelistingsController < ApplicationController
+	before_filter :authenticate_user!
 	before_filter :is_trip_admin, only: [:create, :destroy]
 
 	# Expects an AJAX request to create a Whitelisting

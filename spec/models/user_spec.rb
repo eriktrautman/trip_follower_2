@@ -129,7 +129,7 @@ describe User do
 			user.save
 		end
 
-		it { should respond_to(:session_token) }
-		its(:session_token) { should_not be_nil }
+		# XDevise it { should respond_to(:session_token) }
+		# XDevise its(:session_token) { should_not be_nil }
 	end
 end

@@ -1,0 +1,5 @@
+Production.rdoc >> Things that need to be done to enable production
+
+DEVISE:
+> Set the action mailer preferences in the config environments file (default URL)
+>Doublecheck that in config/application.rb the initialize_on_precompile is false.

@@ -1,0 +1,19 @@
+Devise Integration Notes:
+
+> Before filters for :signed_in_user >> :authenticate
+  >> in TripsController and UsersController
+
+> Override default routes on redirect by adding a after_sign_in_path_for(resource) method to application controller... Or not??
+
+> User Model:
+  >> cancel the token creation upon save
+  >>
+
+> Devise Registration Views
+  >> Add in the username field
+
+> Hack and slash SessionsHelper methods like current_user and sign_in(user)
+
+
+Future:
+> Reroute the whole signin process through their sign_in routing instead of my signin and likewise for sign_up
