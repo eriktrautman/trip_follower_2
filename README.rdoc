@@ -4,15 +4,21 @@ It's all new and better than anything you've ever seen.
 TODO:
 
 ROADMAP:
-	>> Tuesday: Following trips, Port to Devise, User Feeds
-	>> Wednesday: Set up OmniAuth, Research Instagram, User Feeds
+	>> Tuesday: Following trips, User Feeds.........?
+	>> Wednesday: Port to Devise, Set up OmniAuth, Research Instagram, User Feeds
 	>> Thursday: Integrate Instagram, Research + Integrate Twitter
 	>> Friday: User Feeds, Research + Integrate Tumblr, 500px
-	>> Saturday:
+	>> Saturday: Keep integrating APIs
+	>> Sunday: Flesh out UI goals and roadmap
+	>> Monday: UX/UI/Visualizations
+	>> Tuesday: UX/UI/Visualizations
+	>> Wednesday: UX/UI/Visualizations
+	>> Thursday: Polish Polish Polish.
 
 *************************
 
 PRESSING:
+> New trips need to be autosubscribed by followers of trip cr
 
 QUESTION: You have a hundred statistics for a given blog post -- a user can follow, thumbs up, thumbs down, smiley face, hate, like, subscribe to... etc
 Each of those has its own join table for many-to-many relationships between a user and your post -- a user can of course have tons of those
@@ -40,12 +46,23 @@ Users:
 > Enable Gravatars for user pictures
 
 DEVISE:
-> umm... yeah.
+> umm... yeah. Integrate Devise with the whole application
+> That means get the models figured the hell out
+> Figure out the filters
 
-Trip Pages:
-> Trip hashtag links should display filtered posts
+OAUTH:
+> Now figure out OAuth on top of Devise
+> Start prepping for APIs...
 
-Event Pages:
+APIS:
+> Research high level to figure out best API to start with (create a list that includes their integratability (eg do they support hashtag-like-features?):
+>> Instagram, Twitter, Tumblr, Wordpress, 500px, Pinterest, Flickr
+
+GET CRACKING ON ACTUAL API INTEGRATION!!!
+>>>>>>>>>>>>>>>>
+
+
+Event Pages (Optional -- an "if there's time" accessory):
 > Create events models
 > Specs
 > Integrate events with trips and user pages
@@ -64,10 +81,6 @@ Accessories:
 > typeahead for any user adding
 > nest forms for admin and creator control panels??
 
-Annoyances:
-> date fields for trip creation forms
-> footer that floats
-
 Polish:
 > CSS the crap out of it
 > Admin and creator settings windows should probably be nifty dropdowns instead of full page redirects
@@ -82,25 +95,17 @@ Polish:
 > Paginate trips, users (use gem)
 > pluralize everything dynamically (use gem)
 >> update subscriber counts and subscribe buttons / unsubscribe buttons in both cases! see trip.js
+> Trip hashtag links should display filtered posts
+
+Annoyances:
+> date fields for trip creation forms
 
 
 ISSUES:
 > Idiomatic enter-to-submit
 > When/where to include custom javascripts (organization...), eg. index users page which needs the listeners for the user buttons.
 
-> XXX Model calls from edit form?? >> Preload assocs using includes
-> XXX Security hole in authorization helper? >> NO, ID is cool BUT eagerly load stuff using includes and it won't fire another model call
-> BOOO Couldn't render when not using AJAX for my tripadmins destroy render edit_trip_path(params[:trip_id])
-> XXX Working with data- attributes >> Data is a global set of data that html5 camel cases and groups together
-> XXX Double firing the radio buttons! >> Labels propagate downwards into the checkbox.... CHANGE button not CLICK button! (keyboard)
-> XXX Not disabled public view!
-> XXX passing urls to JS using content-tags?  => .to_json script tags
-> XXX Unobtrusive Javascript: Hide a real form button if JS is enabled, so non JS users can use the site and I can write regular integration tests... Modernizr -- top HTML tags includes the browser's functionality as classes so you can use CSS to style based on availability of things like JS.
 
 TIL
->>> Factories have an aftercreate method to get around simple annoyances like requiring a current user in order to make the creator of a trip an admin too
->>> To pass data to JS, use the javascript_tag and set the window.varname = '<%= j sample_url %>'; or, better, using content_tag to make a div that just happens to have the data in it
->>> Form_for with nested objects (eg posts comments) just pass array with one of each and it'll infer correctly... also works for link_to
->>> Pass variables to a partial using locals: { var1: val1 } in the render partial call
->>> Security: Using attr_accessible only protects you from a user setting an attribute for which he should not have any way to set it to anything... eg. "admin".  The other flavor is that they shouldn't be able to mess with other types of things that have IDs specified in params or the URLS... these can only be caught using filters like controller before_filters
+
 
