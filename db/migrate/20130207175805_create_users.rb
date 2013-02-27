@@ -1,6 +1,7 @@
 class CreateUsers < ActiveRecord::Migration
   def change
     create_table :users do |t|
+      # REV: tabs
     	t.string :username, unique: true
     	t.string :email
       t.string :tagline

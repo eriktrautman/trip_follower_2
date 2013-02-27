@@ -1,5 +1,8 @@
 class TripsController < ApplicationController
   before_filter :signed_in_user, except: [:show]
+  # REV: this should be named `require_trip_admin` or
+  # somesuch. `trip_admin` sounds like a method that returns a trip
+  # admin.
   before_filter :trip_admin, only: [:edit, :update]
   before_filter :trip_creator, only: [:destroy]
 
@@ -12,6 +15,12 @@ class TripsController < ApplicationController
   end
 
   def create
+    # REV: don't create objects one by one; what if the
+    # administratorings fails to create? You'll have a new trip with
+    # no administrator.
+    #
+    # Solution is to `trip.trip_administratorings.build`, etc *before*
+    # save. Then the one save will save all objects at one time.
     @trip = current_user.trips.new(params[:trip])
     if @trip.save
       @trip.trip_administratorings.create!(user: current_user)
@@ -31,6 +40,8 @@ class TripsController < ApplicationController
 
   def edit
     @trip = Trip.includes(:creator).find(params[:id])
+    # REV: reason not to just refer to these through @trip.admins in
+    # the view? Keep the interface between view and controller thin.
     @admins = @trip.admins
     @wl_users = @trip.whitelisted_users
   end

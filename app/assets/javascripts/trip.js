@@ -61,11 +61,14 @@ TF.Trip = (function(){
       var url = target.data("url");
       if(target.hasClass("subscribe")){
         subscribe(url, function(trip){
+          // REV: follow Jonathan's advice; flip a class and use CSS
+          // to show or hide. Do this in the other files, too.
           target.hide();
           target.siblings("button.unsubscribe").show();
           updateSubscriberCount(trip.id);
         });
-      }else if(target.hasClass("unsubscribe")){
+        // REV: spaced this out a bit; go and do likewise :-)
+      } else if (target.hasClass("unsubscribe")) {
         unsubscribe(url, function(trip){
           target.hide();
           target.siblings("button.subscribe").show();
@@ -74,7 +77,8 @@ TF.Trip = (function(){
       }
     });
   }
-  
+
+  // REV: english?
   // Takes a trip_id and will update its count 
   // wherever on the page its count is displayed
   function updateSubscriberCount(trip_id){

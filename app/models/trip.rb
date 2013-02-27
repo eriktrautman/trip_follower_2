@@ -8,6 +8,10 @@ class Trip < ActiveRecord::Base
   has_many :admins, through: :trip_administratorings, source: :user
 
   # Whitelisting Associations
+
+  # REV: I think you should just name the association `whitelistings`;
+  # you only need to use `:class_name => "TripWhitelistings"` for that
+  # to work.
   has_many :trip_whitelistings, dependent: :destroy
   has_many :whitelisted_users, through: :trip_whitelistings, source: :user
 
@@ -26,6 +30,7 @@ class Trip < ActiveRecord::Base
   validate :validate_end_date_after_start_date
 
   def remove_admin(user)
+    # REV: I'd use `find_by_user_id` here.
     self.trip_administratorings.where("user_id = ?", user.id).first.destroy
   end
 
@@ -33,6 +38,7 @@ class Trip < ActiveRecord::Base
     self.trip_whitelistings.where("user_id = ?", user.id).first.destroy
   end
 
+  # REV: not sure you need this: `trip.subscribed_users << user`
   def subscribe(user)
     self.trip_subscriptions.create(user: user)
   end

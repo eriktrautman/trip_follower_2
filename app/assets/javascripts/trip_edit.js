@@ -47,6 +47,11 @@ TF.AdminLibrary = (function(){
 
 			Admin.add(username, function(admin){
 				$("input#add-admin").val("");
+                          // REV: Create a new like so:
+                          //     $("<li></li>"")
+                          //       .id("admin-user-" + admin.id)
+                          //       .text(admin.username)
+                          //       ...
 				$("ul#admin-list").append("<li id='admin-user-"+admin.id+
 						"'>"+admin.username+
 						" | <a class='remove-admin' data-id='"+
