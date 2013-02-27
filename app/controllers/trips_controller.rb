@@ -16,6 +16,7 @@ class TripsController < ApplicationController
     if @trip.save
       @trip.trip_administratorings.create!(user: current_user)
       @trip.trip_whitelistings.create!(user: current_user)
+      current_user.subscribe_followers_to(@trip)
       flash[:success] = "Your trip has been created!"
       redirect_to current_user
     else
@@ -99,6 +100,7 @@ class TripsController < ApplicationController
     @subscribers = @trip.subscribed_users
     respond_to do |format|
       format.json { render json: @subscribers }
+      format.html { render :subscribers }
     end
   end
 

@@ -69,6 +69,14 @@ class User < ActiveRecord::Base
     self.subscribed_trips.include?(trip)
   end
 
+  def subscribe_followers_to(trip)
+    self.followers.each do |follower|
+      unless follower.subscribed_trips.include?(trip)
+        trip.subscribe(follower)
+      end
+    end
+  end
+
 
 	private
 		def create_session_token

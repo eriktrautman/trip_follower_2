@@ -4,7 +4,6 @@ It's all new and better than anything you've ever seen.
 TODO:
 
 ROADMAP:
-	>> Tuesday: Following trips, User Feeds.........?
 	>> Wednesday: Port to Devise, Set up OmniAuth, Research Instagram, User Feeds
 	>> Thursday: Integrate Instagram, Research + Integrate Twitter
 	>> Friday: User Feeds, Research + Integrate Tumblr, 500px
@@ -18,7 +17,7 @@ ROADMAP:
 *************************
 
 PRESSING:
-> New trips need to be autosubscribed by followers of trip cr
+
 
 QUESTION: You have a hundred statistics for a given blog post -- a user can follow, thumbs up, thumbs down, smiley face, hate, like, subscribe to... etc
 Each of those has its own join table for many-to-many relationships between a user and your post -- a user can of course have tons of those
