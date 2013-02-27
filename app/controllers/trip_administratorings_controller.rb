@@ -8,6 +8,8 @@ class TripAdministratoringsController < ApplicationController
 		user = User.find_by_username(params[:username])
 		trip = Trip.find(params[:trip_id])
 		tripadmin = TripAdministratoring.new(user: user, trip: trip)
+          # REV: why user && trip? Isn't that caught by
+          # TripAdministratoring's validations?
 		if user && trip && tripadmin.save
 			respond_to do |format|
 				format.json { render json: user }
@@ -31,6 +33,7 @@ class TripAdministratoringsController < ApplicationController
 
 	private
 
+        # REV: good!
 	def is_trip_creator
 		trip = Trip.find(params[:trip_id])
 		unless trip && trip.creator == current_user

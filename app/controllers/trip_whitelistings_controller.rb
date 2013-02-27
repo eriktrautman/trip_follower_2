@@ -7,6 +7,7 @@ class TripWhitelistingsController < ApplicationController
 		user = User.find_by_username(params[:username])
 		trip = Trip.find(params[:trip_id])
 		whitelisting = TripWhitelisting.new(user: user, trip: trip)
+          # REV: same comment as other file.
 		if user && trip && whitelisting.save
 			respond_to do |format|
 				format.json { render json: user }

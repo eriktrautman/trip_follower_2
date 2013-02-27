@@ -29,6 +29,7 @@ class User < ActiveRecord::Base
 
 
   # VALIDATIONS
+  # REV: really wonky tabs
   [ :username, :email, :password, :password_confirmation ].each do |field| validates field, presence: true
   end
 	validates :username, length: { maximum: 24,
