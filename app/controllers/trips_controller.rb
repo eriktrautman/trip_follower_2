@@ -1,5 +1,5 @@
 class TripsController < ApplicationController
-  #before_filter :signed_in_user, except: [:show]
+
   before_filter :authenticate_user!
   before_filter :trip_admin, only: [:edit, :update]
   before_filter :trip_creator, only: [:destroy]

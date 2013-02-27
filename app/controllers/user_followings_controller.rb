@@ -1,5 +1,5 @@
 class UserFollowingsController < ApplicationController
-	# XDevise before_filter :signed_in_user
+
 	before_filter :authenticate_user!
 
 	def create

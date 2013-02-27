@@ -1,19 +1,26 @@
 Devise Integration Notes:
 
-> Before filters for :signed_in_user >> :authenticate
-  >> in TripsController and UsersController
+XXX > Before filters for :signed_in_user >> :authenticate
+ XXX  >> in TripsController and UsersController and UserFollowingsController and ... all controllers
 
-> Override default routes on redirect by adding a after_sign_in_path_for(resource) method to application controller... Or not??
 
 > User Model:
-  >> cancel the token creation upon save
-  >>
+XXX  >> cancel the token creation upon save
+XXX  >>
+
+XXX >> Change all the old signin_path and signout_path routes to the new new_user_registration_session and destroy_user_session paths
 
 > Devise Registration Views
-  >> Add in the username field
+ XXX  >> Add in the username field
 
-> Hack and slash SessionsHelper methods like current_user and sign_in(user)
+XXX > Hack and slash SessionsHelper methods like current_user and sign_in(user)
 
+XXX > Reroute signed_in? to devise's user_signed_in?
+
+Users Controller:
+XXX > Remove edit, new, create, update and reroute all routes to the devise versions
 
 Future:
-> Reroute the whole signin process through their sign_in routing instead of my signin and likewise for sign_up
+XXX > Reroute the whole signin process through their sign_in routing instead of my signin and likewise for sign_up
+XXX > Set up remembering of paths to be redirected to
+XXX > Override default routes on redirect by adding a after_sign_in_path_for(resource) method to application controller... Or not??

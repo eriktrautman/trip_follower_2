@@ -9,10 +9,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   attr_accessible :username, # X DEVISE:email, :password, :password_confirmation,
 
-  # XDEVISE has_secure_password
-
 	before_save { |user| user.email = email.downcase }
-	# XDEVISE before_save :create_session_token
 
   has_many :trips, foreign_key: :creator_id, dependent: :destroy
   has_many :events, foreign_key: :creator_id, dependent: :destroy
@@ -37,15 +34,11 @@ class User < ActiveRecord::Base
 
 
   # VALIDATIONS
-  [ :username, :email, :password, :password_confirmation ].each do |field| validates field, presence: true
+  [ :username, :email ].each do |field| validates field, presence: true
   end
 	validates :username, length: { maximum: 24,
 					message: "Name lengths must be between 2-24 characters"  }
 	validates :username, uniqueness: { case_sensitive: false }
-	validates :password, length: { in: 6..16,
-					message: "Password lengths must be between 6-16 characters"  }
-	# VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-	# validates :email, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
 
 	def administrates(trip) # SHOULD BE QUESTION MARK METHOD
 		self.administrated_trips.include?(trip)
@@ -84,12 +77,5 @@ class User < ActiveRecord::Base
       end
     end
   end
-
-
-	private
-		# XDevise def create_session_token
-		# 	self.session_token = SecureRandom.urlsafe_base64
-		# end
-
 
 end

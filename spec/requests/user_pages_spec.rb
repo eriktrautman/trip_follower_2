@@ -52,7 +52,7 @@ describe "UserPages" do
 	describe "#new" do
 
 		before(:each) do
-			visit new_user_path
+			visit new_user_registration_path
 		end
 
 		it { should have_selector( 'title', text: "Sign Up" ) }
@@ -112,7 +112,7 @@ describe "UserPages" do
 
 		before(:each) do
 			sign_in(user)
-			visit edit_user_path(user)
+			visit edit_user_registration_path(user)
 			fill_in("user_password", with: "foobar")
 			fill_in("user_password_confirmation", with: "foobar")
 		end

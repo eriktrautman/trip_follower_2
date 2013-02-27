@@ -4,14 +4,14 @@ TripFollower2::Application.routes.draw do
 
   root to: 'static_pages#home'
 
-  resources :users do
+  resources :users, only: [:index, :show] do
     resources :user_followings, only: [:create, :destroy]
     member do
       get :followed_users, :followers, :trip_subscriptions
       #get :trip_subscriptions
     end
   end
-  # XDevise resources :sessions, only: [:new, :create, :destroy]
+
   resources :trips do
   	resources :trip_administratorings, only: [:create, :destroy]
     resources :trip_whitelistings, only: [:create, :destroy]
@@ -21,10 +21,7 @@ TripFollower2::Application.routes.draw do
       delete :unsubscribe
     end
   end
-  resources :events, except: [:new, :show]
 
-  # get "/signin", to: 'sessions#new'
-  # delete "/signout", to: 'sessions#destroy'
-  # get "/signup", to: 'users#new'
+  resources :events, except: [:new, :show]
 
 end

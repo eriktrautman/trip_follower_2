@@ -13,7 +13,7 @@ describe "Authentication" do
 		it { should have_selector('title', text: 'Sign In' ) }
 		it { should have_selector('label.email') }
 		it { should have_selector('label.password') }
-		it { should have_link('Create', href: new_user_path) }
+		it { should have_link('Create', href: new_user_registration_path) }
 
 		describe "with invalid information" do
 
@@ -70,7 +70,7 @@ describe "Authentication" do
 
 				let(:other_user) { FactoryGirl.create(:user) }
 
-				before { visit edit_user_path(other_user) }
+				before { visit edit_user_registration_path(other_user) }
 
 				it "should redirect back to root" do
 					current_path == root_path
@@ -80,7 +80,7 @@ describe "Authentication" do
 			describe "when visiting the user's (protected) edit page" do
 
 				before do
-					visit edit_user_path(user)
+					visit edit_user_registration_path(user)
 				end
 
 				it "should be prompted to signin" do
@@ -92,7 +92,7 @@ describe "Authentication" do
 					before { sign_in(user) }
 
 					it "should be redirected to original page" do
-						current_path.should == edit_user_path(user)
+						current_path.should == edit_user_registration_path(user)
 					end
 
 				end
