@@ -37,6 +37,10 @@ class Trip < ActiveRecord::Base
     self.trip_subscriptions.create(user: user)
   end
 
+  def subscribe!(user)
+    self.trip_subscriptions.create!(user: user)
+  end
+
   def unsubscribe(user)
     self.trip_subscriptions.where("subscriber_id = ?", user.id).first.destroy
   end

@@ -45,14 +45,24 @@ TF.Trip = (function(){
         subscribe(url, function(data){
           target.hide();
           target.siblings("button.unsubscribe").show();
+          updateFollowerCount(+1);
         });
       }else if(target.hasClass("unsubscribe")){
         unsubscribe(url, function(data){
           target.hide();
           target.siblings("button.subscribe").show();
+          updateFollowerCount(-1);
         });
       }
     });
+  }
+  // INCOMPLETE! this function needs to discern WHICH trip followers to update
+  // which means setting a unique id on the _trip_subscriber_stats.html.erb link
+  // that is generated for it, so we can reach in and fix the link...
+  // Maybe give the link a unique class that can be grabbed onto
+  function updateSubscriberCount(update_by){
+    var subscribers = parseInt($("#subscribers-count").html()) + update_by;
+    $("#followers-count").html(followers)
   }
 
 

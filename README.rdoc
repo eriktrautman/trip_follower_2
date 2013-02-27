@@ -13,7 +13,9 @@ ROADMAP:
 *************************
 
 PRESSING:
->>> Trip subscriptions -- show all their trip subscriptions and subscribers
+>> update subscriber counts and subscribe buttons / unsubscribe buttons in both cases! see trip.js
+> If I unfollow a user, it should unsubscribe me from all his trips
+> If I unsubscribe from a trip, it should ask if I also want to unfollow the user
 
 QUESTION: You have a hundred statistics for a given blog post -- a user can follow, thumbs up, thumbs down, smiley face, hate, like, subscribe to... etc
 Each of those has its own join table for many-to-many relationships between a user and your post -- a user can of course have tons of those
@@ -32,8 +34,7 @@ Subscriptions:
 >> It will ask if I want to unfollow the user as well if I unfollow the trip
 > I automatically subscribe to my trips (but cannot unfollow them)
 > Admins automatically subscribe to trips for which they are admins (but cannot unsubscribe from them)
-> I can view all my subscribed trips
->> Pass in button classes to the following forms
+
 
 Testing TODOs:
 > follower page okay

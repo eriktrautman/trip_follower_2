@@ -49,10 +49,20 @@ class User < ActiveRecord::Base
 
 	def follow!(other_user)
 		self.user_followings.create!(followed_id: other_user.id)
+    other_user.trips.each do |trip|
+      unless self.subscribed_trips.include?(trip)
+        trip.subscribe!(self)
+      end
+    end
 	end
 
 	def unfollow!(other_user)
 		UserFollowing.find_by_followed_id(other_user.id).destroy
+    other_user.trips.each do |trip|
+      if self.subscribed_trips.include?(trip)
+        trip.unsubscribe(self)
+      end
+    end
 	end
 
   def subscribed_to?(trip)

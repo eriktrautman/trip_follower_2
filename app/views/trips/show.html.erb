@@ -4,7 +4,7 @@
   <%= "#{@trip.name}" %>
 </h1>
 <p>
-  <em>Created by <%= @trip.creator.username %></em>
+  <em>Created by <%= link_to "#{@trip.creator.username}", @trip.creator %></em>
    | <%= render partial: "shared/trip_subscriber_stats", locals: { trip: @trip } %>
 </p>
 
