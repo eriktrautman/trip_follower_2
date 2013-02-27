@@ -39,30 +39,29 @@ TF.UserFollowing = (function(){
 	}
 
 
-	function addFollowingListeners(parent_element){
+	function addFollowingListeners(button){
 
-		parent_element.on("click", "button.follow", function(e){
+		button.on("click", function(e){
+			var target = $(e.target);
+			var url = target.data("url");
+			var follow_id = target.data("id");
 
-			var url = $(e.target).data("url");
-			var follow_id = $(e.target).data("id");
+			console.log("CLICK");
 
-			User.follow(url, follow_id, function(data){
-				$(e.target).hide();
-				$(e.target).siblings("button.unfollow").show();
-				updateFollowerCount(1);
-			});
-		});
+			if(target.hasClass("follow")){
+				User.follow(url, follow_id, function(data){
+					target.hide();
+					target.siblings("button.unfollow").show();
+					updateFollowerCount(1);
+				});
+			} else if (target.hasClass("unfollow")){
 
-
-		parent_element.on("click", "button.unfollow", function(e){
-
-			var url = $(e.target).data("url");
-
-			User.unfollow(url, function(data){
-				$(e.target).hide();
-				$(e.target).siblings("button.follow").show();
-				updateFollowerCount(-1);
-			});
+				User.unfollow(url, function(data){
+					target.hide();
+					target.siblings("button.follow").show();
+					updateFollowerCount(-1);
+				});
+			}
 		});
 	}
 
