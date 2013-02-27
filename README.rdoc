@@ -11,10 +11,12 @@ ROADMAP:
 	>> Saturday:
 
 *************************
+
 PRESSING:
->>> Trip subscriptions -- create the controller and the routes to let people subscribe to trips and show all their trip subscriptions
->>> Make the subscribe/unsubscribe buttons reflect this
-> did the ubsubscribe model method where work? if so refactor the admin one
+>>> Trip subscriptions -- show all their trip subscriptions and subscribers
+
+QUESTION: You have a hundred statistics for a given blog post -- a user can follow, thumbs up, thumbs down, smiley face, hate, like, subscribe to... etc
+Each of those has its own join table for many-to-many relationships between a user and your post -- a user can of course have tons of those
 
 *************************
 Following:

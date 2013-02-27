@@ -3,33 +3,27 @@
 <% if current_user && current_user != user %>
   <% if current_user.following?(user) %>
     <button class="unfollow btn btn-small btn-user-<%= user.id %>"
-            data-id="<%= user.id %>"
             data-url="<%= user_user_following_path(user, current_user) %>">Unfollow
     </button>
     <button class="follow btn btn-small btn-user-<%= user.id %>"
-            data-id="<%= user.id %>"
-            data-current-user-id="<%= current_user.id %>"
             data-url="<%= user_user_followings_path(user) %>"
             style="display: none">
             Follow
     </button>
   <% else %>
     <button class="unfollow btn btn-small btn-user-<%= user.id %>"
-            data-id="<%= user.id %>"
             data-url="<%= user_user_following_path(user, current_user) %>"
             style="display: none">
             Unfollow
     </button>
     <button class="follow btn btn-small btn-user-<%= user.id %>"
-            data-id="<%= user.id %>"
-            data-current-user-id="<%= current_user.id %>"
             data-url="<%= user_user_followings_path(user) %>">
             Follow
     </button>
   <% end %>
 
     <%= javascript_tag do %>
-    $(TF.UserFollowing.addFollowingListeners($("button.btn-user-<%= user.id %>")));
+        TF.UserFollowing.addFollowingListeners($("button.btn-user-<%= user.id %>"));
     <% end %>
 
 <% end %>

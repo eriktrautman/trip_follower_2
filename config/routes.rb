@@ -5,7 +5,7 @@ TripFollower2::Application.routes.draw do
   resources :users do
     resources :user_followings, only: [:create, :destroy]
     member do
-      get :followed_users, :followers
+      get :followed_users, :followers, :trip_subscriptions
       #get :trip_subscriptions
     end
   end

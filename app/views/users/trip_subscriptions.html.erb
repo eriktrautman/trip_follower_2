@@ -1,0 +1,11 @@
+<% content_for(:title) { "#{@user.username}'s Trip Subscriptions" } %>
+
+<h1>
+  <%= "#{@user.username}'s #{@subscriptions.count} Trip Subscriptions" %>
+</h1>
+
+<div id="trip-subscriptions-list">
+
+  <%= render @subscriptions %>
+
+</div>

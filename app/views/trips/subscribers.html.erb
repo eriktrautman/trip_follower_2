@@ -1,0 +1,15 @@
+<% content_for(:title) { "#{@trip.name} Subscribers" } %>
+
+<h1>
+  <%= "#{@trip.name} Subscribers" %>
+</h1>
+<p>
+  <em>Created by <%= @trip.creator.username %></em>
+   | <%= render partial: "shared/trip_subscriber_stats", locals: { trip: @trip } %>
+</p>
+
+<div id="trip-subscribers">
+
+  <%= render @subscribers %>
+
+</div>

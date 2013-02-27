@@ -6,13 +6,21 @@
     <%= link_to trip.name, trip_path(trip) %>
   </big>
   <small><em>
-    #<%= link_to trip.hashtag, "#" %>
+    &#35<%= link_to trip.hashtag, "#" %>
   </em></small>
 
   <% if @user == current_user &&
         @user != trip.creator &&
         trip.admins.include?(current_user) %>
     <span class="admin-indicator">(admin)</span>
+  <% end %>
+
+  <br/>
+
+  <% if trip.public_view %>
+    <small>
+      <%= render partial: "shared/trip_subscriber_stats", locals: { trip: trip } %>
+    </small>
   <% end %>
 
   <br/>

@@ -59,6 +59,11 @@ class UsersController < ApplicationController
 		@followed_users = @user.followed_users
 	end
 
+	def trip_subscriptions
+		@user = User.find(params[:id])
+		@subscriptions = @user.subscribed_trips
+	end
+
 	private
 
 	def correct_user

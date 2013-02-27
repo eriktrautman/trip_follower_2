@@ -94,6 +94,11 @@ class TripsController < ApplicationController
     end
   end
 
+  def subscribers
+    @trip = Trip.find(params[:id])
+    @subscribers = @trip.subscribed_users
+  end
+
   private
 
     def trip_creator

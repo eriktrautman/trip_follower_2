@@ -17,6 +17,7 @@
 	            <ul class="dropdown-menu">
                 <li class="pad-a"><%= current_user.username %></li>
                 <li class="divider"></li>
+                <li><%= link_to "Trip Subscriptions", trip_subscriptions_user_path(current_user) %></li>
                 <li><%= link_to "Edit Profile", edit_user_path(current_user) %></li>
 	              <li class="divider"></li>
                 <li><%= link_to "Sign Out", signout_path, method: "delete" %></li>

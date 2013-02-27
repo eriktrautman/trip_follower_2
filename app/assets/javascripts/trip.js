@@ -37,7 +37,6 @@ TF.Trip = (function(){
   }
 
   function addSubscriptionListeners(button){
-    console.log("Adding subscribe listeners");
 
     button.on("click", function(e){
       var target = $(e.target);
