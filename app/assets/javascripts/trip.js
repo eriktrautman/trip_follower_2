@@ -1,5 +1,23 @@
 TF.Trip = (function(){
 
+  function subscribers(url, callback){
+    $.ajax( {
+      url: url,
+      type: 'GET',
+      dataType: 'json',
+      success: function(data){
+        if(data.failure){
+          alert("The trip subscribers couldn't be retrieved");
+        } else if(callback){
+          callback(data);
+        }
+      },
+      error: function(request, status, error){
+        console.log(error);
+      }
+    });
+  }
+
   function subscribe(url, callback){
     $.ajax( {
       url: url,
@@ -42,29 +60,30 @@ TF.Trip = (function(){
       var target = $(e.target);
       var url = target.data("url");
       if(target.hasClass("subscribe")){
-        subscribe(url, function(data){
+        subscribe(url, function(trip){
           target.hide();
           target.siblings("button.unsubscribe").show();
-          updateFollowerCount(+1);
+          updateSubscriberCount(trip.id);
         });
       }else if(target.hasClass("unsubscribe")){
-        unsubscribe(url, function(data){
+        unsubscribe(url, function(trip){
           target.hide();
           target.siblings("button.subscribe").show();
-          updateFollowerCount(-1);
+          updateSubscriberCount(trip.id);
         });
       }
     });
   }
-  // INCOMPLETE! this function needs to discern WHICH trip followers to update
-  // which means setting a unique id on the _trip_subscriber_stats.html.erb link
-  // that is generated for it, so we can reach in and fix the link...
-  // Maybe give the link a unique class that can be grabbed onto
-  function updateSubscriberCount(update_by){
-    var subscribers = parseInt($("#subscribers-count").html()) + update_by;
-    $("#followers-count").html(followers)
+  
+  // Takes a trip_id and will update its count 
+  // wherever on the page its count is displayed
+  function updateSubscriberCount(trip_id){
+    var element = $("span.trip-subscriber-count[data-id="+trip_id+"]");
+    var url = element.data("url");
+    subscribers(url, function(subscribers){
+      element.text(subscribers.length);
+    });
   }
-
 
 
   return {

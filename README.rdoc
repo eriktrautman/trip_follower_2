@@ -13,9 +13,6 @@ ROADMAP:
 *************************
 
 PRESSING:
->> update subscriber counts and subscribe buttons / unsubscribe buttons in both cases! see trip.js
-> If I unfollow a user, it should unsubscribe me from all his trips
-> If I unsubscribe from a trip, it should ask if I also want to unfollow the user
 
 QUESTION: You have a hundred statistics for a given blog post -- a user can follow, thumbs up, thumbs down, smiley face, hate, like, subscribe to... etc
 Each of those has its own join table for many-to-many relationships between a user and your post -- a user can of course have tons of those
@@ -24,16 +21,6 @@ Each of those has its own join table for many-to-many relationships between a us
 Following:
 > Concerns!!!!
 
-Subscriptions:
-> Show subscribers next to trips
-> Show subscriptions atop trip feed
-> Show subscribe/unsubscribe buttons next to trip displays
-> Users can subscribe to public trips
-> Following someone subscribes to all their trips
-> I can unsubscribe from any individual trips
->> It will ask if I want to unfollow the user as well if I unfollow the trip
-> I automatically subscribe to my trips (but cannot unfollow them)
-> Admins automatically subscribe to trips for which they are admins (but cannot unsubscribe from them)
 
 
 Testing TODOs:
@@ -41,13 +28,13 @@ Testing TODOs:
 > following okay
 > follower / ing counts okay
 > Index page not signed in shows no follow stuff
+> Subscriptions Tests:
+  >> I automatically subscribe to my trips (but cannot unfollow them)
+  >> Admins automatically subscribe to trips for which they are admins (but cannot unsubscribe from them)
 
 Authorization:
 >?UJS? trips have admin user(s) added or deleted by the creator
 >?UJS?Admins can whitelist non-admin users to post in the trip (if enabled)
-
-Privacy:
-> Public view trips are followable (eg all now)
 
 Users:
 > Enable Gravatars for user pictures
@@ -92,7 +79,9 @@ Polish:
 > On trip edit admin options, make the enter key in the admin textfield add admin instead of submitting the whole form
 > Admins should be able to un-admin themselves
 > Whitelisted users should be able to un-whitelist themselves
-> Paginate trips, users
+> Paginate trips, users (use gem)
+> pluralize everything dynamically (use gem)
+>> update subscriber counts and subscribe buttons / unsubscribe buttons in both cases! see trip.js
 
 
 ISSUES:

@@ -97,6 +97,9 @@ class TripsController < ApplicationController
   def subscribers
     @trip = Trip.find(params[:id])
     @subscribers = @trip.subscribed_users
+    respond_to do |format|
+      format.json { render json: @subscribers }
+    end
   end
 
   private

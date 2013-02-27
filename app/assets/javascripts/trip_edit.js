@@ -33,7 +33,7 @@ TF.AdminLibrary = (function(){
 					}
 				}
 			},
-			failure: function(){
+			error: function(){
 				alert("Delete request failed");
 			}
 		});
@@ -107,7 +107,7 @@ TF.WhitelistLibrary = (function(){
 					}
 				}
 			},
-			failure: function(){
+			error: function(){
 				alert("Delete request failed");
 			}
 		});
@@ -171,7 +171,7 @@ TF.PrivacyAndPostingLibrary = (function(){
 					}
 				}
 			},
-			failure: function(){
+			error: function(){
 				alert("Update request failed");
 			}
 		});
@@ -185,7 +185,7 @@ TF.PrivacyAndPostingLibrary = (function(){
 			var data = { "trip": {"whitelist_posters": val }, "_method": "put" };
 
 			Trip.updateAttribute(data, function(trip){
-			// console.log($(e.target));
+
 				$(e.target).first().closest("label").append("<span class='ajax-success'>Updated!</span>");
 				if(val == "true"){
 					$("div#whitelist").show();
@@ -200,12 +200,3 @@ TF.PrivacyAndPostingLibrary = (function(){
 		addPrivacyListeners: addPrivacyListeners
 	}
 })();
-
-
-
-// EXECUTION SCRIPTS *********************************
-// $(function(){
-// 	AdminLibrary.addAdminListeners();
-// 	WhitelistLibrary.addWhitelistListeners();
-// 	PrivacyAndPostingLibrary.addPrivacyListeners();
-// });

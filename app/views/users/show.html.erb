@@ -34,9 +34,20 @@
   </aside>
 
   <div class="span8">
-    <h3>
+    <h2>
       Trip Feed:
-    </h3>
+    </h2>
+
+    <p><em>
+      <% if current_user == @user %>
+        You are 
+      <% else %>
+        <%= @user.username %> is
+      <% end %>
+      currently subscribed to <strong><%= link_to @user.subscribed_trips.count, trip_subscriptions_user_path(@user) %></strong> trips
+    </p></em>
+    <hr>
+
     <% if @followed_trips.nil? %>
       <h4>
         Follow <%= link_to "people", users_path %> or <%= link_to "trips", trips_path%>

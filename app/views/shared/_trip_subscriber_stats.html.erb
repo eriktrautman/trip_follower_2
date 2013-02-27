@@ -1,3 +1,5 @@
-<span class="trip-subscribe-stats">
-  <%= link_to "#{trip.subscribed_users.count} subscribers", subscribers_trip_path(trip) %>
+<span class="trip-subscriber-stats">
+  <%= link_to raw("<span class='trip-subscriber-count' data-url='#{ subscribers_trip_path(trip)}' data-id='#{trip.id}'>#{trip.subscribed_users.count}</span> subscribers"), 
+  		subscribers_trip_path(trip), 
+  		class: "trip-subscriber-stats" %>
 </span>

@@ -2,6 +2,7 @@
 
 <h1>
   <%= "#{@trip.name}" %>
+  <%= render partial: "shared/trip_subscribe_buttons", locals: { trip: @trip } %>
 </h1>
 <p>
   <em>Created by <%= link_to "#{@trip.creator.username}", @trip.creator %></em>
