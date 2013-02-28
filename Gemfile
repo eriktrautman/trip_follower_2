@@ -12,6 +12,8 @@ gem 'bootstrap-sass'
 gem 'pg'
 gem 'devise'
 gem 'omniauth'
+gem 'rest-client'
+gem 'json'
 
 group :production do
 end

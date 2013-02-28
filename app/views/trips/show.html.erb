@@ -32,3 +32,14 @@
 <p>
   <%= "#{@trip.description}" %>
 </p>
+
+
+<% if @instagram_photos.empty? %>
+  <div class="no-content-warning">
+    <p> There is no content to pull from this hashtag! </p>
+  </div>
+<% end %>
+
+<ul class="single-trip-feed">
+  <%= render partial: "shared/instagram_photo", collection: @instagram_photos %>
+</ul>

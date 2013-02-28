@@ -19,7 +19,7 @@ class TripsController < ApplicationController
       @trip.trip_whitelistings.create!(user: current_user)
       current_user.subscribe_followers_to(@trip)
       flash[:success] = "Your trip has been created!"
-      redirect_to current_user
+      redirect_to @trip
     else
       flash[:error] = "Your trip could not be created"
       render :new
@@ -28,6 +28,7 @@ class TripsController < ApplicationController
 
   def show
     @trip = Trip.find(params[:id])
+    @instagram_photos = Instagram.photos_by_tag(@trip.hashtag)
   end
 
   def edit

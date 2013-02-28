@@ -129,6 +129,8 @@ GEM
     rb-fsevent (0.9.1)
     rdoc (3.12.1)
       json (~> 1.4)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     rspec (2.11.0)
       rspec-core (~> 2.11.0)
       rspec-expectations (~> 2.11.0)
@@ -192,10 +194,12 @@ DEPENDENCIES
   factory_girl_rails
   guard-rspec
   jquery-rails
+  json
   omniauth
   pg
   rails (= 3.2.11)
   rb-fsevent
+  rest-client
   rspec-rails
   sass-rails (~> 3.2.3)
   simple_form

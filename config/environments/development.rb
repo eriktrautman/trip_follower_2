@@ -37,4 +37,10 @@ TripFollower2::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+
+  # HACKY HACKY HACKY set the ENV variables to contain my app's info
+  ENV['twitter_consumer_key'] = "QVim65jLuVeoo7phUAP0AQ"
+  ENV['twitter_consumer_secret'] = "5tMM645CWOmHwZKcf8xbIVCbRhPHYzMAkmhwvwX7s"
+
 end
