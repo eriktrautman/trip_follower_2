@@ -44,11 +44,6 @@ Authorization:
 Users:
 > Enable Gravatars for user pictures
 
-DEVISE:
-> umm... yeah. Integrate Devise with the whole application
-> That means get the models figured the hell out
-> Figure out the filters
-
 OAUTH:
 > Now figure out OAuth on top of Devise
 > Start prepping for APIs...
@@ -59,6 +54,18 @@ APIS:
 
 GET CRACKING ON ACTUAL API INTEGRATION!!!
 >>>>>>>>>>>>>>>>
+> Start with public queries ( so no need yet for user logins and the like ) to the APIs based on hashtags
+> Set up 3 APIs (get the application registered)
+> Run public hashtag requests
+> Store the date of last successful request and only grab newer items
+> Pull the content snippets as database items
+> Pull these into public trip feeds
+
+>> GO PRIVATE
+> A User has Accounts
+> The application has request ability on behalf of the user
+> A refresh request for a private trip pings only associated accounts
+
 
 
 Event Pages (Optional -- an "if there's time" accessory):
