@@ -11,6 +11,7 @@ gem 'simple_form'
 gem 'bootstrap-sass'
 gem 'pg'
 gem 'devise'
+gem 'omniauth'
 
 group :production do
 end
