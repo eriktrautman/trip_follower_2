@@ -32,5 +32,6 @@ TripFollower2::Application.routes.draw do
 
   get 'authorization/instagram', to: "api_callbacks#instagram"
   get 'authorization/twitter', to: "api_callbacks#twitter"
+  get 'authorization/tumblr', to: "api_callbacks#tumblr"
 
 end

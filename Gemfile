@@ -12,8 +12,10 @@ gem 'bootstrap-sass'
 gem 'pg'
 gem 'devise'
 gem 'omniauth'
+gem 'omniauth-twitter'
 gem 'rest-client'
 gem 'json'
+gem 'twitter'
 
 group :production do
 end

@@ -4,10 +4,9 @@ It's all new and better than anything you've ever seen.
 TODO:
 
 ROADMAP:
-	>> Wednesday: Port to Devise, Set up OmniAuth, Research Instagram, User Feeds
-	>> Thursday: Integrate Instagram, Research + Integrate Twitter
-	>> Friday: User Feeds, Research + Integrate Tumblr, 500px
-	>> Saturday: Keep integrating APIs
+	>> Thursday: Integrate Instagram, Research + Integrate Twitter, Research Tumblr (integrate?)
+	>> Friday: User Feeds, Private logins for feeds
+	>> Saturday: Finish private API login / authorization and user feeds
 	>> Sunday: Flesh out UI goals and roadmap
 	>> Monday: UX/UI/Visualizations
 	>> Tuesday: UX/UI/Visualizations
@@ -48,32 +47,48 @@ OAUTH:
 > Now figure out OAuth on top of Devise
 > Start prepping for APIs...
 
-APIS:
-> Research high level to figure out best API to start with (create a list that includes their integratability (eg do they support hashtag-like-features?):
+APIS: **********************************
+> Tumblr
+> sort them by their creation date in the feed
+> Use embeds instead of just feeds
+> Start collecting user login info
+>> Instagram
+>> Twitter
+>> Tumblr
+
 >> Instagram, Twitter, Tumblr, Wordpress, 500px, Pinterest, Flickr
 
-GET CRACKING ON ACTUAL API INTEGRATION!!!
 >>>>>>>>>>>>>>>>
-> Start with public queries ( so no need yet for user logins and the like ) to the APIs based on hashtags
-> Set up 3 APIs (get the application registered)
-> Run public hashtag requests
-> Store the date of last successful request and only grab newer items
-> Pull the content snippets as database items
-> Pull these into public trip feeds
 
 *** Instagram:
 
-CLIENT INFO
-CLIENT ID	b50084b45ed94392a160fa31b0e7a488
-CLIENT SECRET	88ce5753c5024ac19f8038baf2538847
-WEBSITE URL	http://127.0.0.1/
-REDIRECT URI	http://127.0.0.1/authorization/instagram
->> Store in environment files, eg. development/environment.rb
->> Use ActiveResource???
+		CLIENT INFO
+		CLIENT ID	b50084b45ed94392a160fa31b0e7a488
+		CLIENT SECRET	88ce5753c5024ac19f8038baf2538847
+		WEBSITE URL	http://127.0.0.1/
+		REDIRECT URI	http://127.0.0.1/authorization/instagram
+	>> Store in environment files, eg. development/environment.rb
+	>> Use ActiveResource???
+
+*** Twitter:
+  	# Consumer key: QVim65jLuVeoo7phUAP0AQ
+  	# Consumer Secret: 5tMM645CWOmHwZKcf8xbIVCbRhPHYzMAkmhwvwX7s
+  	# Request Token URL: https://api.twitter.com/oauth/request_token
+  	# Authorize URL: https://api.twitter.com/oauth/authorize
+  	# Access Token URL: https://api.twitter.com/oauth/access_token
+  	# Callback URL: http://127.0.0.1:3000/authorization/twitter
+
+	  # OAuth token: 313316959-gic7hb72LjHqQ1fmE914c1hUuuN51pA3RBzyOA7c
+	  # OAuth secret: vPhMqtGJOww0QmKrulUjSCpB2yoyxQGWfMQGcTI2knM
+	> Use the embedded tweets
+
+*** Tumblr:
+		Oauth Consumer Key: aX3GtjNdUNH8Q8ZUBoZ1HbrTBYh9acrIdbWd99qtu1M8RXx2NU
+		Secret Key:  pwJVt25o5QlcrV2Wq7TSpaCJhgzmMOR2hzYFpkwosWmcW1jYpE
 
 > The public requests are totally independent of user permissions...
 > The feed controller? will need to take in the user, figure out which trips he follows, then request each trip's top items.  It should then aggregate their top items.  ...this is going to be massive and slow but for testing it works.
-> FIRST... Just get a single trip's feed working.  So the trip model needs a feed method... which calls a pseudo model for FEED objects? Which then makes the API calls?  WHO MAKES THE API CALLS????
+
 
 >> GO PRIVATE
 > A User has Accounts
