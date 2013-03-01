@@ -1,7 +1,8 @@
 <li class="tweet">
 
-  <%= image_tag tweet[:user_image], alt: "#{tweet[:username]}" %>
-  <%= "#{tweet[:username]} said:"%>
-  <%= tweet[:text] %>
+<!--   <%= image_tag tweet[:user_image], alt: "#{tweet[:username]}" %>
+  <%= "#{tweet[:username]} said (at #{Time.at(tweet[:timestamp])}):"%>
+  <%= tweet[:text] %> -->
+  <%= Tweet.oembed(tweet[:id])["html"].html_safe %>
 
 </li>

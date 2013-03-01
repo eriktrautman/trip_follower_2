@@ -28,9 +28,11 @@ class TripsController < ApplicationController
 
   def show
     @trip = Trip.find(params[:id])
-    @instagram_photos = Instagram.photos_by_tag(@trip.hashtag)
-    @twitter_tweets = twitter_search_by_tag(@trip.hashtag)
-    @tumbles = tumblr_search_by_tag(@trip.hashtag)
+    instagram_photos = Instagram.photos_by_tag(@trip.hashtag)
+    twitter_tweets = twitter_search_by_tag(@trip.hashtag)
+    tumbles = tumblr_search_by_tag(@trip.hashtag)
+    media = tumbles + instagram_photos + twitter_tweets
+    @feed_items = media.sort_by { |item| -item[:timestamp]}
   end
 
   def edit
@@ -137,7 +139,13 @@ class TripsController < ApplicationController
       end
 
       tweets = Twitter.search("##{hashtag}").results.map do |tweet|
-        { :created_at   => tweet.attrs[:created_at],
+        puts " ****************************"
+        puts tweet.inspect
+        puts "******************************"
+        { :media_type   => "tweet",
+          :id           => tweet.attrs[:id],
+          :created_at   => tweet.attrs[:created_at],
+          :timestamp    => Time.parse(tweet.attrs[:created_at]).to_i,
           :text         => tweet.attrs[:text],
           :source       => tweet.attrs[:source],
           :username     => tweet.attrs[:user][:screen_name],
@@ -157,12 +165,13 @@ class TripsController < ApplicationController
       response = resource.get
       parsed_response = JSON.parse(response)
       tumbles = parsed_response["response"].map do |post|
-        tumble = { :blog_name    => post["blog_name"],
-                  :post_id      => post["id"],
-                  :url          => post["post_url"],
-                  :type         => post["type"],
-                  :timestamp    => post["timestamp"],
-                  :date         => post["date"]
+        tumble = {  :media_type   => "tumble",
+                    :blog_name    => post["blog_name"],
+                    :post_id      => post["id"],
+                    :url          => post["post_url"],
+                    :type         => post["type"],
+                    :timestamp    => post["timestamp"].to_i,
+                    :date         => post["date"]
                    }
         case post["type"]
         when "text"
@@ -178,7 +187,7 @@ class TripsController < ApplicationController
         end
         tumble
       end
-      puts tumbles
+      # puts tumbles
       tumbles
     end
 end

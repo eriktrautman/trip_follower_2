@@ -1,0 +1,14 @@
+
+<% case feed_item[:media_type] %>
+  <% when "instagram" %>
+    <%= render partial: "shared/instagram",
+        locals: { instagram: feed_item } %>
+  <% when "tweet" %>
+    <%= render partial: "shared/tweet",
+        locals: { tweet: feed_item } %>
+  <% when "tumble" %>
+    <%= render partial: "shared/tumble",
+        locals: { tumble: feed_item } %>
+<% end %>
+
+

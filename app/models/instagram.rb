@@ -15,11 +15,13 @@ class Instagram  # PORO!
     response = resource.get
     parsed_response = JSON.parse(response)
     photoUrls = parsed_response["data"].map do |photo_obj|
-      { :username => photo_obj["user"]["username"],
-        :link => photo_obj["link"],
-        :thumbnail => photo_obj["images"]["thumbnail"],
-        :low_res => photo_obj["images"]["low_resolution"],
-        :standard_res => photo_obj["images"]["standard_resolution"] }
+      { :media_type     => "instagram",
+        :username       => photo_obj["user"]["username"],
+        :timestamp      => photo_obj["created_time"].to_i,
+        :link           => photo_obj["link"],
+        :thumbnail      => photo_obj["images"]["thumbnail"],
+        :low_res        => photo_obj["images"]["low_resolution"],
+        :standard_res   => photo_obj["images"]["standard_resolution"] }
     end
   end
 

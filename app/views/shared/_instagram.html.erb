@@ -1,0 +1,8 @@
+<li class="instagram-photo">
+
+  <%= link_to instagram[:link] do %>
+    <%= image_tag instagram[:low_res]["url"], alt: "Instagram Photo by #{instagram[:username]}" %>
+  <% end %>
+  <%= "Created by #{instagram[:username]} at #{Time.at(instagram[:timestamp])}" %>
+
+</li>
