@@ -22,6 +22,7 @@
       </ul>
       <hr>
     </div>
+
     <div id="my-contributorships">
       <h3>
         Member of:
@@ -31,6 +32,7 @@
       </ul>
       <hr>
     </div>
+
   </aside>
 
   <div class="span8">
@@ -40,23 +42,28 @@
 
     <p><em>
       <% if current_user == @user %>
-        You are 
+        You are
       <% else %>
         <%= @user.username %> is
       <% end %>
       currently subscribed to <strong><%= link_to @user.subscribed_trips.count, trip_subscriptions_user_path(@user) %></strong> trips
+        <% if @user.trips %>
+          (and <%= @user.trips.count %> of your own!)
+        <% end %>
     </p></em>
     <hr>
 
-    <% if @followed_trips.nil? %>
+    <% if current_user == @user && @user.subscribed_trips.size < 1 && @user.trips.size < 0 %>
       <h4>
-        Follow <%= link_to "people", users_path %> or <%= link_to "trips", trips_path%>
-        to see them appear in your feed!
+        Follow <%= link_to "people", users_path %>,
+         subscribe to <%= link_to "trips", trips_path %>,
+         or <%= link_to "create your own", new_trip_path %>
+         to see them appear in your feed!
       </h4>
     <% else %>
-      <h4>
-        Content Goes HERE!
-      </h4>
+      <ul class="user-trip-feed">
+        <%= render partial: "shared/feed_item", collection: @feed_items %>
+      </ul>
     <% end %>
   </div>
 </div>

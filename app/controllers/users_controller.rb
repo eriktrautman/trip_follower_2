@@ -16,6 +16,19 @@ class UsersController < ApplicationController
 		@followed_users = @user.followed_users
 		@trips = @user.trips
 		@trips_contributed_to = @user.whitelisted_trips.where("trips.creator_id != ?", @user.id).includes(:admins)
+
+		if @user == current_user
+			tags = @user.subscribed_tags + @user.created_tags
+		else
+			tags = @user.created_tags
+		end
+
+		@feed_items = Feed.from_tags(tags)
+
+		respond_to do |format|
+			format.html
+			format.json
+		end
 	end
 
 	def followers
@@ -31,6 +44,16 @@ class UsersController < ApplicationController
 	def trip_subscriptions
 		@user = User.find(params[:id])
 		@subscriptions = @user.subscribed_trips
+	end
+
+	def feed
+		user = User.find(params[:id])
+		tags = ( user == current_user ? user.subscribed_tags : user.created_tags )
+		@feed_items = Feed.from_tags(tags)
+		respond_to do |format|
+			format.html
+			format.json
+		end
 	end
 
 	private

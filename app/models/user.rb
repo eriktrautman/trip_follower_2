@@ -78,4 +78,12 @@ class User < ActiveRecord::Base
     end
   end
 
+  def subscribed_tags
+    self.subscribed_trips.map { |trip| trip.hashtag }
+  end
+
+  def created_tags
+    self.trips.map { |trip| trip.hashtag }
+  end
+
 end

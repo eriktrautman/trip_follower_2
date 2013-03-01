@@ -10,7 +10,9 @@ class Instagram  # PORO!
     photos = resource.get
   end
 
-  def self.photos_by_tag(hashtag)
+  # takes an array of hashtags and returns an array of feed items
+  def self.search_by_tags(hashtags)
+    hashtag = hashtags.first # TEMPORARY MEASURE
     resource = RestClient::Resource.new "https://api.instagram.com/v1/tags/#{hashtag}/media/recent?client_id=b50084b45ed94392a160fa31b0e7a488"
     response = resource.get
     parsed_response = JSON.parse(response)

@@ -16,7 +16,7 @@ class Trip < ActiveRecord::Base
   has_many :subscribed_users, through: :trip_subscriptions, source: :user
 
   # VALIDATIONS
-  validates :name, length: { in: 4..24 }
+  validates :name, length: { in: 4..36 }
   validates :name, presence: true
   validates :tagline, length: { maximum: 140 }, allow_blank: true
   validates :description, length: { maximum: 1000 }, allow_blank: true
