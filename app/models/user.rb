@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
-  attr_accessible :username, # X DEVISE:email, :password, :password_confirmation,
+  attr_accessible :username, :tagline
 
 	before_save { |user| user.email = email.downcase }
 

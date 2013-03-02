@@ -1,13 +1,21 @@
 <% content_for(:title) { @user.username } %>
 
-<h1>
-	<%= "#{@user.username}" %>
-</h1>
+<div class="row">
+  <div class="span12">
+    <h1 class="profile-title">
+    	<%= "#{@user.username}" %>
+    </h1>
+    <p class="profile-tagline">
+      "<em><%= "#{@user.tagline}" %></em>"
+    </p>
+  </div>
+</div>
+
 
 <div class="row">
-  <aside class="span4">
+  <aside class="span3 panel">
     <div id="profile-pic">
-      <%= image_tag("rails.png") %>
+      <%= image_tag("generic-profile-picture.png") %>
     </div>
     <hr />
 
@@ -35,7 +43,7 @@
 
   </aside>
 
-  <div class="span8">
+  <div class="span8 panel">
     <h2>
       Trip Feed:
     </h2>

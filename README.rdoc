@@ -17,13 +17,13 @@ ROADMAP:
 
 PRESSING:
 XXX > Figure out sorting of media items
-> Figure out best (basic) display of media items, eg. embedded cards
-> Pull trip feeds into user feeds based on following (with refresh link if anything is AJAX'd)... or AJAX the feed in the first place?  Hmm.
-Fri Mar 01 18:26:11 +0000 2013
+XXX > Figure out best (basic) display of media items, eg. embedded cards TUMBLES
+XXX> Pull trip feeds into user feeds based on following (with refresh link if anything is AJAX'd)... or AJAX the feed in the first place?  Hmm.
   >> So set up the HTML wrappers to be different if current user versus a random user
   >> then in each respective wrapper load the correct JS code
   >> THEN set it up to work for Instagram and Tumblr
 > Set up OAuth for private accounts
+> fix tumblr so it doesn't break for a bad request -- catch it.
 
 QUESTION: You have a hundred statistics for a given blog post -- a user can follow, thumbs up, thumbs down, smiley face, hate, like, subscribe to... etc
 Each of those has its own join table for many-to-many relationships between a user and your post -- a user can of course have tons of those
@@ -141,6 +141,7 @@ Polish:
 >> update subscriber counts and subscribe buttons / unsubscribe buttons in both cases! see trip.js
 > Trip hashtag links should display filtered posts
 > Hashtag validation -- can't be multiple words and invalid characters
+> Let users set their background image.  If not, randomize from my queue of images
 
 Annoyances:
 > date fields for trip creation forms
