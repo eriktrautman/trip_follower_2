@@ -1,36 +1,68 @@
-<div class="container-narrow">
-	<div class="jumbotron">
-		<h1>Welcome to Trip Follower!</h1>
-		<p class="lead">The place where explorers and world travelers come to tell the story of their life's adventures and where you can too</p>
-		<%= link_to "Check it out", new_user_registration_path, class: "btn btn-large btn-success" %>
+<div id="landing-page">
+	<div class="container-narrow">
+		<div class="jumbotron">
+			<h1>Welcome to Trip Follower!</h1>
+			<p class="lead">The place where explorers and world travelers come to tell the story of their life's adventures and where you can too</p>
+			<% if current_user %>
+				<%= link_to "Check it out", current_user, class: "btn btn-large btn-success" %>
+			<% else %>
+				<%= link_to "Check it out", new_user_registration_path, class: "btn btn-large btn-success" %>
+			<% end %>
+		</div>
+		<hr />
 	</div>
-	<hr />
-</div>
-<div class="container">
-	<div class="row benefit-boxes">
-		<div class="span4">
-			<h4>
-				All your media... together at last.
-			</h4> 
-			<p>
-				You upload photos to Instagram, microposts to Twitter, and blog on Tumblr.  It's time to bring all that content together so you can share it from one place.
-			</p>
-		</div>
-		<div class="span4">
-			<h4>
-				Find awesome trips and awesome people.
-			</h4> 
-			<p>
-				Trip Follower is about more than just sharing -- it lets you find and follow the adventures of all kinds of people, from National Geographic photographers to your favorite celebrities.
-			</p>
-		</div>
-		<div class="span4">
-			<h4>
-				Tripping is best with friends
-			</h4> 
-			<p>
-				Hiking in Montana with the guys?  Hitting the beaches for spring break? Taking a class trip to the Big Apple?  No problem -- include your friends and their content will show up automatically!
-			</p>
+	<div class="container">
+		<div class="row benefit-boxes">
+			<div class="span4">
+				<h4>
+					All your media... together at last.
+				</h4> 
+				<p>
+					You upload photos to Instagram, microposts to Twitter, and blog on Tumblr.  It's time to bring all that content together so you can share it from one place.
+				</p>
+			</div>
+			<div class="span4">
+				<h4>
+					Find awesome trips and awesome people.
+				</h4> 
+				<p>
+					Trip Follower is about more than just sharing -- it lets you find and follow the adventures of all kinds of people, from National Geographic photographers to your favorite celebrities.
+				</p>
+			</div>
+			<div class="span4">
+				<h4>
+					Tripping is best with friends
+				</h4> 
+				<p>
+					Hiking in Montana with the guys?  Hitting the beaches for spring break? Taking a class trip to the Big Apple?  No problem -- include your friends and their content will show up automatically!
+				</p>
+			</div>
 		</div>
 	</div>
 </div>
+
+<style>
+	html {
+/*	  background-repeat: no-repeat;
+		background-size: 100%;
+		background-position: center;
+		background-attachment: fixed;
+		background-color: rgba(0,0,0,0);*/
+	  background-image: url('assets/tf-canyonlands-wide.jpg');
+	}
+
+	body {
+		background-color: rgba(0,0,0,0);
+	}
+
+	.container {
+		margin-bottom: 0px;
+	}
+
+	#landing-page {
+	  background: rgba(255,255,255,.7);
+	  padding: 40px 5px;
+	  margin: 40px -40px;
+	}
+
+</style>
