@@ -20,6 +20,7 @@ PRESSING:
 > Set up OAuth for private accounts
 > Set up signed Tumblr requests using OAuth
 > fix tumblr so it doesn't break for a bad request -- catch it.
+> Fix all APIs so they don't break when the user hasn't enabled them.
 
 QUESTION: You have a hundred statistics for a given blog post -- a user can follow, thumbs up, thumbs down, smiley face, hate, like, subscribe to... etc
 Each of those has its own join table for many-to-many relationships between a user and your post -- a user can of course have tons of those
@@ -151,6 +152,8 @@ ISSUES:
 
 TIL
 > The devise after_sign_in_path_for(resource) function returns the path to be redirected to.  The problem is that the stored location is wiped out as soon as it's queried (it's a method) so you need to catch it in another variable to use it.  this function is vulnerable to infinite redirect loops.
+> OAuth is a pain in the ass
+> JSON.parse is the inverse of .to_json... so getting back a web response you (idiot!) need to use JSON.parse NOT .to_json, which will just escape the characters more times.  Bleh.
 
 
 
