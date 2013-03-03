@@ -9,14 +9,16 @@ class Tweet # PORO
 
 
   # takes an array of hashtags and returns applicable tweets
-  def self.search_by_tags(hashtags)
+  def self.search_by_tags(hashtags, user)
     # Users the "twitter" gem from https://github.com/sferik/twitter
 
     Twitter.configure do |config|
       config.consumer_key = "QVim65jLuVeoo7phUAP0AQ"
       config.consumer_secret = "5tMM645CWOmHwZKcf8xbIVCbRhPHYzMAkmhwvwX7s"
-      config.oauth_token = "313316959-gic7hb72LjHqQ1fmE914c1hUuuN51pA3RBzyOA7c"
-      config.oauth_token_secret = "vPhMqtGJOww0QmKrulUjSCpB2yoyxQGWfMQGcTI2knM"
+      # config.oauth_token = "313316959-gic7hb72LjHqQ1fmE914c1hUuuN51pA3RBzyOA7c"
+      # config.oauth_token_secret = "vPhMqtGJOww0QmKrulUjSCpB2yoyxQGWfMQGcTI2knM"
+      config.oauth_token = user.authorizations.where(provider: "twitter").first.token
+      config.oauth_token_secret = user.authorizations.where(provider: "twitter").first.secret
     end
 
     search_term = "#" + hashtags.join(" OR #")

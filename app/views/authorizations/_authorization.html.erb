@@ -1,0 +1,5 @@
+<li>
+  <%= authorization.user.username %> |
+  <%= authorization.provider %> |
+  <%= link_to "Revoke", authorization_path(authorization), method: :delete %>
+</li>

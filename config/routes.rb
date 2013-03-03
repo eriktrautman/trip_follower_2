@@ -24,14 +24,10 @@ TripFollower2::Application.routes.draw do
 
   resources :events, except: [:new, :show]
 
-  resources :instagrams, only: [:show, :index] do
-    member do
+  resources :instagrams, only: [:show, :index]
 
-    end
-  end
+  resources :authorizations, only: [:index, :destroy]
 
-  get 'authorization/instagram', to: "api_callbacks#instagram"
-  get 'authorization/twitter', to: "api_callbacks#twitter"
-  get 'authorization/tumblr', to: "api_callbacks#tumblr"
+  get 'auth/:provider/callback', to: "authorizations#create"
 
 end

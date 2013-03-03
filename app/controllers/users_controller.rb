@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 			tags = @user.created_tags
 		end
 
-		@feed_items = Feed.from_tags(tags)
+		@feed_items = Feed.from_tags(tags, current_user)
 
 		respond_to do |format|
 			format.html

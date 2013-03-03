@@ -32,6 +32,8 @@ class User < ActiveRecord::Base
   has_many :trip_subscriptions, foreign_key: :subscriber_id
   has_many :subscribed_trips, through: :trip_subscriptions, source: :trip
 
+  # Provider Authorizations
+  has_many :authorizations
 
   # VALIDATIONS
   [ :username, :email ].each do |field| validates field, presence: true

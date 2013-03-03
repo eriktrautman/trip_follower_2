@@ -28,7 +28,7 @@ class TripsController < ApplicationController
 
   def show
     @trip = Trip.find(params[:id])
-    @feed_items = Feed.from_tags([@trip.hashtag])
+    @feed_items = Feed.from_tags([@trip.hashtag], current_user)
   end
 
   def edit

@@ -1,0 +1,50 @@
+<% content_for(:title) { "Authorizations" } %>
+
+<div class="row">
+  <div class="span12">
+    <h1 class="profile-title">
+      <%= "#{current_user.username}" %>
+    </h1>
+    <p class="profile-tagline">
+      <em><%= "\"#{current_user.tagline}\"" if current_user.tagline %></em>
+    </p>
+  </div>
+</div>
+
+<p><strong>You'll need to authorize providers so we can display your trips!</strong></p>
+<p>
+  Just select from the list below and you'll be taken briefly to that provider's website <br>
+  You'll be prompted to login and to allow TripFollower to see your content. <br>
+  Then you'll be right back here in no time!"
+</p>
+
+<div class="row">
+  <div class="span12">
+    <hr>
+    <h4>
+      Existing Authorizations:
+    </h4>
+    <% for authorization in @authorizations %>
+      <div class="authorization">
+        <%= image_tag "auth_buttons/#{authorization.provider}_64.png", size: "64x64", alt: "#{authorization.provider}" %>
+      </div>
+      <%= link_to "Revoke #{authorization.provider}", authorization,
+          confirm: "Are you sure you want to revoke authorization for #{authorization.provider}?",
+          method: :delete,
+          class: "remove" %>
+    <% end %>
+    <hr>
+    <h4>
+      Potential Authorizations:
+    </h4>
+    <% for provider in @unused_providers %>
+      <div class="auth-provider">
+        <a href="<%= "/auth/#{provider}" %>">
+        <%= image_tag "auth_buttons/#{provider}_64.png", size: "64x64",
+            alt: "#{provider}" %>
+        Add <%= provider %>!
+        </a>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -7,22 +7,18 @@ ROADMAP:
 	>> Thursday: Integrate Instagram, Research + Integrate Twitter, Research Tumblr (integrate?)
 	>> Friday: User Feeds, Private logins for feeds
 	>> Saturday: Finish private API login / authorization and user feeds
-	>> Sunday: Flesh out UI goals and roadmap
+	>> Sunday: Flesh =out UI goals and roadmap
 	>> Monday: UX/UI/Visualizations
 	>> Tuesday: UX/UI/Visualizations
-	>> Wednesday: UX/UI/Visualizations
+	>> Wednesday: dUX/UI/Visualizations
 	>> Thursday: Polish Polish Polish.
 
 *************************
 
 PRESSING:
-XXX > Figure out sorting of media items
-XXX > Figure out best (basic) display of media items, eg. embedded cards TUMBLES
-XXX> Pull trip feeds into user feeds based on following (with refresh link if anything is AJAX'd)... or AJAX the feed in the first place?  Hmm.
-  >> So set up the HTML wrappers to be different if current user versus a random user
-  >> then in each respective wrapper load the correct JS code
-  >> THEN set it up to work for Instagram and Tumblr
+
 > Set up OAuth for private accounts
+> Set up signed Tumblr requests using OAuth
 > fix tumblr so it doesn't break for a bad request -- catch it.
 
 QUESTION: You have a hundred statistics for a given blog post -- a user can follow, thumbs up, thumbs down, smiley face, hate, like, subscribe to... etc
@@ -34,7 +30,7 @@ Following:
 
 OPTIMIZATION:
 > Have the feed build in realtime using AJAX requests instead of a single-thread server
-> 
+>
 
 Testing TODOs:
 > follower page okay
@@ -71,7 +67,7 @@ APIS: **********************************
 
     CLIENT INFO
     CLIENT ID b50084b45ed94392a160fa31b0e7a488
-    CLIENT SECRET 88ce5753c5024ac19f8038baf2538847
+    CLIENT SECRET 836aa4607ac24b5bb57af76dada1d604
     WEBSITE URL http://127.0.0.1/
     REDIRECT URI  http://127.0.0.1/authorization/instagram
   >> Store in environment files, eg. development/environment.rb
@@ -142,6 +138,7 @@ Polish:
 > Trip hashtag links should display filtered posts
 > Hashtag validation -- can't be multiple words and invalid characters
 > Let users set their background image.  If not, randomize from my queue of images
+> In the authorization page, gray out the logos that have already been authorized
 
 Annoyances:
 > date fields for trip creation forms
@@ -155,4 +152,9 @@ ISSUES:
 TIL
 > The devise after_sign_in_path_for(resource) function returns the path to be redirected to.  The problem is that the stored location is wiped out as soon as it's queried (it's a method) so you need to catch it in another variable to use it.  this function is vulnerable to infinite redirect loops.
 
+
+
+Resources:
+* Follow buttons :http://www.dreamtemplate.com/dreamcodes/documentation/social_icons.html
+* http://www.zurb.com/playground/social-webicons
 

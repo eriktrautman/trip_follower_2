@@ -11,9 +11,12 @@ class Instagram  # PORO!
   end
 
   # takes an array of hashtags and returns an array of feed items
-  def self.search_by_tags(hashtags)
-    hashtag = hashtags.first # TEMPORARY MEASURE
-    resource = RestClient::Resource.new "https://api.instagram.com/v1/tags/#{hashtag}/media/recent?client_id=b50084b45ed94392a160fa31b0e7a488"
+  def self.search_by_tags(hashtags, user)
+    # TEMPORARY MEASURE... Or not... instagram doesn't support multiple tag searches!
+    hashtag = hashtags.first
+    token = user.authorizations.where(provider: "instagram").first.token
+    resource = RestClient::Resource.new "https://api.instagram.com/v1/tags/#{hashtag}/media/recent?access_token=#{token}" 
+    #can also append client_id=b50084b45ed94392a160fa31b0e7a488 for public queries...
     response = resource.get
     parsed_response = JSON.parse(response)
     photoUrls = parsed_response["data"].map do |photo_obj|
