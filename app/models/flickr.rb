@@ -8,15 +8,17 @@ class Flickr #< PORO
     tags = hashtags.join("%2C")
     api_key = "812710f0d4bf1d785110c5d431c52852"
 
-    access_token = Flickr.prepare_access_token(user)
 
     if user_tags_only
+      access_token = Flickr.prepare_access_token(user)
       url = "http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=#{api_key}&tags=#{tags}&format=json&nojsoncallback=1&user_id=me"
+      response = access_token.get(url)
     else
       url = "http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=#{api_key}&tags=#{tags}&format=json&nojsoncallback=1"
+      resource = RestClient::Resource.new(url)
+      response = resource.get
     end
 
-    response = access_token.get(url)
     puts "\n\n URL: #{url}!"
 
     parsed_response = JSON.parse(response.body)
