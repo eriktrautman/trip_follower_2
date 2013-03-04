@@ -19,6 +19,23 @@ html, body {
   background-color: $background;
 }
 
+/* BACKGROUND */
+html {
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  background-position: center;
+  background-attachment: fixed;
+  background-color: #1b1b1b;
+  background-image: url('tf-canyonlands-wide.jpg');
+}
+
+body {
+  background-color: rgba(0,0,0,0);
+}
+
+/* *************** */
+
+
 body {
   padding-top: 40px;
 }
@@ -83,11 +100,22 @@ a:hover {
 }
 
 .panel {
-    background-color: $panelWhite;
+  background-color: $panelWhite;
   border-radius: 10px;
   padding: 18px;
-  box-shadow: 10px 10px 5px #888;
+  /*box-shadow: 10px 10px 5px $panelShadow;*/
   border: 1px solid #bbb;
+}
+
+.btn-following, .btn-subscription{
+  width: 100px;
+}
+
+.users-list, .trips-list{
+  list-style: none;
+  li{
+    padding: 8px;
+  }
 }
 
 /* PROFILE ***************** */

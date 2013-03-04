@@ -33,14 +33,14 @@
   <%= "#{@trip.description}" %>
 </p>
 
+<div class="panel">
+  <% if @feed_items.empty? %>
+    <div class="no-content-warning">
+      <p> There is no content to pull from this hashtag! </p>
+    </div>
+  <% end %>
 
-<% if @feed_items.empty? %>
-  <div class="no-content-warning">
-    <p> There is no content to pull from this hashtag! </p>
-  </div>
-<% end %>
-
-<ul class="single-trip-feed">
-  <%= render partial: "shared/feed_item", collection: @feed_items %>
-</ul>
-
+  <ul class="single-trip-feed">
+    <%= render partial: "shared/feed_item", collection: @feed_items %>
+  </ul>
+</div>

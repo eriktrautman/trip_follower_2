@@ -2,24 +2,28 @@
 <!-- *** Future: Pass in the button bootstrap classes *** -->
 <% if current_user && current_user != user %>
   <% if current_user.following?(user) %>
-    <button class="unfollow btn btn-small btn-user-<%= user.id %>"
-            data-url="<%= user_user_following_path(user, current_user) %>">Unfollow
-    </button>
-    <button class="follow btn btn-small btn-user-<%= user.id %>"
-            data-url="<%= user_user_followings_path(user) %>"
-            style="display: none">
-            Follow
-    </button>
+    <div class="span2">
+        <button class="unfollow btn-following btn btn-small btn-user-<%= user.id %>"
+                data-url="<%= user_user_following_path(user, current_user) %>">Unfollow
+        </button>
+        <button class="follow btn btn-following btn-small btn-primary btn-user-<%= user.id %>"
+                data-url="<%= user_user_followings_path(user) %>"
+                style="display: none">
+                Follow
+        </button>
+    </div>
   <% else %>
-    <button class="unfollow btn btn-small btn-user-<%= user.id %>"
-            data-url="<%= user_user_following_path(user, current_user) %>"
-            style="display: none">
-            Unfollow
-    </button>
-    <button class="follow btn btn-small btn-user-<%= user.id %>"
-            data-url="<%= user_user_followings_path(user) %>">
-            Follow
-    </button>
+    <div class="span2">
+        <button class="unfollow btn btn-following btn-small btn-user-<%= user.id %>"
+                data-url="<%= user_user_following_path(user, current_user) %>"
+                style="display: none">
+                Unfollow
+        </button>
+        <button class="follow btn btn-following btn-small btn-primary btn-user-<%= user.id %>"
+                data-url="<%= user_user_followings_path(user) %>">
+                Follow
+        </button>
+    </div>
   <% end %>
 
     <%= javascript_tag do %>

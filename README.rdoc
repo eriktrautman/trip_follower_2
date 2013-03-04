@@ -12,6 +12,7 @@ ROADMAP:
 	>> Tuesday: UX/UI/Visualizations
 	>> Wednesday: dUX/UI/Visualizations
 	>> Thursday: Polish Polish Polish.
+  >> Trip feeds on user show pages suck because only one tag gets used for Instagram and Tumblr!
 
 *************************
 

@@ -1,4 +1,6 @@
-<li>
-	<%= link_to "#{user.username}", user %>
-	<%= render partial: "shared/following_buttons", locals: {user: user } %>
-</li>
+<% if user != current_user %>
+  <li>
+    <%= render partial: "shared/following_buttons", locals: {user: user } %>
+  	<big><%= link_to "#{user.username}", user %></big>
+  </li>
+<% end %>

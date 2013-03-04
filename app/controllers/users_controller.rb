@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 		@trips_contributed_to = @user.whitelisted_trips.where("trips.creator_id != ?", @user.id).includes(:admins)
 
 		if @user == current_user
-			tags = @user.subscribed_tags + @user.created_tags
+			tags = @user.subscribed_tags #+ @user.created_tags
 		else
 			tags = @user.created_tags
 		end

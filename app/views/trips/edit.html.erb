@@ -3,23 +3,25 @@
 <%= content_tag(:div, id: "whitelist-url", data: {url: trip_trip_whitelistings_url(@trip) } ) {} %>
 <%= content_tag(:div, id: "trip-url", data: {url: trip_url(@trip) } ) {} %>
 
-<div class="trip-form">
-	<h1>
-	  Trip Settings: <%= @trip.name %>
-	</h1>
-	<p>
-		<em>Created by <%= @trip.creator.username %></em>
-	</p>
+<h1>
+  Trip Settings: <%= @trip.name %>
+</h1>
+<div class="row">
+	<div class="span8 panel">
+		<p>
+			<em>Created by <%= @trip.creator.username %></em>
+		</p>
 
-	<%= render partial: 'form' %>
-	<br />
-	<%= render partial: 'advanced_settings' %>
+		<%= render partial: 'form' %>
+		<br />
+		<%= render partial: 'advanced_settings' %>
 
-	<%= javascript_tag do %>
-		$(function(){
-			TF.AdminLibrary.addAdminListeners();
-			TF.WhitelistLibrary.addWhitelistListeners();
-			TF.PrivacyAndPostingLibrary.addPrivacyListeners();
-		});
-	<% end %>
+		<%= javascript_tag do %>
+			$(function(){
+				TF.AdminLibrary.addAdminListeners();
+				TF.WhitelistLibrary.addWhitelistListeners();
+				TF.PrivacyAndPostingLibrary.addPrivacyListeners();
+			});
+		<% end %>
+	</div>
 </div>

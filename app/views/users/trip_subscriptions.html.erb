@@ -4,8 +4,13 @@
   <%= "#{@user.username}'s #{@subscriptions.count} Trip Subscriptions" %>
 </h1>
 
-<div id="trip-subscriptions-list">
+<div class="row">
+  <div class="span8 panel">
 
-  <%= render @subscriptions %>
+    <div id="trip-subscriptions-list">
 
+      <%= render @subscriptions %>
+
+    </div>
+  </div>
 </div>

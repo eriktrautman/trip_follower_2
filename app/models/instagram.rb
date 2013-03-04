@@ -19,7 +19,7 @@ class Instagram  # PORO!
     #can also append client_id=b50084b45ed94392a160fa31b0e7a488 for public queries...
     response = resource.get
     parsed_response = JSON.parse(response)
-    photoUrls = parsed_response["data"].map do |photo_obj|
+    instagrams = parsed_response["data"].map do |photo_obj|
       { :media_type     => "instagram",
         :username       => photo_obj["user"]["username"],
         :timestamp      => photo_obj["created_time"].to_i,
@@ -28,6 +28,8 @@ class Instagram  # PORO!
         :low_res        => photo_obj["images"]["low_resolution"],
         :standard_res   => photo_obj["images"]["standard_resolution"] }
     end
+    puts "\n\n INSTAGRAMS: #{instagrams.inspect}! \n\n"
+    instagrams
   end
 
 end

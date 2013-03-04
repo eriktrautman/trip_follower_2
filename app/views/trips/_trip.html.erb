@@ -1,31 +1,33 @@
-<li>
 
-  <%= render partial: "shared/trip_subscribe_buttons", locals: { trip: trip } %>
 
-  <big>
-    <%= link_to trip.name, trip_path(trip) %>
-  </big>
-  <small><em>
-    &#35<%= link_to trip.hashtag, "#" %>
-  </em></small>
+  <li>
 
-  <% if @user == current_user &&
-        @user != trip.creator &&
-        trip.admins.include?(current_user) %>
-    <span class="admin-indicator">(admin)</span>
-  <% end %>
+    <%= render partial: "shared/trip_subscribe_buttons", locals: { trip: trip } %>
 
-  <br/>
+    <big>
+      <%= link_to trip.name, trip_path(trip) %>
+    </big>
+    <small><em>
+      &#35<%= link_to trip.hashtag, "#" %>
+    </em></small>
 
-  <% if trip.public_view %>
-    <small>
-      <%= render partial: "shared/trip_subscriber_stats", locals: { trip: trip } %>
-    </small>
-  <% end %>
+    <% if @user == current_user &&
+          @user != trip.creator &&
+          trip.admins.include?(current_user) %>
+      <span class="admin-indicator">(admin)</span>
+    <% end %>
 
-  <br/>
-  <small><em>
-    Created on <%= trip.created_at.strftime "%A, %-B %-d, %Y" %>
-  </em></small>
+    <% if trip.public_view %>
+      | 
+      <small>
+        <%= render partial: "shared/trip_subscriber_stats", locals: { trip: trip } %>
+      </small>
+    <% end %>
 
-</li>
+    <br/>
+    <small><em>
+      Created on <%= trip.created_at.strftime "%A, %-B %-d, %Y" %>
+      by <%= link_to trip.creator.username, trip.creator %>
+    </em></small>
+
+  </li>

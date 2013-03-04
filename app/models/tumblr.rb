@@ -34,6 +34,7 @@ class Tumblr # PORO
       end
       tumble
     end
+    puts "\n\n TUMBLES: #{tumbles.inspect}! \n\n"
     tumbles
   end
 

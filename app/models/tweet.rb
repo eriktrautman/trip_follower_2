@@ -38,6 +38,8 @@ class Tweet # PORO
         :source       => tweet.attrs[:source] }
         #:url          => tweet.attrs[:entities][:urls][0][:display_url] }
     end
+    puts "\n\n TWEETS: #{tweets.inspect}! \n\n"
+    tweets
   end
 
 end

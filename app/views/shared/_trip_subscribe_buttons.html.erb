@@ -2,24 +2,28 @@
 <!-- *** Future: Pass in the button bootstrap classes *** -->
 <% if current_user && trip.creator != current_user %>
   <% if current_user.subscribed_to?(trip) %>
-    <button class="unsubscribe btn btn-small btn-trip-<%= trip.id %>"
-            data-url="<%= unsubscribe_trip_path(trip) %>">Unsubscribe
-    </button>
-    <button class="subscribe btn btn-small btn-trip-<%= trip.id %>"
-            data-url="<%= subscribe_trip_path(trip) %>"
-            style="display: none"> <!-- << Here's the difference -->
-            subscribe
-    </button>
+    <div class="span2">
+      <button class="unsubscribe btn-subscription btn btn-small btn-trip-<%= trip.id %>"
+              data-url="<%= unsubscribe_trip_path(trip) %>">Unsubscribe
+      </button>
+      <button class="subscribe btn-subscription btn-primary btn btn-small btn-trip-<%= trip.id %>"
+              data-url="<%= subscribe_trip_path(trip) %>"
+              style="display: none"> <!-- << Here's the difference -->
+              Subscribe
+      </button>
+    </div>
   <% else %>
-    <button class="unsubscribe btn btn-small btn-trip-<%= trip.id %>"
-            data-url="<%= unsubscribe_trip_path(trip) %>"
-            style="display: none"> <!-- << Here's the difference -->
-            Unsubscribe
-    </button>
-    <button class="subscribe btn btn-small btn-trip-<%= trip.id %>"
-            data-url="<%= subscribe_trip_path(trip) %>">
-            subscribe
-    </button>
+    <div class="span2">
+      <button class="unsubscribe btn btn-subscription btn-small btn-trip-<%= trip.id %>"
+              data-url="<%= unsubscribe_trip_path(trip) %>"
+              style="display: none"> <!-- << Here's the difference -->
+              Unsubscribe
+      </button>
+      <button class="subscribe btn btn-subscription btn-small btn-primary btn-trip-<%= trip.id %>"
+              data-url="<%= subscribe_trip_path(trip) %>">
+              Subscribe
+      </button>
+    </div>
   <% end %>
 
   <%= javascript_tag do %>
