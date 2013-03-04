@@ -14,10 +14,9 @@ ROADMAP:
 
 PRESSING TODO:
 
-> fix tumblr so it doesn't break for a bad request -- catch it.
-> Fix all APIs so they don't break when the user hasn't enabled them.
-> Trip feeds on user show pages suck because only one tag gets used for Instagram and Tumblr!
+
 >> Unfuck the user's feed page...
+  >>> Trip feeds on user show pages suck because only one tag gets used for Instagram and Tumblr!
   >>> cycle through each trip the user is subscribed to and grab all those yummy api calls
   >>>> Eventually limit the number of trips a user can follow...?
 

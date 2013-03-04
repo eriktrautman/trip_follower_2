@@ -42,6 +42,9 @@
   <% if @feed_items.empty? %>
     <div class="no-content-warning">
       <p> There is no content to pull from this hashtag! </p>
+      <p> Hint: Try <%= link_to "authorizing some accounts", authorizations_path %>
+        so your posts and media will be automatically pulled into your trip feed.  Some providers (e.g. Tumblr) have trouble making your posts visible publicly if you haven't authorized them.
+      </p>
     </div>
   <% end %>
 
