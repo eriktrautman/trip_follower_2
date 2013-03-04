@@ -1,76 +1,34 @@
 == Welcome to Trip Follower 2.0
 It's all new and better than anything you've ever seen.
 
-TODO:
+
+********************************************************************************
 
 ROADMAP:
-	>> Sunday: Flesh =out UI goals and roadmap
-	>> Monday: UX/UI/Visualizations
+	>> Monday: Finish API cleanup, Flesh =out UI goals and roadmap for UX/UI/Visualizations
 	>> Tuesday: UX/UI/Visualizations
-	>> Wednesday: dUX/UI/Visualizations
+	>> Wednesday: UX/UI/Visualizations
 	>> Thursday: Polish Polish Polish.
 
-*************************
+********************************************************************************
 
-PRESSING:
+PRESSING TODO:
 
-  FLICKR
-    XXX set up the incoming auth flow to catch the username
-    XXX set up the api calls to be made properly
-    XXX set up the feeds to pull through properly
-    XXX deal with displaying
-    >>> Get the date for the photos to organize the feed properly
-
-  >> Unfuck the user's feed page...
-    >>> cycle through each trip the user is subscribed to and grab all those yummy api calls
-    >>>> Eventually limit the number of trips a user can follow...?
-
-
+> FLICKR
+  >>> Make sure the user ID/name is pulled into the DB regardless
+  >>> Get the date for the photos to organize the feed properly
 > fix tumblr so it doesn't break for a bad request -- catch it.
 > Fix all APIs so they don't break when the user hasn't enabled them.
 > Trip feeds on user show pages suck because only one tag gets used for Instagram and Tumblr!
+>> Unfuck the user's feed page...
+  >>> cycle through each trip the user is subscribed to and grab all those yummy api calls
+  >>>> Eventually limit the number of trips a user can follow...?
 
-QUESTION: You have a hundred statistics for a given blog post -- a user can follow, thumbs up, thumbs down, smiley face, hate, like, subscribe to... etc
-Each of those has its own join table for many-to-many relationships between a user and your post -- a user can of course have tons of those
+********************************************************************************
 
-*************************
-Following:
-> Concerns!!!!
-
-OPTIMIZATION:
-> Have the feed build in realtime using AJAX requests instead of a single-thread server
->
-
-Testing TODOs:
-> follower page okay
-> following okay
-> follower / ing counts okay
-> Index page not signed in shows no follow stuff
-> Subscriptions Tests:
-  >> I automatically subscribe to my trips (but cannot unfollow them)
-  >> Admins automatically subscribe to trips for which they are admins (but cannot unsubscribe from them)
-
-Authorization:
->?UJS? trips have admin user(s) added or deleted by the creator
->?UJS?Admins can whitelist non-admin users to post in the trip (if enabled)
-
-
-OAUTH:
-> Now figure out OAuth on top of Devise
-> Start prepping for APIs...
-
-APIS: **********************************
-> Tumblr
-> sort them by their creation date in the feed
-> Use embeds instead of just feeds
-> Start collecting user login info
->> Instagram
->> Twitter
->> Tumblr
+APIS: 
 
 >> Instagram, Twitter, Tumblr, Wordpress, 500px, Pinterest, Flickr
-
->>>>>>>>>>>>>>>>
 
 *** Instagram:
 
@@ -102,25 +60,7 @@ APIS: **********************************
     Public Key: 812710f0d4bf1d785110c5d431c52852
     Secret Key: 853727b0318f027c
 
-> The public requests are totally independent of user permissions...
-> The feed controller? will need to take in the user, figure out which trips he follows, then request each trip's top items.  It should then aggregate their top items.  ...this is going to be massive and slow but for testing it works.
-
-
->> GO PRIVATE
-> A User has Accounts
-> The application has request ability on behalf of the user
-> A refresh request for a private trip pings only associated accounts
-
-
-
-Event Pages (Optional -- an "if there's time" accessory):
-> Create events models
-> Specs
-> Integrate events with trips and user pages
-> admins can create and edit their own events
-
-Posts: (a temporary testing thing)
-> Match posts to trips and events via hashtag
+********************************************************************************
 
 Accessories:
 > User profiles
@@ -132,9 +72,10 @@ Accessories:
 > typeahead for any user adding
 > nest forms for admin and creator control panels??
 Users:
-> Enable Gravatars for user pictures
+> Enable Gravatars for user pictures !!!!!!!!!!!
 
-Polish:
+
+Polish: << Note: functionality first! >>
 > CSS the crap out of it
 > Admin and creator settings windows should probably be nifty dropdowns instead of full page redirects
 > Landing page improvement -- the initial signup should be awesome
@@ -155,14 +96,25 @@ Polish:
 > Refactor the Twitter API call to go back more than 7 days... which will require pulling a "list timeline" of the group of whitelisted users and parsing it for the right hashtag.
 > !! Require the whitelisted user to approve their whitelisting! Otherwise you could harvest their private photos !!
 > Fix case sensitivity for whitelisting and admins
+> Change background picture randomly on page load
+
 
 Annoyances:
 > date fields for trip creation forms
 
 
+Event Pages (Optional -- an "if there's time" accessory):
+> Create events models
+> Specs
+> Integrate events with trips and user pages
+> admins can create and edit their own events
+
+
 ISSUES:
 > Idiomatic enter-to-submit
 > When/where to include custom javascripts (organization...), eg. index users page which needs the listeners for the user buttons.
+> You have a hundred statistics for a given blog post -- a user can follow, thumbs up, thumbs down, smiley face, hate, like, subscribe to... etc
+Each of those has its own join table for many-to-many relationships between a user and your post -- a user can of course have tons of those
 
 
 TIL
@@ -170,7 +122,26 @@ TIL
 > OAuth is a pain in the ass
 > JSON.parse is the inverse of .to_json... so getting back a web response you (idiot!) need to use JSON.parse NOT .to_json, which will just escape the characters more times.  Bleh.
 
+********************************************************************************
 
+OPTIMIZATION:
+> Have the feed build in realtime using AJAX requests instead of a single-thread server
+>
+
+Testing TODOs:
+> follower page okay
+> following okay
+> follower / ing counts okay
+> Index page not signed in shows no follow stuff
+> Subscriptions Tests:
+  >> I automatically subscribe to my trips (but cannot unfollow them)
+  >> Admins automatically subscribe to trips for which they are admins (but cannot unsubscribe from them)
+
+Authorization:
+>?UJS? trips have admin user(s) added or deleted by the creator
+>?UJS?Admins can whitelist non-admin users to post in the trip (if enabled)
+
+********************************************************************************
 
 Resources:
 * Follow buttons :http://www.dreamtemplate.com/dreamcodes/documentation/social_icons.html
