@@ -4,24 +4,38 @@ It's all new and better than anything you've ever seen.
 TODO:
 
 ROADMAP:
-	>> Thursday: Integrate Instagram, Research + Integrate Twitter, Research Tumblr (integrate?)
-	>> Friday: User Feeds, Private logins for feeds
-	>> Saturday: Finish private API login / authorization and user feeds
 	>> Sunday: Flesh =out UI goals and roadmap
 	>> Monday: UX/UI/Visualizations
 	>> Tuesday: UX/UI/Visualizations
 	>> Wednesday: dUX/UI/Visualizations
 	>> Thursday: Polish Polish Polish.
-  >> Trip feeds on user show pages suck because only one tag gets used for Instagram and Tumblr!
 
 *************************
 
 PRESSING:
 
-> Set up OAuth for private accounts
-> Set up signed Tumblr requests using OAuth
+> PRIVATE feeds -- only query content from each whitelisted user and scrape it for the relevant tag.
+  >> Instagram you SUCK... no searching for tags BY a given user
+  >> Twitter -- need to retrieve their twitter handle as well to use it as a search term ... which CAN be done to work out properly.
+  >> Tumblr also allows you to retrieve posts from a given user with a hashtag
+  IMPLEMENTATION
+    XXX Test Tumblr manually
+    XXX Add a column to the authorizations table for the account name (to use in the search)
+    XXX set the create method to populate that column as well
+    XXX change feeds to accept the "user_tags_only" boolean for each provider
+    XXX code the "user_tags_only" feeds to properly use the user's name in search
+    XXX Code a trip's show page to, if private, only use the "user_tags_only" methods and once for each whitelisted user of the trip.
+    XXX Sort the (possibly giant) list of content into one ordered feed
+      XXXX create a new ordering function?  Errrr later...
+    XXX Test the sucker
+  >> Unfuck the user's feed page...
+    >>> cycle through each trip the user is subscribed to and grab all those yummy api calls
+    >>>> Eventually limit the number of trips a user can follow...?
+
+
 > fix tumblr so it doesn't break for a bad request -- catch it.
 > Fix all APIs so they don't break when the user hasn't enabled them.
+> Trip feeds on user show pages suck because only one tag gets used for Instagram and Tumblr!
 
 QUESTION: You have a hundred statistics for a given blog post -- a user can follow, thumbs up, thumbs down, smiley face, hate, like, subscribe to... etc
 Each of those has its own join table for many-to-many relationships between a user and your post -- a user can of course have tons of those
@@ -141,6 +155,7 @@ Polish:
 > Hashtag validation -- can't be multiple words and invalid characters
 > Let users set their background image.  If not, randomize from my queue of images
 > In the authorization page, gray out the logos that have already been authorized
+> Refactor the Twitter API call to go back more than 7 days... which will require pulling a "list timeline" of the group of whitelisted users and parsing it for the right hashtag.
 
 Annoyances:
 > date fields for trip creation forms

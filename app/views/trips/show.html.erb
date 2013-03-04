@@ -5,9 +5,14 @@
   <%= render partial: "shared/trip_subscribe_buttons", locals: { trip: @trip } %>
 </h1>
 <p>
-  <em>Created by <%= link_to "#{@trip.creator.username}", @trip.creator %></em>
+  <em>Created by <%= link_to "#{@trip.creator.username}", @trip.creator %>
    | <%= render partial: "shared/trip_subscriber_stats", locals: { trip: @trip } %>
+  </em>
 </p>
+<% if @trip.whitelist_posters %>
+  Whitelisted Users: 
+  <%= "#{ @trip.whitelisted_users.map(&:username).join(', ')}" %>
+<% end %>
 
 <% if current_user == @trip.creator %>
   <div>

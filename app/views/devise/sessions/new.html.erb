@@ -1,9 +1,11 @@
 <% content_for(:title) { "Sign In"} %>
 
-<h2>Sign in</h2>
+<div class="offset2">
+  <h2>Sign in</h2>
+</div>
 
 <div class="row">
-  <div class="span8 panel">
+  <div class="span8 offset2 panel">
 
     <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
       <div class="form-inputs">

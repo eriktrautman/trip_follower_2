@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130302223509) do
+ActiveRecord::Schema.define(:version => 20130304033603) do
 
   create_table "authorizations", :force => true do |t|
     t.integer "user_id"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20130302223509) do
     t.string  "uid"
     t.string  "token"
     t.string  "secret"
+    t.string  "account_name"
   end
 
   add_index "authorizations", ["user_id"], :name => "index_authorizations_on_user_id"

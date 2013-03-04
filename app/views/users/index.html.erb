@@ -1,11 +1,14 @@
 <% content_for(:title) { "Users" } %>
 
-<h1>
-	<%= "Listing of all users" %>
-</h1>
+
+<div class="offset2">
+  <h1>
+  	<%= "All Users" %>
+  </h1>
+</div>
 
 <div class="row">
-  <div class="span8 panel">
+  <div class="span8 offset2 panel">
     <ul class="users-list">
     	<%=	render @users %>
     </ul>

@@ -1,7 +1,7 @@
 <% content_for(:title) { "Authorizations" } %>
 
 <div class="row">
-  <div class="span12">
+  <div class="span8 offset2">
     <h1 class="profile-title">
       <%= "#{current_user.username}" %>
     </h1>
@@ -11,15 +11,19 @@
   </div>
 </div>
 
-<p><strong>You'll need to authorize providers so we can display your trips!</strong></p>
-<p>
-  Just select from the list below and you'll be taken briefly to that provider's website <br>
-  You'll be prompted to login and to allow TripFollower to see your content. <br>
-  Then you'll be right back here in no time!"
-</p>
+<div class="row">
+  <div class="span8 offset2">
+    <p><strong>You'll need to authorize providers so we can display your trips!</strong></p>
+    <p>
+      Just select from the list below and you'll be taken briefly to that provider's website <br>
+      You'll be prompted to login and to allow TripFollower to see your content. <br>
+      Then you'll be right back here in no time!"
+    </p>
+  </div>
+</div>
 
 <div class="row">
-  <div class="span8 panel">
+  <div class="span8 offset2 panel">
     <hr>
     <h4>
       Existing Authorizations:

@@ -1,17 +1,32 @@
 class Tumblr # PORO
 
-  def self.search_by_tags(hashtags, user)
+  def self.search_by_tags(hashtags, user, user_tags_only = false)
     # Doesn't use any gems at all
+
+    return [] if user_tags_only && user.authorizations.find_by_provider("tumblr").nil?
 
     hashtag = hashtags.first # TEMPORARY TESTING MEASURE.. WAIT, NO, tUmblr doesn't
     #support multiple hashtag searches.  Crap.
+    api_key = "aX3GtjNdUNH8Q8ZUBoZ1HbrTBYh9acrIdbWd99qtu1M8RXx2NU"
 
     access_token = Tumblr.prepare_access_token(user)
-    api_key = "aX3GtjNdUNH8Q8ZUBoZ1HbrTBYh9acrIdbWd99qtu1M8RXx2NU"
-    response = access_token.get("http://api.tumblr.com/v2/tagged?tag=#{hashtag}&api_key=#{api_key}")
+    if user_tags_only
+      user_account = user.authorizations.find_by_provider("tumblr").account_name
+      url = "http://api.tumblr.com/v2/blog/#{user_account}.tumblr.com/posts?api_key=#{api_key}&tag=#{hashtag}"
+    else
+      url = "http://api.tumblr.com/v2/tagged?tag=#{hashtag}&api_key=#{api_key}"
+    end
+
+    response = access_token.get(url)
+    puts "\n\n URL: #{url}!"
 
     parsed_response = JSON.parse(response.body)
-    tumbles = parsed_response["response"].map do |post|
+    if user_tags_only
+      raw_tumbles = parsed_response["response"]["posts"]
+    else
+      raw_tumbles = parsed_response["response"]
+    end
+    tumbles = raw_tumbles.map do |post|
       tumble = {  :media_type   => "tumble",
                   :blog_name    => post["blog_name"],
                   :post_id      => post["id"],

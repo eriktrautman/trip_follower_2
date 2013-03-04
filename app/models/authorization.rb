@@ -1,5 +1,5 @@
 class Authorization < ActiveRecord::Base
-  attr_accessible :uid, :provider, :token, :secret
+  attr_accessible :uid, :provider, :token, :secret, :account_name
 
   validates :uid, presence: true
   validates :provider, presence: true

@@ -1,11 +1,13 @@
 <% content_for(:title) { "Trips" } %>
 
-<h1>
-  <%= "Listing of all trips" %>
-</h1>
+<div class="offset2">
+  <h1>
+    <%= "All Trips" %>
+  </h1>
+</div>
 
 <div class="row">
-  <div class="span8 panel">
+  <div class="span8 offset2 panel">
     <ul class="trips-list">
       <%= render @trips %>
     </ul>

@@ -105,6 +105,9 @@ a:hover {
   padding: 18px;
   /*box-shadow: 10px 10px 5px $panelShadow;*/
   border: 1px solid #bbb;
+  ul {
+    list-style: none;
+  }
 }
 
 .btn-following, .btn-subscription{
@@ -132,15 +135,15 @@ a:hover {
 
 /* LANDING PAGE ************ */
 .jumbotron {
-  margin: 60px 0px;
+  margin: 20px 0px;
   text-align: center;
   h1 {
-    font-size: 5.5em;
+    font-size: 5em;
     line-height: 1;
   }
   .btn {
     font-size: 2em;
-    padding: 1em 2em;
+    padding: .75em 1.5em;
     margin: 1em 0;
   }
   .content {
@@ -148,14 +151,17 @@ a:hover {
   }
   p.lead {
     margin-bottom: 20px;
-    font-size: 1.8em;
+    font-size: 1.65em;
     font-weight: 200;
   }
 }
 
-.benefit-boxes{
+.bump-right-40{
+  margin-left: 40px;
+}
 
-  /*margin: inherit auto;*/
+.benefit-boxes{
+  margin:  auto;
 }
 
 .help-block {

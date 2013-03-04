@@ -28,7 +28,15 @@ class TripsController < ApplicationController
 
   def show
     @trip = Trip.find(params[:id])
-    @feed_items = Feed.from_tags([@trip.hashtag], current_user)
+    if @trip.whitelist_posters
+      feed_items = []
+      @trip.whitelisted_users.each do |user|
+        feed_items += Feed.from_tags_by_user([@trip.hashtag], user)
+      end
+    else
+      feed_items = Feed.from_tags([@trip.hashtag], current_user)
+    end
+    @feed_items = Feed.sort_feed(feed_items)
   end
 
   def edit

@@ -11,7 +11,7 @@ class Instagram  # PORO!
   end
 
   # takes an array of hashtags and returns an array of feed items
-  def self.search_by_tags(hashtags, user)
+  def self.search_by_tags(hashtags, user, user_tags_only = false)
     # TEMPORARY MEASURE... Or not... instagram doesn't support multiple tag searches!
     hashtag = hashtags.first
     token = user.authorizations.where(provider: "instagram").first.token

@@ -1,11 +1,13 @@
 <% content_for(:title) { "#{@user.username}'s Trip Subscriptions" } %>
 
-<h1>
-  <%= "#{@user.username}'s #{@subscriptions.count} Trip Subscriptions" %>
-</h1>
+<div class="offset2">
+  <h1>
+    <%= "#{@user.username}'s #{@subscriptions.count} Trip Subscriptions" %>
+  </h1>
+</div>
 
 <div class="row">
-  <div class="span8 panel">
+  <div class="span8 offset2 panel">
 
     <div id="trip-subscriptions-list">
 
