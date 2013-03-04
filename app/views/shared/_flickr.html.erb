@@ -1,6 +1,6 @@
 <li class="flickr">
 
-  <%= "Created by #{flickr[:owner]} at #{Time.at(flickr[:timestamp])}" %>
+  <%= "Created by #{flickr[:username]} at #{Time.at(flickr[:timestamp])}" %>
   <%= image_tag flickr[:url], alt: "Flickr photo by #{flickr[:owner]}" %>
 
 </li>

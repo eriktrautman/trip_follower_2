@@ -14,8 +14,6 @@ ROADMAP:
 
 PRESSING TODO:
 
-> FLICKR
-  >>> Get the date for the photos to organize the feed properly
 > fix tumblr so it doesn't break for a bad request -- catch it.
 > Fix all APIs so they don't break when the user hasn't enabled them.
 > Trip feeds on user show pages suck because only one tag gets used for Instagram and Tumblr!
@@ -99,6 +97,7 @@ Polish: << Note: functionality first! >>
 > !! Require the whitelisted user to approve their whitelisting! Otherwise you could harvest their private photos !!
 > Fix case sensitivity for whitelisting and admins
 > Change background picture randomly on page load
+> pagination of results... make queries capable of paginating
 
 
 Annoyances:
