@@ -9,15 +9,19 @@ class Tumblr # PORO
     #support multiple hashtag searches.  Crap.
     api_key = "aX3GtjNdUNH8Q8ZUBoZ1HbrTBYh9acrIdbWd99qtu1M8RXx2NU"
 
-    access_token = Tumblr.prepare_access_token(user)
+    # Will use OAuth signed request unless user hasn't enabled Tumblr
+    # which results in a generic api key being used (and potentially overwhelmed!)
     if user_tags_only
+      access_token = Tumblr.prepare_access_token(user)
       user_account = user.authorizations.find_by_provider("tumblr").account_name
       url = "http://api.tumblr.com/v2/blog/#{user_account}.tumblr.com/posts?api_key=#{api_key}&tag=#{hashtag}"
+      response = access_token.get(url)
     else
       url = "http://api.tumblr.com/v2/tagged?tag=#{hashtag}&api_key=#{api_key}"
+      resource = RestClient::Resource.new(url)
+      response = resource.get
     end
 
-    response = access_token.get(url)
     puts "\n\n URL: #{url}!"
 
     parsed_response = JSON.parse(response.body)

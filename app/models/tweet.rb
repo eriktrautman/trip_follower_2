@@ -11,11 +11,18 @@ class Tweet # PORO
   def self.search_by_tags(hashtags, user, user_tags_only = false)
     # Users the "twitter" gem from https://github.com/sferik/twitter
 
+    return [] if user_tags_only && user.authorizations.find_by_provider("twitter").nil?
+
     Twitter.configure do |config|
       config.consumer_key = "QVim65jLuVeoo7phUAP0AQ"
       config.consumer_secret = "5tMM645CWOmHwZKcf8xbIVCbRhPHYzMAkmhwvwX7s"
-      config.oauth_token = user.authorizations.find_by_provider("twitter").token
-      config.oauth_token_secret = user.authorizations.find_by_provider("twitter").secret
+      if user.authorizations.find_by_provider("twitter").nil?
+        config.oauth_token = "313316959-gic7hb72LjHqQ1fmE914c1hUuuN51pA3RBzyOA7c"
+        config.oauth_token_secret = "vPhMqtGJOww0QmKrulUjSCpB2yoyxQGWfMQGcTI2knM"
+      else
+        config.oauth_token = user.authorizations.find_by_provider("twitter").token
+        config.oauth_token_secret = user.authorizations.find_by_provider("twitter").secret
+      end
     end
 
     search_term = "#" + hashtags.join(" OR #")
