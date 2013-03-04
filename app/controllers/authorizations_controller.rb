@@ -11,11 +11,13 @@ class AuthorizationsController < ApplicationController
       account_name = auth["extra"]["raw_info"]["name"]
     when "twitter"
       account_name = auth.extra.raw_info.screen_name
+    when "flickr"
+      account_name = auth.extra.raw_info.person.username["_content"]
     else
       account_name = nil
     end
-    
-    new_auth = current_user.authorizations.build( 
+
+    new_auth = current_user.authorizations.build(
                         provider: auth["provider"],
                         uid: auth["uid"],
                         token: auth["credentials"]["token"],

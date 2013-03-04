@@ -15,7 +15,7 @@ class Instagram  # PORO!
     # TEMPORARY MEASURE... Or not... instagram doesn't support multiple tag searches!
     hashtag = hashtags.first
     token = user.authorizations.where(provider: "instagram").first.token
-    resource = RestClient::Resource.new "https://api.instagram.com/v1/tags/#{hashtag}/media/recent?access_token=#{token}" 
+    resource = RestClient::Resource.new "https://api.instagram.com/v1/tags/#{hashtag}/media/recent?access_token=#{token}"
     #can also append client_id=b50084b45ed94392a160fa31b0e7a488 for public queries...
     response = resource.get
     parsed_response = JSON.parse(response)

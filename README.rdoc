@@ -15,7 +15,6 @@ ROADMAP:
 PRESSING TODO:
 
 > FLICKR
-  >>> Make sure the user ID/name is pulled into the DB regardless
   >>> Get the date for the photos to organize the feed properly
 > fix tumblr so it doesn't break for a bad request -- catch it.
 > Fix all APIs so they don't break when the user hasn't enabled them.
@@ -23,6 +22,9 @@ PRESSING TODO:
 >> Unfuck the user's feed page...
   >>> cycle through each trip the user is subscribed to and grab all those yummy api calls
   >>>> Eventually limit the number of trips a user can follow...?
+
+
+  $(window).scroll
 
 ********************************************************************************
 

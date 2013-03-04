@@ -7,14 +7,26 @@ class Flickr #< PORO
 
     tags = hashtags.join("%2C")
     api_key = "812710f0d4bf1d785110c5d431c52852"
+    per_page = 20
+    page = 1
+    options = [   "?method=flickr.photos.search",
+                  "api_key=#{api_key}",
+                  "tags=#{tags}",
+                  "format=json",
+                  "nojsoncallback=1",
+                  "per_page=#{per_page}",
+                  "page=#{page}" ]
 
-
+    # Use OAuth if trip is "whitelisted posters only", else basic API key auth
     if user_tags_only
       access_token = Flickr.prepare_access_token(user)
-      url = "http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=#{api_key}&tags=#{tags}&format=json&nojsoncallback=1&user_id=me"
+      base_url = "http://api.flickr.com/services/rest/"
+      options += ["user_id=me"]
+      url = base_url + options.join("&")
       response = access_token.get(url)
     else
-      url = "http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=#{api_key}&tags=#{tags}&format=json&nojsoncallback=1"
+      base_url = "http://api.flickr.com/services/rest/"
+      url = base_url + options.join("&")
       resource = RestClient::Resource.new(url)
       response = resource.get
     end
@@ -23,6 +35,7 @@ class Flickr #< PORO
 
     parsed_response = JSON.parse(response.body)
     raw_flickrs = parsed_response["photos"]["photo"]
+
     flickrs = raw_flickrs.map do |photo|
       flickr = {  :media_type     => "flickr",
                   :photo_id       => photo["id"],
@@ -36,6 +49,7 @@ class Flickr #< PORO
       flickr[:url] = "http://farm#{photo['farm']}.staticflickr.com/#{photo['server']}/#{photo['id']}_#{photo['secret']}.jpg"
       flickr
     end
+
     puts "\n\n FLICKRS: #{flickrs.inspect}! \n\n"
     flickrs
   end
