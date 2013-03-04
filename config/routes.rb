@@ -29,5 +29,5 @@ TripFollower2::Application.routes.draw do
   resources :authorizations, only: [:index, :destroy]
 
   get 'auth/:provider/callback', to: "authorizations#create"
-
+  get 'sandbox', to: 'static_pages#sandbox'
 end
