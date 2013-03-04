@@ -36,7 +36,8 @@ class AuthorizationsController < ApplicationController
     auth_providers = @authorizations.map(&:provider)
     all_providers = [   "twitter",
                           "instagram",
-                          "tumblr", ]
+                          "tumblr",
+                          "flickr" ]
     @unused_providers = all_providers - auth_providers
   end
 

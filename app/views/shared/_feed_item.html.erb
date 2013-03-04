@@ -9,6 +9,9 @@
   <% when "tumble" %>
     <%= render partial: "shared/tumble",
         locals: { tumble: feed_item } %>
+  <% when "flickr" %>
+    <%= render partial: "shared/flickr",
+        locals: { flickr: feed_item } %>
 <% end %>
 
 
