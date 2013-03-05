@@ -22,6 +22,7 @@ XXX Populate it with a dozen or so divs
 > XXX Set up the javascript modifiers for each div to work with the scrolling
 > XXX fix the divs in the prev and next positions properly until their turn
 > XXX resize and fade the divs properly until it's their turn
+> refactor the JS calculations to minimize CPU usage
 > Make the snap-to work
 > Clean up the code for efficiency and smoothness
 > properly arc their path to the main content box
@@ -30,6 +31,13 @@ XXX Populate it with a dozen or so divs
 > set up the item meta content to flash in and out
 > populate the divs with content
 
+Caching:
+> Store the trip load
+> immediately load the cached version
+> AJAX into the new queries (for only newer items)
+> Delayed jobs - every half hour or maybe when the user first hits the page
+gem: whenever (every X run this)
+gem: delayedjob (in an action, queue's)
 
 >> Unfuck the user's feed page...
   >>> Trip feeds on user show pages suck because only one tag gets used for Instagram and Tumblr!
