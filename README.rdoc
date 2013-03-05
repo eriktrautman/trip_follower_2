@@ -23,13 +23,12 @@ XXX Populate it with a dozen or so divs
 > XXX fix the divs in the prev and next positions properly until their turn
 > XXX resize and fade the divs properly until it's their turn
 > XXX refactor the JS calculations to minimize CPU usage
-> Make the snap-to work
-> Clean up the code for efficiency and smoothness
-> properly arc their path to the main content box
+> OOO Make the snap-to work
 > set up the navigation seeds
 > set up the meta trip content hoverbox
 > set up the item meta content to flash in and out
 > populate the divs with content
+> set up spacebar to jump properly
 
 Caching:
 > Store the trip load

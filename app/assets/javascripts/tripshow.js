@@ -2,6 +2,7 @@ TF.TripShow = (function(){
 
   var feedItems = [];
   var feedItemDivs = [];
+  var navSeeds = [];
 
   var getItems = function(callback){
     // Do some AJAXing to get the feed items
@@ -11,11 +12,11 @@ TF.TripShow = (function(){
     }
   }
 
-  // Used to initially create the divs that contain feed items
+  // *** Configuration Data ***************************************
   var cfg = {
     winX: $(window).width(),
     winY: $(window).height(),
-    navHeight: 50,
+    navHeight: 40,
     scroll: {
       toMid: 500,
       midRest: 500,
@@ -64,6 +65,15 @@ TF.TripShow = (function(){
     }
   }
 
+  var nav = {
+    rad: 8,
+    height: 300,
+    right: 100,
+    numSeeds: 10,
+    mult: 2 // size multiplier for active seeds
+  }
+
+  // *** Build Items ***************************************
   // place the item in the document.  Item is now 1 to N
   var placeItem = function(parent, item, num, x, y, h, w){
     var a = cfg.scroll.inc * num;
@@ -86,6 +96,25 @@ TF.TripShow = (function(){
     feedItemDivs.push(div);
   }
 
+  var placeNav = function(parent){
+    var navSeed;
+    var inc = nav.height / nav.numSeeds;
+    var startTop = cfg.winY/2 - nav.height/2 + cfg.navHeight;
+
+    for(var i=0; i<nav.numSeeds; i++){
+
+      navSeed = $("<div></div>")
+          .addClass("circle")
+          .addClass("nav-seed")
+          .attr("data-nav-pct", i / nav.numSeeds)
+          .attr("data-nav-i", i);
+
+      resizeNavSeed(navSeed);
+      navSeeds.push(navSeed);
+      parent.append(navSeed);
+    }
+  }
+
   var moveToFuture = function(item){
     item.animate({
       top: pos.a.top,
@@ -96,7 +125,8 @@ TF.TripShow = (function(){
     })
   }
 
-  // Increment the position of the div item
+  // *** Increment Items ***************************************
+  // Increment the position of the feed item div
   var inc = function(element){
     var scroll = $(window).scrollTop();
     var pct;
@@ -168,15 +198,40 @@ TF.TripShow = (function(){
     }
   }
 
-  // Returns the coordinates of the window center
-  var windowCenter = function(){
-    return {
-      x: $(window).width()/2,
-      y: $(window).height()/2
-    }
+  var resizeNavSeed = function(seed){
+    var scroll = $(window).scrollTop();
+    var pct = scroll / cfg.docY;
+
+    var inc = nav.height / nav.numSeeds;
+    var seedPct = seed.attr("data-nav-pct");
+    var i = seed.attr("data-nav-i");
+    var proximity = Math.max(0, (.2 - Math.abs(pct - seedPct))/.2); // 0-1
+    var factor = proximity * nav.mult;
+    var rad = nav.rad* (factor + 1);
+    var startTop = cfg.winY/2 - nav.height/2 + cfg.navHeight;
+    var color = "rgb("+ Math.round(255*proximity) +
+                  "," + Math.round(255*proximity) +
+                  "," + Math.round(255) + ")";
+
+    seed
+        .css("width", rad)
+        .css("height", rad)
+        .css("border-radius", rad/2)
+        .css("top", startTop - rad + inc * i)
+        .css("right", nav.right - rad/2)
+        .css("background-color", color)
   }
 
+
+  // *** Initialize Page ***************************************
   var initializer = function(parent){
+
+    getItems(function(items){
+      feedItems = items;
+    });
+
+    $(body).height(cfg.scroll.inc * feedItems.length);
+
     $("div#info").html(
         "<br>Window Height: " + $(window).height() +
         "<br>Window Width: " + $(window).width() +
@@ -185,10 +240,9 @@ TF.TripShow = (function(){
         "<br>Screen Height: " + screen.height +
         "<br>Screen Width: " + screen.width
       );
+    cfg.docX = $(document).width();
+    cfg.docY = $(document).height();
 
-    getItems(function(items){
-      feedItems = items;
-    });
 
     console.log(feedItems);
 
@@ -200,6 +254,8 @@ TF.TripShow = (function(){
       moveToFuture(item);
     })
 
+    placeNav(parent, 10);
+
     $('div.navbar-inner').click(function(){
       moveToPrev(feedItemDivs[0]);
     });
@@ -210,10 +266,13 @@ TF.TripShow = (function(){
     $(window).scroll(function(e){
       console.log("scrolling..............");
       target = $(e.target);
-      $('div.feed_item').text(target.scrollTop())
+      $('div.feed_item').text(target.scrollTop());
       feedItemDivs.forEach(function(item){
         inc(item);
       });
+      navSeeds.forEach(function(seed){
+        resizeNavSeed(seed);
+      })
     });
 
   }

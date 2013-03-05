@@ -12,3 +12,9 @@ html{
   background: black;
   color: white;
 }
+
+div.nav-seed{
+  /*background: blue;*/
+  /*border: 1px solid gray;*/
+  position: fixed;
+}
