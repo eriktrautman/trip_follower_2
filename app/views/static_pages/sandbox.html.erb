@@ -1,0 +1,31 @@
+<h1>WELCOME TO THE SANDBOX, FOO!</h1>
+
+  <div id="info">
+  </div>
+<% @feed_items.each_with_index do |item, i| %>
+<!--   <div class="feed_item item-<%= i %>">
+    I AM A FEED ITEM. RAAAAAAAAAWWWWRRRRRR!!!!!
+  </div> -->
+
+<% end %>
+
+<div id="blank" style="height:<%= @feed_items.count * 1000 %>px">
+  nothing to see here...
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<%= stylesheet_link_tag    "trip_show.css", :media => "all" %>
+<script>
+  $(function(){
+    TF.TripShow.initializer($("body"));
+  });
+</script>

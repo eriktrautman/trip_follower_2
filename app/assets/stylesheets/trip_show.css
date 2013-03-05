@@ -1,0 +1,9 @@
+
+div.feed_item{
+  height: 300px;
+  width: 500px;
+  background: blue;
+  border: 3px solid black;
+  color: white;
+  position: fixed;
+}

@@ -14,6 +14,22 @@ ROADMAP:
 
 PRESSING TODO:
 
+Parallax Slideshow!
+> Create the blank html of the right size
+> Populate it with a dozen or so divs
+  >> Manage divs and their content with relative IDs (so div can be attached to its meta using equations)
+  >> Set objects to respond to center coords only
+  >> ugh.  coordinates.  Start at 0,0 then shift.
+> Set up the javascript modifiers for each div to work with the scrolling
+> Make the snap-to work
+> fix the divs in the prev and next positions properly until their turn
+> resize and fade the divs properly until it's their turn
+> properly arc their path to the main content box
+> set up the navigation seeds
+> set up the meta trip content hoverbox
+> set up the item meta content to flash in and out
+> populate the divs with content
+
 
 >> Unfuck the user's feed page...
   >>> Trip feeds on user show pages suck because only one tag gets used for Instagram and Tumblr!
@@ -147,3 +163,8 @@ Resources:
 * Follow buttons :http://www.dreamtemplate.com/dreamcodes/documentation/social_icons.html
 * http://www.zurb.com/playground/social-webicons
 
+Available:
+trip.li
+tripbook.com
+tripfollower.com
+trip.io?
