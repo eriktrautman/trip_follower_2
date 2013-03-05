@@ -15,11 +15,11 @@ ROADMAP:
 PRESSING TODO:
 
 Parallax Slideshow!
-> Create the blank html of the right size
-> Populate it with a dozen or so divs
-  >> Manage divs and their content with relative IDs (so div can be attached to its meta using equations)
-  >> Set objects to respond to center coords only
-  >> ugh.  coordinates.  Start at 0,0 then shift.
+XXX Create the blank html of the right size
+XXX Populate it with a dozen or so divs
+  XXX Manage divs and their content with relative IDs (so div can be attached to its meta using equations)
+  XXX Set objects to respond to center coords only
+  XXX ugh.  coordinates.  Start at 0,0 then shift.
 > Set up the javascript modifiers for each div to work with the scrolling
 > Make the snap-to work
 > fix the divs in the prev and next positions properly until their turn
