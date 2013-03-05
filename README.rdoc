@@ -5,7 +5,6 @@ It's all new and better than anything you've ever seen.
 ********************************************************************************
 
 ROADMAP:
-	>> Monday: Finish API cleanup, Flesh =out UI goals and roadmap for UX/UI/Visualizations
 	>> Tuesday: UX/UI/Visualizations
 	>> Wednesday: UX/UI/Visualizations
 	>> Thursday: Polish Polish Polish.
@@ -20,10 +19,11 @@ XXX Populate it with a dozen or so divs
   XXX Manage divs and their content with relative IDs (so div can be attached to its meta using equations)
   XXX Set objects to respond to center coords only
   XXX ugh.  coordinates.  Start at 0,0 then shift.
-> Set up the javascript modifiers for each div to work with the scrolling
+> XXX Set up the javascript modifiers for each div to work with the scrolling
+> XXX fix the divs in the prev and next positions properly until their turn
+> XXX resize and fade the divs properly until it's their turn
 > Make the snap-to work
-> fix the divs in the prev and next positions properly until their turn
-> resize and fade the divs properly until it's their turn
+> Clean up the code for efficiency and smoothness
 > properly arc their path to the main content box
 > set up the navigation seeds
 > set up the meta trip content hoverbox

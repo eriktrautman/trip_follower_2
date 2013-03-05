@@ -24,8 +24,8 @@ TF.TripShow = (function(){
     scroll: {
       toOnDeck: 500,
       toMid: 500,
-      midRest: 500,
-      inc: 1500
+      midRest: 1000,
+      inc: 2000
     }
   }
 
@@ -146,50 +146,68 @@ TF.TripShow = (function(){
     })
   }
 
+  // Increment the position of the div item
   var inc = function(element){
     var scroll = $(window).scrollTop();
     var pct;
 
+    // If the scroll is outside the scroll availability window, snap to start
+    // or finish position
     a = element.attr("data-item-future");
+    if(scroll < a){
+      console.log("Before future position")
+      move(element, 1, pos.a, pos.a, size.a, size.a)
+      return;
+    }
+
+    f = element.attr("data-item-archive");
+    if(scroll > f){
+      move(element, 1, pos.e, pos.e, size.e, size.e);
+      return;
+    }
+
+    //
     b = element.attr("data-item-next");
     c = element.attr("data-item-featured");
     d = element.attr("data-item-rest");
     e = element.attr("data-item-prev");
-    f = element.attr("data-item-archive");
 
-    if(scroll < a ){
-      move(element, 1, pos.a, pos.a, size.a, size.a)
 
-    }else if(scroll >= a && scroll <= b){
+    if(scroll >= a && scroll <= b){
       console.log("future>>next");
       pct = (scroll - a) / (b - a);
       console.log("pct: " + pct);
       move(element, pct, pos.a, pos.b, size.a, size.b);
+      return;
 
     }else if(scroll > b && scroll <= c){
       console.log("next>>featured");
       pct = (scroll - b) / (c - b);
       move(element, pct, pos.b, pos.c, size.b, size.c);
+      return;
 
     }else if(scroll > c && scroll <= d){
       console.log("REST");
       pct = 1;
       move(element, pct, pos.c, pos.c, size.c, size.c);
+      return;
 
     }else if(scroll > d && scroll < e){
       console.log("featured>>prev");
       pct = (scroll - d) / (e - d);
       console.log(pct)
       move(element, pct, pos.c, pos.d, size.c, size.d);
+      return;
 
     }else if(scroll > e && scroll <= f){
       console.log("prev>>hist");
       pct = (scroll - e) / (f - e);
       console.log(pct)
       move(element, pct, pos.d, pos.e, size.d, size.e);
-
-    }else{
-      move(element, 1, pos.e, pos.e, size.e, size.e);
+      return;
+    }else {
+      console.log("UNHANDLED CASE!!! FOR ELEMENT:");
+      console.log(element);
     }
   }
 
@@ -201,7 +219,7 @@ TF.TripShow = (function(){
     //     .css("width", mod*(sNext.width - sPrev.width) + sPrev.width)
     //     .css("height", mod*(sNext.height - sPrev.height) + sPrev.height)
     //     .css("opacity", mod*(sNext.opacity - sPrev.opacity) + sPrev.opacity)
-    element.animate({
+    element.stop().animate({
         top: mod*(next.top - prev.top) + prev.top,
         left: mod*(next.left - prev.left) + prev.left,
         width: mod*(sNext.width - sPrev.width) + sPrev.width,
@@ -235,7 +253,6 @@ TF.TripShow = (function(){
     console.log(feedItems);
 
     feedItems.forEach(function(item, i){
-      console.log(item);
       placeItem(parent, item, i, cfg.winX/2, cfg.winY/2, cfg.h, cfg.w);
     });
 
@@ -251,7 +268,7 @@ TF.TripShow = (function(){
       moveToNext(feedItemDivs[1]);
     });
     $(window).scroll(function(e){
-      var target = $(e.target);
+      target = $(e.target);
       $('div.feed_item').text(target.scrollTop())
       feedItemDivs.forEach(function(item){
         inc(item);
