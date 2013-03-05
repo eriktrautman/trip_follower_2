@@ -22,7 +22,7 @@ XXX Populate it with a dozen or so divs
 > XXX Set up the javascript modifiers for each div to work with the scrolling
 > XXX fix the divs in the prev and next positions properly until their turn
 > XXX resize and fade the divs properly until it's their turn
-> refactor the JS calculations to minimize CPU usage
+> XXX refactor the JS calculations to minimize CPU usage
 > Make the snap-to work
 > Clean up the code for efficiency and smoothness
 > properly arc their path to the main content box
