@@ -9,8 +9,7 @@ TF.TripShow = (function(){
   var getItems = function(callback){
     // Do some AJAXing to get the feed items
     var items = [ "thing1", "thing2", "thing3", "thing4", "thing5",
-                  "thing6", "thingN", "thingN", "thingN", "thingN",
-                  "thingN", "thingN", "thingN", "thingN", "thingN"];
+                  "thingN", "thingN", "thingN", "thingN" ];
     if(callback){
       callback(items);
     }
@@ -93,11 +92,52 @@ TF.TripShow = (function(){
         .attr("data-item-featured", b)
         .attr("data-item-rest", c)
         .attr("data-item-archive", d)
+        .css("z-index", -1)
         .css("height", h)
         .css("width", w)
         .css("top", y - h/2)
-        .css("left", x - w/2)
+        .css("left", x - w/2);
+
+    div.append("<span></span>");
+
+    // Build the meta data contents of the div
+    var testText = "Tester item meta data";
+    var testTitle = "Best Picture Ever";
+    var metaDiv = $("<div></div>")
+        .addClass("meta-content")
+        .css("right", cfg.winX/2 + 100)
+    var title = $("<strong></strong>")
+        .text(testTitle);
+    var text = $("<p></p>")
+        .text(testText);
+    metaDiv.append(title).append(text)
+
+    metaDiv.hover(function(e){
+      $(e.target).parents(".feed_item").find(".caption").stop().fadeIn();
+    },
+      function(e){
+        $(e.target).parents(".feed_item").find(".caption").stop().fadeOut();
+    });
+
+    // Build the caption inside the div
+    var captionText = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+    console.log(metaDiv.css("width"));
+    var captionDiv = $("<div></div>")
+        .addClass("caption")
+        .html(captionText)
+        .css("width", cfg.winX/3)
+        .css("left", cfg.winX/2 - 50  )
+
+    captionDiv.hover(function(e){
+      $(e.target).stop().fadeIn();
+    },
+      function(e){
+        $(e.target).stop().fadeOut();
+    });
+
     parent.append(div);
+    div.append(metaDiv);
+    div.append(captionDiv);
     feedItemDivs.push(div);
   }
 
@@ -141,15 +181,8 @@ TF.TripShow = (function(){
   var placeHelpTriangle = function(parent){
     var div = $("<div></div>")
         .attr("id", "help-triangle");
-    // var innerDiv = $("<div></div>")
-    //     .attr("id", "help-inner-triangle");
 
     parent.append(div);
-    // div.append(innerDiv);
-    // div.slideDown();
-    // innerDiv.slideDown();
-    // innerDiv.slideDown();
-    // div.show("slide", {direction: "top"}, 5000);
   }
 
   var moveToFuture = function(item){
@@ -177,19 +210,25 @@ TF.TripShow = (function(){
     if(scroll < fut){
       console.log("Before future position")
       move(element, 1, pos.a, pos.a, size.a, size.a, true)
+      element.find(".meta-content").stop().hide();
+      element.css("z-index", -1);
       return;
 
     } else if(scroll <= feat){
       console.log("future>>featured");
       pct = (scroll - fut) / (feat - fut);
       move(element, pct, pos.a, pos.b, size.a, size.b, true);
+      element.css("z-index", 1);
+      element.find(".meta-content").stop().fadeOut();
       return;
 
     } else if(scroll <= rst){
       console.log("featured resting");
       pct = (scroll - feat) / (rst - feat);
       console.log(pct);
+      element.css("z-index", 1);
       move(element, 1, pos.b, pos.b, size.b, size.b, true)
+      element.find(".meta-content").fadeIn();
       return;
 
     } else {
@@ -197,6 +236,8 @@ TF.TripShow = (function(){
       pct = Math.min(1, (scroll - rst) / (arc - rst));
       console.log(pct);
       move(element, pct, pos.b, pos.c, size.b, size.c, false);
+      element.css("z-index", -1);
+      element.find(".meta-content").stop().hide();
       return;
     }
   }
@@ -210,29 +251,17 @@ TF.TripShow = (function(){
       var szMod = Math.pow(pct, 1/4); // needs to decrease from bottom left corner!
     }
 
-    if(true){
-      element
-          .css("bottom", "")
+    element
+        .css("bottom", "")
 
-      element.stop().animate({
-          width: szMod*(sNext.width - sPrev.width) + sPrev.width,
-          height: szMod*(sNext.height - sPrev.height) + sPrev.height,
-          opacity: szMod*(sNext.opacity - sPrev.opacity) + sPrev.opacity,
-          top: mvMod*(next.top - prev.top) + prev.top,
-          left: mvMod*(next.left - prev.left) + prev.left
-      }, 100);
-    }else{
-      element
-          .css("top","")
+    element.stop().animate({
+        width: szMod*(sNext.width - sPrev.width) + sPrev.width,
+        height: szMod*(sNext.height - sPrev.height) + sPrev.height,
+        opacity: szMod*(sNext.opacity - sPrev.opacity) + sPrev.opacity,
+        top: mvMod*(next.top - prev.top) + prev.top,
+        left: mvMod*(next.left - prev.left) + prev.left
+    }, 100);
 
-      element.stop().animate({
-          width: szMod*(sNext.width - sPrev.width) + sPrev.width,
-          height: szMod*(sNext.height - sPrev.height) + sPrev.height,
-          opacity: szMod*(sNext.opacity - sPrev.opacity) + sPrev.opacity,
-          bottom: mvMod*(next.bot - prev.bot) + prev.bot,
-          left: mvMod*(next.left - prev.left) + prev.left
-      }, 100);
-    }
   }
 
   var resizeNavSeed = function(seed){
@@ -301,7 +330,7 @@ TF.TripShow = (function(){
 
     target = $(e.target);
 
-    $('div.feed_item').text(target.scrollTop());
+    $('div.feed_item span').text(target.scrollTop());
 
     feedItemDivs.forEach(function(item){
       inc(item);
@@ -316,7 +345,6 @@ TF.TripShow = (function(){
     helpTextShift($("#help-text"))
 
   }
-
 
 
 

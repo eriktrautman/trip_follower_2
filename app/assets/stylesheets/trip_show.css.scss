@@ -14,9 +14,9 @@ html{
 }
 
 div.nav-seed{
-  /*background: blue;*/
-  /*border: 1px solid gray;*/
+  box-shadow: 1px 1px 1px black;
   position: fixed;
+  z-index: 100;
 }
 
 div#info{
@@ -28,7 +28,10 @@ div#info{
 h1 {
   z-index: 200;
   color: white;
+  text-shadow: 1px 1px black;
 }
+
+
 
 #head-box{
   position: fixed;
@@ -36,16 +39,14 @@ h1 {
 }
 
 #help-text{
-  color: #0f0;
+  color: #00c7ed;
   font-size: 2em;
   position: fixed;
-  /*bottom: 100px;*/
-  /*height: 100px;*/
-  /*background-color: white;*/
   margin-left: auto;
   margin-right: auto;
   line-height: inherit;
   text-align: center;
+  z-index: -1;
 }
 
 #help-triangle{
@@ -54,7 +55,7 @@ h1 {
   height: 0;
   border-left: 30px solid transparent;
   border-right: 30px solid transparent;
-  border-top: 30px solid green;
+  border-top: 30px solid #00c7ed;
   margin-left: auto;
   margin-right: auto;
   margin-top: 15px;
@@ -66,11 +67,8 @@ h1 {
   top: 0px;
   display: block;
   content: "";
-  color: white;
   width: 0;
   height: 0;
-/*  margin-left: auto;
-  margin-right: auto;*/
   border-left: 20px solid transparent;
   border-right: 20px solid transparent;
   border-top: 20px solid black;
@@ -78,19 +76,44 @@ h1 {
   margin-left: -20px;
 }
 
-/*
-#help-inner-triangle{
-
-
-  color: white;
-  width: 0;
-  height: 0;
-  margin-left: auto;
-  margin-right: auto;
-  border-left: 20px solid transparent;
-  border-right: 20px solid transparent;
-  border-top: 20px solid white;
-  margin-top: -30px;
-  margin-left: -20px;
+.meta-content{
+  color: #00c7ed;
+  display: none;
+  position: absolute;
+  bottom: 50px;
+  font-size: 2em;
+  text-shadow: 1px 1px black;
+  line-height: 1.1em;
+  &:hover{
+    cursor: pointer;
+  }
 }
-*/
+
+.meta-content:after{
+  position: absolute;
+  display: block;
+  content: "";
+  width: 0px;
+  height: 0px;
+  right: -20px;
+  bottom: 20px;
+  margin-bottom: auto;
+  margin-top: auto;
+  border-left: 10px solid #00c7ed;
+  border-bottom: 10px solid transparent;
+  border-top: 10px solid transparent;
+}
+
+.caption{
+  position: absolute;
+  display: none;
+  bottom: 50px;
+  font-size: 1em;
+  background-color: #ddd;
+  // border: 1px solid black;
+  color: black;
+  box-shadow: 1px 1px 1px black;
+  padding: 10px;
+  max-height: 80px;
+  overflow: auto;
+}
