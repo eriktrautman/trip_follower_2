@@ -128,11 +128,28 @@ TF.TripShow = (function(){
         .css("width", 600)
 
     parent.append(div);
-    // div.show("slide",{direction: "up"});
+    placeHelpTriangle(div)
+
     div.animate({
       top: cfg.winY - 100
-    }, 2000);
+    }, 2000, function(){
+      $("#help-triangle").fadeIn();
+    });
 
+  }
+
+  var placeHelpTriangle = function(parent){
+    var div = $("<div></div>")
+        .attr("id", "help-triangle");
+    // var innerDiv = $("<div></div>")
+    //     .attr("id", "help-inner-triangle");
+
+    parent.append(div);
+    // div.append(innerDiv);
+    // div.slideDown();
+    // innerDiv.slideDown();
+    // innerDiv.slideDown();
+    // div.show("slide", {direction: "top"}, 5000);
   }
 
   var moveToFuture = function(item){

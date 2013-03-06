@@ -37,11 +37,60 @@ h1 {
 
 #help-text{
   color: #0f0;
-  font-size: 3em;
+  font-size: 2em;
   position: fixed;
-  bottom: 100px;
-  /*display: none;*/
+  /*bottom: 100px;*/
+  /*height: 100px;*/
+  /*background-color: white;*/
   margin-left: auto;
   margin-right: auto;
+  line-height: inherit;
   text-align: center;
 }
+
+#help-triangle{
+  position: relative;
+  width: 0;
+  height: 0;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  border-top: 30px solid green;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+  display: none;
+}
+
+#help-triangle:before{
+  position: absolute;
+  top: 0px;
+  display: block;
+  content: "";
+  color: white;
+  width: 0;
+  height: 0;
+/*  margin-left: auto;
+  margin-right: auto;*/
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 20px solid black;
+  margin-top: -30px;
+  margin-left: -20px;
+}
+
+/*
+#help-inner-triangle{
+
+
+  color: white;
+  width: 0;
+  height: 0;
+  margin-left: auto;
+  margin-right: auto;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 20px solid white;
+  margin-top: -30px;
+  margin-left: -20px;
+}
+*/

@@ -148,6 +148,7 @@ TIL
 > The devise after_sign_in_path_for(resource) function returns the path to be redirected to.  The problem is that the stored location is wiped out as soon as it's queried (it's a method) so you need to catch it in another variable to use it.  this function is vulnerable to infinite redirect loops.
 > OAuth is a pain in the ass
 > JSON.parse is the inverse of .to_json... so getting back a web response you (idiot!) need to use JSON.parse NOT .to_json, which will just escape the characters more times.  Bleh.
+> Position relative: keep the children with oddball positions snapping to ITS positoin.
 
 ********************************************************************************
 
