@@ -18,3 +18,30 @@ div.nav-seed{
   /*border: 1px solid gray;*/
   position: fixed;
 }
+
+div#info{
+  overflow: hidden;
+  z-index: 100;
+  color: rgb(200, 200, 200);
+}
+
+h1 {
+  z-index: 200;
+  color: white;
+}
+
+#head-box{
+  position: fixed;
+  z-index: 300;
+}
+
+#help-text{
+  color: #0f0;
+  font-size: 3em;
+  position: fixed;
+  bottom: 100px;
+  /*display: none;*/
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}

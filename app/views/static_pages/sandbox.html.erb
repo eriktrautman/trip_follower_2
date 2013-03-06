@@ -1,7 +1,14 @@
-<h1>WELCOME TO THE SANDBOX, FOO!</h1>
+
+<div id="head-box">
+  <h1 class="head">
+    WELCOME TO THE SANDBOX, FOO!
+  </h1>
 
   <div id="info">
+
   </div>
+</div>
+
 <% @feed_items.each_with_index do |item, i| %>
 <!--   <div class="feed_item item-<%= i %>">
     I AM A FEED ITEM. RAAAAAAAAAWWWWRRRRRR!!!!!
@@ -28,5 +35,6 @@
   $(function(){
     TF.TripShow.initializer($("body"));
     $('body').data('bar', { myType: 'test', count: 40 });
+    console.log($("#info").height());
   });
 </script>

@@ -3,10 +3,14 @@ TF.TripShow = (function(){
   var feedItems = [];
   var feedItemDivs = [];
   var navSeeds = [];
+  var headInfoHeight;
+  var helpTextTop;
 
   var getItems = function(callback){
     // Do some AJAXing to get the feed items
-    var items = ["thing1", "thing2", "thing3", "thing4", "thing5"];
+    var items = [ "thing1", "thing2", "thing3", "thing4", "thing5",
+                  "thing6", "thingN", "thingN", "thingN", "thingN",
+                  "thingN", "thingN", "thingN", "thingN", "thingN"];
     if(callback){
       callback(items);
     }
@@ -20,7 +24,7 @@ TF.TripShow = (function(){
     scroll: {
       toMid: 500,
       midRest: 500,
-      inc: 1250
+      inc: 1000
     }
   }
 
@@ -34,7 +38,7 @@ TF.TripShow = (function(){
     // featured
     b: {
       width: cfg.winX,
-      height: cfg.winY,
+      height: cfg.winY - cfg.navHeight,
       opacity: 1
     },
     // archive
@@ -53,9 +57,9 @@ TF.TripShow = (function(){
     },
     // featured
     b: {
-      top: cfg.winY/2 - size.b.height/2,
+      top: cfg.navHeight,
       left: cfg.winX/2 - size.b.width/2,
-      bot: cfg.winY/2 - size.b.height/2,
+      bot: 0,
     },
     // archive
     c: {
@@ -72,6 +76,7 @@ TF.TripShow = (function(){
     numSeeds: 10,
     mult: 2 // size multiplier for active seeds
   }
+
 
   // *** Build Items ***************************************
   // place the item in the document.  Item is now 1 to N
@@ -115,6 +120,21 @@ TF.TripShow = (function(){
     }
   }
 
+  var placeHelpText = function(parent){
+    var div = $("<div>Scroll Down to View</div>")
+        .attr("id","help-text")
+        .css("top", cfg.winY + 100)
+        .css("left", cfg.winX/2 - 300)
+        .css("width", 600)
+
+    parent.append(div);
+    // div.show("slide",{direction: "up"});
+    div.animate({
+      top: cfg.winY - 100
+    }, 2000);
+
+  }
+
   var moveToFuture = function(item){
     item.animate({
       top: pos.a.top,
@@ -148,14 +168,14 @@ TF.TripShow = (function(){
       move(element, pct, pos.a, pos.b, size.a, size.b, true);
       return;
 
-    }else if(scroll <= rst){
+    } else if(scroll <= rst){
       console.log("featured resting");
       pct = (scroll - feat) / (rst - feat);
       console.log(pct);
       move(element, 1, pos.b, pos.b, size.b, size.b, true)
       return;
 
-    }else {
+    } else {
       console.log("featured>>archive and beyond");
       pct = Math.min(1, (scroll - rst) / (arc - rst));
       console.log(pct);
@@ -170,30 +190,30 @@ TF.TripShow = (function(){
       var szMod = Math.pow(pct, 3);
     }else{
       var mvMod = Math.pow(pct, .5);
-      var szMod = Math.pow(pct, 1/3); // needs to decrease from bottom left corner!
+      var szMod = Math.pow(pct, 1/4); // needs to decrease from bottom left corner!
     }
 
-    if(fwd){
+    if(true){
       element
           .css("bottom", "")
 
       element.stop().animate({
-          top: mvMod*(next.top - prev.top) + prev.top,
-          left: mvMod*(next.left - prev.left) + prev.left,
           width: szMod*(sNext.width - sPrev.width) + sPrev.width,
           height: szMod*(sNext.height - sPrev.height) + sPrev.height,
-          opacity: szMod*(sNext.opacity - sPrev.opacity) + sPrev.opacity
+          opacity: szMod*(sNext.opacity - sPrev.opacity) + sPrev.opacity,
+          top: mvMod*(next.top - prev.top) + prev.top,
+          left: mvMod*(next.left - prev.left) + prev.left
       }, 100);
     }else{
       element
           .css("top","")
 
       element.stop().animate({
-          bottom: mvMod*(next.bot - prev.bot) + prev.bot,
-          left: mvMod*(next.left - prev.left) + prev.left,
           width: szMod*(sNext.width - sPrev.width) + sPrev.width,
           height: szMod*(sNext.height - sPrev.height) + sPrev.height,
-          opacity: szMod*(sNext.opacity - sPrev.opacity) + sPrev.opacity
+          opacity: szMod*(sNext.opacity - sPrev.opacity) + sPrev.opacity,
+          bottom: mvMod*(next.bot - prev.bot) + prev.bot,
+          left: mvMod*(next.left - prev.left) + prev.left
       }, 100);
     }
   }
@@ -222,6 +242,66 @@ TF.TripShow = (function(){
         .css("background-color", color)
   }
 
+  var headerShift = function(element){
+    var scroll = $(window).scrollTop();
+    var colorVal = Math.max(255 - scroll/2, 64);
+    var color = "rgb(" + colorVal + ", " + colorVal + ", " + colorVal + ")";
+
+    element.css("color", color);
+  }
+
+  var headInfoShift = function(element){
+    var scroll = $(window).scrollTop();
+    var colorVal = Math.max(200 - scroll/2, 64);
+    var color = "rgb(" + colorVal + ", " + colorVal + ", " + colorVal + ")";
+    var height = headInfoHeight - scroll/2;
+
+    element
+        .css("color", color);
+    if(scroll > 200){
+      element.slideUp();
+    }else{
+      element.slideDown();
+    }
+  }
+
+  var helpTextShift = function(element){
+    var scroll = $(window).scrollTop();
+    var opacity = 1-scroll/200;
+    if(opacity < 0){
+      element.css("opacity",0);
+      return;
+    }
+
+    element.animate({
+        top: cfg.winY - 100 - scroll,
+        opacity: opacity
+      }, 50)
+  }
+
+
+  var scrollFunctions = function(e){
+
+    target = $(e.target);
+
+    $('div.feed_item').text(target.scrollTop());
+
+    feedItemDivs.forEach(function(item){
+      inc(item);
+    });
+
+    navSeeds.forEach(function(seed){
+      resizeNavSeed(seed);
+    });
+
+    headerShift($("h1.head"));
+    headInfoShift($("div#info"));
+    helpTextShift($("#help-text"))
+
+  }
+
+
+
 
   // *** Initialize Page ***************************************
   var initializer = function(parent){
@@ -230,7 +310,7 @@ TF.TripShow = (function(){
       feedItems = items;
     });
 
-    $(body).height(cfg.scroll.inc * feedItems.length);
+    $(body).height(cfg.scroll.inc * feedItems.length + cfg.scroll.toMid + cfg.navHeight);
 
     $("div#info").html(
         "<br>Window Height: " + $(window).height() +
@@ -242,7 +322,7 @@ TF.TripShow = (function(){
       );
     cfg.docX = $(document).width();
     cfg.docY = $(document).height();
-
+    headInfoHeight = $("#info").height();
 
     console.log(feedItems);
 
@@ -255,24 +335,10 @@ TF.TripShow = (function(){
     })
 
     placeNav(parent, 10);
+    placeHelpText(parent);
 
-    $('div.navbar-inner').click(function(){
-      moveToPrev(feedItemDivs[0]);
-    });
-
-    $('h1').click(function(){
-      moveToNext(feedItemDivs[1]);
-    });
     $(window).scroll(function(e){
-      console.log("scrolling..............");
-      target = $(e.target);
-      $('div.feed_item').text(target.scrollTop());
-      feedItemDivs.forEach(function(item){
-        inc(item);
-      });
-      navSeeds.forEach(function(seed){
-        resizeNavSeed(seed);
-      })
+      scrollFunctions(e);
     });
 
   }
