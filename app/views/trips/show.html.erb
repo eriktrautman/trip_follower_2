@@ -8,10 +8,10 @@
 <div id="head-box">
   <h1 class="head">
     <%= "#{@trip.name}" %>
+    <br>
     <%= render partial: "shared/trip_subscribe_buttons", locals: { trip: @trip } %>
   </h1>
   <div id="loader">
-    Hi! I;m text!
     <%= image_tag 'loader.gif', alt: "loading" %>
   </div>
 
