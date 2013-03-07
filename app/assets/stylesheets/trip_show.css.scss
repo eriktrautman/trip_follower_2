@@ -1,17 +1,17 @@
 @import 'colors';
 
+#trip-show{
+  background-image: none;
+  background-color: black;
+}
+
 div.feed_item{
   height: 300px;
   width: 500px;
   background: transparent;
-  border: 3px solid black;
+  border: 1px solid white;
   color: white;
   position: fixed;
-}
-
-html{
-  background: black;
-  color: white;
 }
 
 div.nav-seed{
@@ -22,11 +22,13 @@ div.nav-seed{
 
 div#info{
   overflow: hidden;
+  clear: both;
+  padding-top: 20px;
   z-index: 100;
   color: rgb(200, 200, 200);
 }
 
-h1 {
+h1.head {
   z-index: 200;
   color: white;
   text-shadow: 1px 1px black;
@@ -47,6 +49,17 @@ h1 {
   border-radius: 10px;
   padding: 10px;
 }
+.inner-tweet{
+  max-width: 500px;
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.twitter-tweet {
+  margin-right: auto;
+  margin-left: auto;
+}
 
 #head-box{
   position: fixed;
@@ -61,7 +74,7 @@ h1 {
   margin-right: auto;
   line-height: inherit;
   text-align: center;
-  z-index: -1;
+  z-index: 1;
 }
 
 #help-triangle{
@@ -99,6 +112,8 @@ h1 {
   font-size: 2em;
   text-shadow: 1px 1px black;
   line-height: 1.1em;
+  background-color: black;
+  padding: 10px;
   &:hover{
     cursor: pointer;
   }
@@ -137,6 +152,9 @@ h1 {
 .tumble-text{
   color: black;
   background-color: $contentPanelWhite;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 150px;
   max-width: 600px;
+  border-radius: 10px;
 }

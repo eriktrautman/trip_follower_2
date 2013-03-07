@@ -221,6 +221,11 @@ TF.TripShow = (function(){
       case "tumble":
         TF.Feed.popTumble(item, div, metaDiv, captionDiv);
         break;
+      case "tweet":
+        TF.Feed.popTweet(item, div, metaDiv, captionDiv);
+        break;
+      case "flickr":
+        TF.Feed.popFlickr(item, div, metaDiv, captionDiv);
       default:
     }
   }
@@ -238,14 +243,14 @@ TF.TripShow = (function(){
 
 
     if(scroll < fut){
-      console.log("Before future position")
+      // console.log("Before future position")
       move(element, 1, pos.a, pos.a, size.a, size.a, true)
       element.find(".meta-content").stop().hide();
       element.css("z-index", -1);
       return;
 
     } else if(scroll <= feat){
-      console.log("future>>featured");
+      // console.log("future>>featured");
       pct = (scroll - fut) / (feat - fut);
       move(element, pct, pos.a, pos.b, size.a, size.b, true);
       element.css("z-index", 1);
@@ -253,7 +258,7 @@ TF.TripShow = (function(){
       return;
 
     } else if(scroll <= rst){
-      console.log("featured resting");
+      // console.log("featured resting");
       pct = (scroll - feat) / (rst - feat);
       console.log(pct);
       element.css("z-index", 1);
@@ -262,9 +267,9 @@ TF.TripShow = (function(){
       return;
 
     } else {
-      console.log("featured>>archive and beyond");
+      // console.log("featured>>archive and beyond");
       pct = Math.min(1, (scroll - rst) / (arc - rst));
-      console.log(pct);
+      // console.log(pct);
       move(element, pct, pos.b, pos.c, size.b, size.c, false);
       element.css("z-index", -1);
       element.find(".meta-content").stop().hide();
@@ -281,6 +286,7 @@ TF.TripShow = (function(){
       var szMod = Math.pow(pct, 1/4); // needs to decrease from bottom left corner!
     }
 
+
     element
         .css("bottom", "")
 
@@ -291,7 +297,14 @@ TF.TripShow = (function(){
         top: mvMod*(next.top - prev.top) + prev.top,
         left: mvMod*(next.left - prev.left) + prev.left
     }, 100);
+    //fixVert(element.find(".inner"));
 
+  }
+
+  var fixVert = function(element){
+    height = element.height();
+    parent_height = element.parent().height();
+    element.css("margin-top", parent_height/2 - height/2);
   }
 
   var resizeNavSeed = function(seed){
@@ -382,6 +395,7 @@ TF.TripShow = (function(){
   var initializer = function(parent){
 
     $(body).height(cfg.scroll.inc * feedItems.length + cfg.scroll.toMid);
+    $("html").attr("id","trip-show");
     parent.append($("<div id='scroll-val'>google</div>"));
     // $("div#info").html(
     //     "<br>Window Height: " + $(window).height() +

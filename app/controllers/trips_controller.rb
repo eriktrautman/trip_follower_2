@@ -37,7 +37,7 @@ class TripsController < ApplicationController
       else
         feed_items = Feed.from_tags([@trip.hashtag], current_user)
       end
-      @feed_items = Feed.sort_feed(feed_items)[0..29] # PAGINATING
+      @feed_items = Feed.sort_feed(feed_items)[0..9] # PAGINATING
     rescue SocketError
       flash.now[:error] = "Could not grab feed media, check your internet connection"
       @feed_items = []

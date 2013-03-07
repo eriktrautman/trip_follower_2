@@ -3,8 +3,32 @@
 TF.Feed = (function(){
 
   // populates an element with a flickr object
-  var popFlickr = function(element, obj){
+  var popFlickr = function(item, div, metaDiv, captionDiv){
 
+    var content = $("<div></div>")
+        .addClass("inner")
+    var innerContent = $("<a></a>")
+        .attr("href", item["url"]);
+    var innerPic = $("<img>")
+        .addClass("inner")
+        .attr({
+          src: item["url"],
+          alt: "flickr image from " + item["blog_name"]
+        })
+        .css({
+          "max-height": TF.TripShow.cfg.winY,
+          "max-width": TF.TripShow.cfg.winX,
+          "height": "100%"
+        })
+
+    innerContent.append(innerPic);
+    metaDiv.find("strong").text(item["title"]);
+    metaDiv.find("p").text("From " + item["owner"]);
+    captionDiv.html(item["caption"]);
+
+    content.append(innerContent);
+    div.append(content);
+    div.append(metaDiv);
   }
 
   // populates an element with a Tumble object
@@ -40,7 +64,7 @@ TF.Feed = (function(){
       break;
       case "text":
         var innerContent = $("<div></div>")
-            .addClass("inner tumble-text")
+            .addClass("tumble-text")
             .css("width", "50%")
             .css("max-height", TF.TripShow.cfg.winY - 250)
             .html(item["body"]);
@@ -70,8 +94,19 @@ TF.Feed = (function(){
 
   }
 
-  var popTweet = function(element, obj){
+  var popTweet = function(item, div, metaDiv, captionDiv){
+    console.log(item["oembed"]);
 
+    var content = $("<div></div>")
+        .addClass("inner-tweet inner")
+        .css("margin-top", TF.TripShow.cfg.winY/2 - 150);
+    var innerTweet = $("<div></div>")
+        .html(item["oembed"]);
+    metaDiv.find("strong").text("");
+    metaDiv.find("p").text("From " + item["username"]);
+    content.append(innerTweet);
+    div.append(metaDiv);
+    div.append(content);
   }
 
   return {

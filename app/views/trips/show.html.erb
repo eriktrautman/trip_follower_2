@@ -1,13 +1,17 @@
 <% content_for(:title) { @trip.name } %>
 <%= content_tag(:div, id: "trip-url", data: {url: trip_url(@trip) } ) {} %>
 
+<style>
+  body{ background-color: black;}
+</style>
+
 <div id="head-box">
   <h1 class="head">
     <%= "#{@trip.name}" %>
     <%= render partial: "shared/trip_subscribe_buttons", locals: { trip: @trip } %>
   </h1>
 
-  <div id="info" class="row">
+  <div id="info" class="clear">
     <p>
       <em>Created by <%= link_to "#{@trip.creator.username}", @trip.creator %>
        | <%= render partial: "shared/trip_subscriber_stats", locals: { trip: @trip } %>

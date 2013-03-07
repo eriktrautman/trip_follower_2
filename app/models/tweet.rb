@@ -2,9 +2,15 @@ class Tweet # PORO
 
   # for a tweet ID, will request the embedding object
   def self.oembed(id)
-    resource = RestClient::Resource.new "https://api.twitter.com/1/statuses/oembed.json?id=#{id}"
-    response = resource.get
-    parsed_response = JSON.parse(response)
+    begin
+      resource = RestClient::Resource.new "https://api.twitter.com/1/statuses/oembed.json?id=#{id}"
+      response = resource.get
+      parsed_response = JSON.parse(response)
+    rescue
+      puts "SHEEEEEEIT.  Twitter Oembed error."
+      parsed_response = {"html" => "Tweet unavailable"}
+    end
+    parsed_response
   end
 
   # takes an array of hashtags and returns applicable tweets
@@ -52,7 +58,8 @@ class Tweet # PORO
         :user_image   => tweet.attrs[:user][:profile_image_url],
         :geo          => tweet.attrs[:geo],
         :coordinates  => tweet.attrs[:coordinates],
-        :source       => tweet.attrs[:source] }
+        :source       => tweet.attrs[:source],
+        :oembed       => Tweet.oembed(tweet.attrs[:id])["html"] }
         #:url          => tweet.attrs[:entities][:urls][0][:display_url] }
     end
     puts "\n\n TWEETS: #{tweets.inspect}! \n\n"
