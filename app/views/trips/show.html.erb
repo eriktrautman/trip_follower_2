@@ -10,6 +10,10 @@
     <%= "#{@trip.name}" %>
     <%= render partial: "shared/trip_subscribe_buttons", locals: { trip: @trip } %>
   </h1>
+  <div id="loader">
+    Hi! I;m text!
+    <%= image_tag 'loader.gif', alt: "loading" %>
+  </div>
 
   <div id="info" class="clear">
     <p>
@@ -46,10 +50,9 @@
       <%= "#{@trip.description}" %>
     </p>
   </div>
+
+
 </div>
-
-
-
 
 <script>
   $(function(){

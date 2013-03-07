@@ -7,7 +7,7 @@ TF.TripShow = (function(){
   var helpTextTop;
 
   var getItems = function(callback){
-    // Do some AJAXing to get the feed items
+    $("#loader").show();
 
     var url = $("#trip-url").attr("data-url");
     console.log(url);
@@ -32,6 +32,10 @@ TF.TripShow = (function(){
       },
       error: function(request, status, error){
         console.log(error);
+      },
+      complete: function(){
+        console.log("DONE");
+        $("#loader").hide();
       }
     });
 

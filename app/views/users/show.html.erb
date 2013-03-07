@@ -5,9 +5,11 @@
     <h1 class="profile-title">
     	<%= "#{@user.username}" %>
     </h1>
-    <p class="profile-tagline">
-      "<em><%= "#{@user.tagline}" %></em>"
-    </p>
+    <% if @user.tagline %>
+      <p class="profile-tagline">
+        "<em><%= "#{@user.tagline}" %></em>"
+      </p>
+    <% end %>
   </div>
 </div>
 

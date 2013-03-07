@@ -9,7 +9,7 @@ div.feed_item{
   height: 300px;
   width: 500px;
   background: transparent;
-  border: 1px solid white;
+  // border: 1px solid white;
   color: white;
   position: fixed;
 }
@@ -43,6 +43,16 @@ h1.head {
 }
 
 .inner{
+  // margin-left: auto;
+  // margin-right: auto;
+  text-align: center;
+  // border-radius: 10px;
+  // padding: 10px;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+}
+.inner-img{
   margin-left: auto;
   margin-right: auto;
   text-align: center;
@@ -64,6 +74,15 @@ h1.head {
 #head-box{
   position: fixed;
   z-index: 300;
+}
+
+#loader {
+  position: absolute;
+  // float: right;
+  margin-left: -60px;
+  top: 10px;
+  width: 50px;
+  // display: none;
 }
 
 #help-text{
@@ -113,26 +132,27 @@ h1.head {
   text-shadow: 1px 1px black;
   line-height: 1.1em;
   background-color: black;
+  border-radius: 10px;
   padding: 10px;
   &:hover{
     cursor: pointer;
   }
 }
 
-.meta-content:after{
-  position: absolute;
-  display: block;
-  content: "";
-  width: 0px;
-  height: 0px;
-  right: -20px;
-  bottom: 20px;
-  margin-bottom: auto;
-  margin-top: auto;
-  border-left: 10px solid #00c7ed;
-  border-bottom: 10px solid transparent;
-  border-top: 10px solid transparent;
-}
+// .meta-content:after{
+//   position: absolute;
+//   display: block;
+//   content: "";
+//   width: 0px;
+//   height: 0px;
+//   right: -20px;
+//   bottom: 20px;
+//   margin-bottom: auto;
+//   margin-top: auto;
+//   border-left: 10px solid #00c7ed;
+//   border-bottom: 10px solid transparent;
+//   border-top: 10px solid transparent;
+// }
 
 .caption{
   position: absolute;
@@ -154,7 +174,10 @@ h1.head {
   background-color: $contentPanelWhite;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 150px;
+  // margin-top: 150px;
   max-width: 600px;
   border-radius: 10px;
+  padding: 10px;
+  padding-top: 30px;
+  overflow: auto;
 }

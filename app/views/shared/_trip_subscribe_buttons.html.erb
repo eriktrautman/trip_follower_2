@@ -26,8 +26,13 @@
     </div>
   <% end %>
 
+
   <%= javascript_tag do %>
     TF.Trip.addSubscriptionListeners($("button.btn-trip-<%= trip.id %>"));
   <% end %>
+
+<% else %>
+
+  <div class="span2"><button class="btn btn-small btn-subscription btn-sneaky"></button></div>
 
 <% end %>

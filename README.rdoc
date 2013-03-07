@@ -35,8 +35,14 @@ gem: delayedjob (in an action, queue's)
   >>> cycle through each trip the user is subscribed to and grab all those yummy api calls
   >>>> Eventually limit the number of trips a user can follow...?
 
-
-  $(window).scroll
+//// Finishing touches
+  * kill the scroll number
+  * Add photos and other content to known feeds
+  * Push obviously
+  * Flesh out known project bios (externally, for copy/paste)
+  * find some known public project hashtags -- maybe appacademy for both public and private
+  * get some users to whitelist their accounts
+  
 
 ********************************************************************************
 

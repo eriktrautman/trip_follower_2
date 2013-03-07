@@ -27,20 +27,22 @@ class TripsController < ApplicationController
   end
 
   def show
-    begin
-      @trip = Trip.find(params[:id])
-      if @trip.whitelist_posters
-        feed_items = []
-        @trip.whitelisted_users.each do |user|
-          feed_items += Feed.from_tags_by_user([@trip.hashtag], user)
+        @trip = Trip.find(params[:id])
+    if request.xhr?
+      begin
+        if @trip.whitelist_posters
+          feed_items = []
+          @trip.whitelisted_users.each do |user|
+            feed_items += Feed.from_tags_by_user([@trip.hashtag], user)
+          end
+        else
+          feed_items = Feed.from_tags([@trip.hashtag], current_user)
         end
-      else
-        feed_items = Feed.from_tags([@trip.hashtag], current_user)
+        @feed_items = Feed.sort_feed(feed_items)[0..9] # PAGINATING
+      rescue SocketError
+        flash.now[:error] = "Could not grab feed media, check your internet connection"
+        @feed_items = []
       end
-      @feed_items = Feed.sort_feed(feed_items)[0..9] # PAGINATING
-    rescue SocketError
-      flash.now[:error] = "Could not grab feed media, check your internet connection"
-      @feed_items = []
     end
 
     respond_to do |format|

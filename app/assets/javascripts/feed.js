@@ -6,11 +6,10 @@ TF.Feed = (function(){
   var popFlickr = function(item, div, metaDiv, captionDiv){
 
     var content = $("<div></div>")
-        .addClass("inner")
+        .addClass("inner-img")
     var innerContent = $("<a></a>")
         .attr("href", item["url"]);
     var innerPic = $("<img>")
-        .addClass("inner")
         .attr({
           src: item["url"],
           alt: "flickr image from " + item["blog_name"]
@@ -38,6 +37,10 @@ TF.Feed = (function(){
     }
     var content = $("<div></div>")
         .addClass("inner")
+        .css("width", TF.TripShow.cfg.winX)
+        .css("height", TF.TripShow.cfg.winY)
+        .css("margin-left", -TF.TripShow.cfg.winX/2)
+        .css("margin-top", -TF.TripShow.cfg.winY/6)
 
     var type = item["type"];
     switch(type){
@@ -66,7 +69,7 @@ TF.Feed = (function(){
         var innerContent = $("<div></div>")
             .addClass("tumble-text")
             .css("width", "50%")
-            .css("max-height", TF.TripShow.cfg.winY - 250)
+            .css("max-height", TF.TripShow.cfg.winY/2.5)
             .html(item["body"]);
         console.log("removing ");
         console.log(captionDiv);
@@ -98,7 +101,7 @@ TF.Feed = (function(){
     console.log(item["oembed"]);
 
     var content = $("<div></div>")
-        .addClass("inner-tweet inner")
+        .addClass("inner-tweet")
         .css("margin-top", TF.TripShow.cfg.winY/2 - 150);
     var innerTweet = $("<div></div>")
         .html(item["oembed"]);
