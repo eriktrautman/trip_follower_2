@@ -31,7 +31,7 @@ class Tumblr # PORO
       raw_tumbles = parsed_response["response"]
     end
     puts "\n\n TUMBLES RAAAAAAW: #{raw_tumbles.inspect} \n\n"
-    tumbles = raw_tumbles.map do |post|
+    tumbles = raw_tumbles[0..9].map do |post|
       tumble = {  :media_type   => "tumble",
                   :blog_name    => post["blog_name"],
                   :post_id      => post["id"],

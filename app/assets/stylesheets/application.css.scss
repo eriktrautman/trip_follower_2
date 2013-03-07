@@ -129,6 +129,18 @@ p.help-block{
   }
 }
 
+.flickr-img, .tumblr-img {
+  border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: 1px 1px 1px gray;
+}
+
+
+
+.author {
+  color: gray;
+}
+
 /* PROFILE ***************** */
 
 .profile-title {

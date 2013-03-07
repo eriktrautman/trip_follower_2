@@ -1,0 +1,126 @@
+== Welcome to Trip Follower 2.0
+It's all new and better than anything you've ever seen.
+
+
+********************************************************************************
+
+ROADMAP:
+	>> Thursday: Polish Polish Polish. Cache. Deploy.
+
+********************************************************************************
+
+PRESSING TODO:
+
+
+Caching:
+> Store the trip load
+> immediately load the cached version
+> AJAX into the new queries (for only newer items)
+> Delayed jobs - every half hour or maybe when the user first hits the page
+gem: whenever (every X run this)
+gem: delayedjob (in an action, queue's)
+
+>> Unfuck the user's feed page...
+  >>> Trip feeds on user show pages suck because only one tag gets used for Instagram and Tumblr!
+  >>> cycle through each trip the user is subscribed to and grab all those yummy api calls
+  >>>> Eventually limit the number of trips a user can follow...?
+
+//// Finishing touches
+  * Add photos and other content to known feeds
+  * Push obviously
+  * Flesh out known project bios (externally, for copy/paste)
+  * find some known public project hashtags -- maybe appacademy for both public and private
+  * get some users to whitelist their accounts
+
+
+********************************************************************************
+
+
+Accessories:
+> User profiles
+> User photos
+> trip photos
+> Event photos
+> Event locations (lat lng)
+> settings: decide whether a trip is whitelist
+> typeahead for any user adding
+> nest forms for admin and creator control panels??
+Users:
+> Enable Gravatars for user pictures
+
+
+Polish: << Note: functionality first! >>
+> CSS the crap out of it
+> Create hover tooltips for the whitelisting
+> Typeaheads!
+> On trip edit admin options, make the enter key in the admin textfield add admin instead of submitting the whole form
+> Admins should be able to un-admin themselves
+> Whitelisted users should be able to un-whitelist themselves
+> Paginate trips, users (use gem)
+> pluralize everything dynamically (use gem)
+> Trip hashtag links should display filtered posts
+> Hashtag validation -- can't be multiple words and invalid characters
+> Let users set their background image.  If not, randomize from my queue of images
+> In the authorization page, gray out the logos that have already been authorized
+> Refactor the Twitter API call to go back more than 7 days... which will require pulling a "list timeline" of the group of whitelisted users and parsing it for the right hashtag.
+> !! Require the whitelisted user to approve their whitelisting! Otherwise you could harvest their private photos !!
+> Fix case sensitivity for whitelisting and admins
+> API TOS use... public view...
+> Change background picture randomly on page load
+> pagination of results... make queries capable of paginating
+
+
+Annoyances:
+> date fields for trip creation forms
+
+
+Event Pages (Optional -- an "if there's time" accessory):
+> Create events models
+> Specs
+> Integrate events with trips and user pages
+> admins can create and edit their own events
+
+
+ISSUES:
+> Idiomatic enter-to-submit
+> When/where to include custom javascripts (organization...), eg. index users page which needs the listeners for the user buttons.
+> You have a hundred statistics for a given blog post -- a user can follow, thumbs up, thumbs down, smiley face, hate, like, subscribe to... etc
+Each of those has its own join table for many-to-many relationships between a user and your post -- a user can of course have tons of those
+
+
+TIL
+> The devise after_sign_in_path_for(resource) function returns the path to be redirected to.  The problem is that the stored location is wiped out as soon as it's queried (it's a method) so you need to catch it in another variable to use it.  this function is vulnerable to infinite redirect loops.
+> OAuth is a pain in the ass
+> JSON.parse is the inverse of .to_json... so getting back a web response you (idiot!) need to use JSON.parse NOT .to_json, which will just escape the characters more times.  Bleh.
+> Position relative: keep the children with oddball positions snapping to ITS positoin.
+
+********************************************************************************
+
+OPTIMIZATION:
+> Have the feed build in realtime using AJAX requests instead of a single-thread server
+>
+
+Testing TODOs:
+> follower page okay
+> following okay
+> follower / ing counts okay
+> Index page not signed in shows no follow stuff
+> Subscriptions Tests:
+  >> I automatically subscribe to my trips (but cannot unfollow them)
+  >> Admins automatically subscribe to trips for which they are admins (but cannot unsubscribe from them)
+
+Authorization:
+>?UJS? trips have admin user(s) added or deleted by the creator
+>?UJS?Admins can whitelist non-admin users to post in the trip (if enabled)
+
+********************************************************************************
+
+Resources:
+* Follow buttons :http://www.dreamtemplate.com/dreamcodes/documentation/social_icons.html
+* http://www.zurb.com/playground/social-webicons
+
+Available:
+trip.li
+tripbook.com
+tripfollower.com
+trip.io?

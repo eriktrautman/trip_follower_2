@@ -2,7 +2,11 @@
 
   <li>
 
-    <%= render partial: "shared/trip_subscribe_buttons", locals: { trip: trip } %>
+    <% unless current_user == @user %>
+
+      <%= render partial: "shared/trip_subscribe_buttons", locals: { trip: trip } %>
+
+    <% end %>
 
     <big>
       <%= link_to trip.name, trip_path(trip) %>

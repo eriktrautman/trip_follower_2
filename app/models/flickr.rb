@@ -7,7 +7,7 @@ class Flickr #< PORO
 
     tags = hashtags.join("%2C")
     api_key = "812710f0d4bf1d785110c5d431c52852"
-    per_page = 20
+    per_page = 10
     page = 1
     base_url = "http://api.flickr.com/services/rest/"
     options = [   "?method=flickr.photos.search",
@@ -30,7 +30,7 @@ class Flickr #< PORO
       response = resource.get
     end
 
-    puts "\n\n URL: #{url}!"
+    puts "\n\n Flickr (after grabbing batch) URL: #{url}!"
 
     parsed_response = JSON.parse(response.body)
     raw_flickrs = parsed_response["photos"]["photo"]

@@ -8,7 +8,7 @@ class Tweet # PORO
       parsed_response = JSON.parse(response)
     rescue
       puts "SHEEEEEEIT.  Twitter Oembed error."
-      parsed_response = {"html" => "Tweet unavailable"}
+      parsed_response = {"html" => "Tweet unavailable, likely due to exceeding API rate limitations"}
     end
     parsed_response
   end
@@ -46,7 +46,7 @@ class Tweet # PORO
       return []
     end
 
-    tweets = results.map do |tweet|
+    tweets = results[0..9].map do |tweet|
 
       { :media_type   => "tweet",
         :id           => tweet.attrs[:id],

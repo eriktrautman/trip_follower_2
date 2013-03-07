@@ -377,7 +377,7 @@ TF.TripShow = (function(){
 
     target = $(e.target);
 
-    $('#scroll-val').text(target.scrollTop());
+    //$('#scroll-val').text(target.scrollTop());
 
     feedItemDivs.forEach(function(item){
       inc(item);
@@ -398,9 +398,9 @@ TF.TripShow = (function(){
   // *** Initialize Page ***************************************
   var initializer = function(parent){
 
-    $(body).height(cfg.scroll.inc * feedItems.length + cfg.scroll.toMid);
+    $(body).height(cfg.scroll.inc * feedItems.length + cfg.scroll.toMid + 400 );
     $("html").attr("id","trip-show");
-    parent.append($("<div id='scroll-val'>google</div>"));
+    //parent.append($("<div id='scroll-val'>google</div>"));
     // $("div#info").html(
     //     "<br>Window Height: " + $(window).height() +
     //     "<br>Window Width: " + $(window).width() +

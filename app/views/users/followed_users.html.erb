@@ -1,14 +1,21 @@
 <div class="user-following">
 	<% content_for(:title) { "Following"} %>
-	<h1>
-		<% if @user == current_user %>
-			You currently follow:
-		<% else %>
-			<%= @user.username %> is Following:
-		<% end %>
-	</h1>
 
-	<ul class="users-list">
-		<%= render @followed_users %>
-	</ul>
+	<div class="offset2">
+		<h1>
+			<% if @user == current_user %>
+				You currently follow:
+			<% else %>
+				<%= @user.username %> is Following:
+			<% end %>
+		</h1>
+	</div>
+
+	<div class="row">
+		<div class="span8 offset2 panel">
+			<ul class="users-list">
+				<%= render @followed_users %>
+			</ul>
+		</div>
+	</div>
 </div>

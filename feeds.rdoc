@@ -1,0 +1,39 @@
+
+
+********************************************************************************
+
+APIS:
+
+>> Instagram, Twitter, Tumblr, Wordpress, 500px, Pinterest, Flickr
+
+*** Instagram:
+
+    CLIENT INFO
+    CLIENT ID b50084b45ed94392a160fa31b0e7a488
+    CLIENT SECRET 836aa4607ac24b5bb57af76dada1d604
+    WEBSITE URL http://127.0.0.1/
+    REDIRECT URI  http://127.0.0.1/authorization/instagram
+  >> Store in environment files, eg. development/environment.rb
+  >> Use ActiveResource???
+
+*** Twitter:
+    # Consumer key: QVim65jLuVeoo7phUAP0AQ
+    # Consumer Secret: 5tMM645CWOmHwZKcf8xbIVCbRhPHYzMAkmhwvwX7s
+    # Request Token URL: https://api.twitter.com/oauth/request_token
+    # Authorize URL: https://api.twitter.com/oauth/authorize
+    # Access Token URL: https://api.twitter.com/oauth/access_token
+    # Callback URL: http://127.0.0.1:3000/authorization/twitter
+
+    # OAuth token: 313316959-gic7hb72LjHqQ1fmE914c1hUuuN51pA3RBzyOA7c
+    # OAuth secret: vPhMqtGJOww0QmKrulUjSCpB2yoyxQGWfMQGcTI2knM
+  > Use the embedded tweets
+
+*** Tumblr:
+    Oauth Consumer Key: aX3GtjNdUNH8Q8ZUBoZ1HbrTBYh9acrIdbWd99qtu1M8RXx2NU
+    Secret Key:  pwJVt25o5QlcrV2Wq7TSpaCJhgzmMOR2hzYFpkwosWmcW1jYpE
+
+*** Flickr:
+    Public Key: 812710f0d4bf1d785110c5d431c52852
+    Secret Key: 853727b0318f027c
+
+********************************************************************************

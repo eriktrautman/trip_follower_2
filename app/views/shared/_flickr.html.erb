@@ -1,6 +1,9 @@
 <li class="flickr">
 
+  <%= link_to flickr[:url] do %>
+    <%= image_tag flickr[:url], alt: "Flickr photo by #{flickr[:owner]}", class: "flickr-img" %>
+  <% end %>
   <%= "Created by #{flickr[:username]} at #{Time.at(flickr[:timestamp])}" %>
-  <%= image_tag flickr[:url], alt: "Flickr photo by #{flickr[:owner]}" %>
+  <br>
 
 </li>

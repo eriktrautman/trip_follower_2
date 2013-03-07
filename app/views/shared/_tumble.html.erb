@@ -1,9 +1,26 @@
 <li class="tumble">
 
-  <%= "Created by #{tumble[:blog_name]} at #{Time.at(tumble[:timestamp])}" %>
-  <% if tumble[:type] == "text" %>
-  <strong><%= tumble[:title] %></strong>
-  <p><%= tumble[:body].html_safe %></p>
+  <% case tumble[:type] %>
+  <% when "text" %>
+    <div class="tumble-text">
+      <strong><%= tumble[:title] %></strong>
+      <p><%= tumble[:body].html_safe %></p>
+      <hr>
+      <span class="author">
+        <%= "Created by #{tumble[:blog_name]} at #{Time.at(tumble[:timestamp])}" %>
+      </span>
+    </div>
+  <% when "photo" %>
+    <a href="<%= tumble[:url] %>">
+      <img src = "<%= tumble[:image_url] %>" alt="Tumble Image by <%= tumble[:blog_name] %>", class="tumblr-img">
+    </a>
+    <p class="author">
+      <%= "Created by #{tumble[:blog_name]} at #{Time.at(tumble[:timestamp])}" %>
+    </p>
+  <% else %>
+    <p class="author">
+      <%= "#{tumble[:type]} created by #{tumble[:blog_name]} at #{Time.at(tumble[:timestamp])}" %>
+    </p>
   <% end %>
 
 
