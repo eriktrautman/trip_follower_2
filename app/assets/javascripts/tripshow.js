@@ -8,11 +8,33 @@ TF.TripShow = (function(){
 
   var getItems = function(callback){
     // Do some AJAXing to get the feed items
-    var items = [ "thing1", "thing2", "thing3", "thing4", "thing5",
-                  "thingN", "thingN", "thingN", "thingN" ];
-    if(callback){
-      callback(items);
-    }
+
+    var url = $("#trip-url").attr("data-url");
+    console.log(url);
+    $.ajax( {
+      url: url,
+      type: 'GET',
+      dataType: 'json',
+      success: function(data){
+        if(data.failure){
+          alert("The trip feed couldn't be retrieved");
+        } else{
+          console.log(data);
+          console.log(data[0]);
+          data.forEach(function(feedItem){
+            feedItems.push(feedItem);
+          });
+          console.log("FEED: " + feedItems);
+          if(callback){
+            callback(data);
+          }
+        }
+      },
+      error: function(request, status, error){
+        console.log(error);
+      }
+    });
+
   }
 
   // *** Configuration Data ***************************************
@@ -84,7 +106,6 @@ TF.TripShow = (function(){
     var b = a + cfg.scroll.toMid;
     var c = b + cfg.scroll.midRest;
     var d = c + cfg.scroll.toMid;
-    console.log("A: " + a + " B: " + b + " C: " + c + " D: " + d)
     var div = $("<div></div>")
         .addClass("feed_item")
         .attr("data-item-id", num)
@@ -99,6 +120,7 @@ TF.TripShow = (function(){
         .css("left", x - w/2);
 
     div.append("<span></span>");
+
 
     // Build the meta data contents of the div
     var testText = "Tester item meta data";
@@ -120,11 +142,8 @@ TF.TripShow = (function(){
     });
 
     // Build the caption inside the div
-    var captionText = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-    console.log(metaDiv.css("width"));
     var captionDiv = $("<div></div>")
         .addClass("caption")
-        .html(captionText)
         .css("width", cfg.winX/3)
         .css("left", cfg.winX/2 - 50  )
 
@@ -135,9 +154,10 @@ TF.TripShow = (function(){
         $(e.target).stop().fadeOut();
     });
 
+    populateItemDiv(item, div, metaDiv, captionDiv);
+
     parent.append(div);
-    div.append(metaDiv);
-    div.append(captionDiv);
+
     feedItemDivs.push(div);
   }
 
@@ -193,6 +213,16 @@ TF.TripShow = (function(){
       height: size.a.height,
       opacity: size.a.opacity
     })
+  }
+
+  var populateItemDiv = function(item, div, metaDiv, captionDiv){
+    var media_type = item["media_type"];
+    switch(media_type){
+      case "tumble":
+        TF.Feed.popTumble(item, div, metaDiv, captionDiv);
+        break;
+      default:
+    }
   }
 
   // *** Increment Items ***************************************
@@ -330,7 +360,7 @@ TF.TripShow = (function(){
 
     target = $(e.target);
 
-    $('div.feed_item span').text(target.scrollTop());
+    $('#scroll-val').text(target.scrollTop());
 
     feedItemDivs.forEach(function(item){
       inc(item);
@@ -351,20 +381,16 @@ TF.TripShow = (function(){
   // *** Initialize Page ***************************************
   var initializer = function(parent){
 
-    getItems(function(items){
-      feedItems = items;
-    });
-
-    $(body).height(cfg.scroll.inc * feedItems.length + cfg.scroll.toMid + cfg.navHeight);
-
-    $("div#info").html(
-        "<br>Window Height: " + $(window).height() +
-        "<br>Window Width: " + $(window).width() +
-        "<br>Document Height: " + $(document).height() +
-        "<br>Document Width: " + $(document).width() +
-        "<br>Screen Height: " + screen.height +
-        "<br>Screen Width: " + screen.width
-      );
+    $(body).height(cfg.scroll.inc * feedItems.length + cfg.scroll.toMid);
+    parent.append($("<div id='scroll-val'>google</div>"));
+    // $("div#info").html(
+    //     "<br>Window Height: " + $(window).height() +
+    //     "<br>Window Width: " + $(window).width() +
+    //     "<br>Document Height: " + $(document).height() +
+    //     "<br>Document Width: " + $(document).width() +
+    //     "<br>Screen Height: " + screen.height +
+    //     "<br>Screen Width: " + screen.width
+    //   );
     cfg.docX = $(document).width();
     cfg.docY = $(document).height();
     headInfoHeight = $("#info").height();
@@ -375,8 +401,9 @@ TF.TripShow = (function(){
       placeItem(parent, item, i, cfg.winX/2, cfg.winY/2, cfg.h, cfg.w);
     });
 
-    feedItemDivs.forEach(function(item){
-      moveToFuture(item);
+    feedItemDivs.forEach(function(div, i){
+
+      moveToFuture(div);
     })
 
     placeNav(parent, 10);
@@ -391,6 +418,7 @@ TF.TripShow = (function(){
 
   return {
     initializer: initializer,
-    cfg: cfg
+    cfg: cfg,
+    getItems: getItems
   }
 })()

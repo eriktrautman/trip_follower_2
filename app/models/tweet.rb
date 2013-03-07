@@ -33,7 +33,12 @@ class Tweet # PORO
     end
 
     puts "\n\n SEARCH_TERM: !#{search_term}! \n\n"
-    results = Twitter.search(search_term).results
+    begin
+      results = Twitter.search(search_term).results
+    rescue Twitter::Error::ClientError => e
+      puts "ERROR: End of File Reached"
+      return []
+    end
 
     tweets = results.map do |tweet|
 

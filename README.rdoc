@@ -15,8 +15,8 @@ PRESSING TODO:
 
 Parallax Slideshow!
 
-> set up the item meta content to flash in and out
-> set the caption to flash in and out as well
+XXX > set up the item meta content to flash in and out
+XXX > set the caption to flash in and out as well
 > populate the divs with content
 > set up spacebar to jump properly
 > check for window resize, modify configs so it still displays properly

@@ -30,6 +30,7 @@ class Tumblr # PORO
     else
       raw_tumbles = parsed_response["response"]
     end
+    puts "\n\n TUMBLES RAAAAAAW: #{raw_tumbles.inspect} \n\n"
     tumbles = raw_tumbles.map do |post|
       tumble = {  :media_type   => "tumble",
                   :blog_name    => post["blog_name"],
@@ -37,14 +38,16 @@ class Tumblr # PORO
                   :url          => post["post_url"],
                   :type         => post["type"],
                   :timestamp    => post["timestamp"].to_i,
-                  :date         => post["date"]
+                  :date         => post["date"],
+                  :photos       => post["photos"]
                  }
       case post["type"]
       when "text"
         tumble[:title]  = post["title"]
         tumble[:body]   = post["body"]
       when "photo"
-        tumble[:caption]= post["caption"]
+        tumble[:caption]= post["caption"],
+        tumble[:image_url] = post["photos"][0]["original_size"]["url"]
       when "video"
         tumble[:caption]= post["caption"]
         tumble[:html5]  = post["html5_capable"]

@@ -74,7 +74,7 @@ TF.Trip = (function(){
       }
     });
   }
-  
+
   // Takes a trip_id and will update its count 
   // wherever on the page its count is displayed
   function updateSubscriberCount(trip_id){

@@ -1,8 +1,9 @@
+@import 'colors';
 
 div.feed_item{
   height: 300px;
   width: 500px;
-  background: gray;
+  background: transparent;
   border: 3px solid black;
   color: white;
   position: fixed;
@@ -31,7 +32,21 @@ h1 {
   text-shadow: 1px 1px black;
 }
 
+#scroll-val{
+  position: fixed;
+  top: 50px;
+  left: 50px;
+  color: white;
+  z-index: 400;
+}
 
+.inner{
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  border-radius: 10px;
+  padding: 10px;
+}
 
 #head-box{
   position: fixed;
@@ -116,4 +131,12 @@ h1 {
   padding: 10px;
   max-height: 80px;
   overflow: auto;
+  border-radius: 10px;
+}
+
+.tumble-text{
+  color: black;
+  background-color: $contentPanelWhite;
+  margin-top: 150px;
+  max-width: 600px;
 }

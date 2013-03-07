@@ -42,6 +42,11 @@ class TripsController < ApplicationController
       flash.now[:error] = "Could not grab feed media, check your internet connection"
       @feed_items = []
     end
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @feed_items}
+    end
   end
 
   def edit
