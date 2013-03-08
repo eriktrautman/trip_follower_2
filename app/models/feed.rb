@@ -1,7 +1,7 @@
 class Feed
 
   def self.from_tags(tags, user)
-  	puts "\n\n FEED TAGS: #{tags.inspect} and User: #{user} \n\n"
+  	puts "\n\n FEED TAGS: #{tags.inspect} and User: #{user.username} \n\n"
   	return [] unless tags.size > 0
 
   	instagrams = []# Instagram.search_by_tags(tags, user, false)
@@ -13,7 +13,7 @@ class Feed
 
   def self.from_tags_by_user(tags, user)
 
-  	puts "\n\n FEED TAGS: #{tags.inspect} and FROM USER: #{user} \n\n"
+  	puts "\n\n FEED TAGS: #{tags.inspect} and FROM USER: #{user.username} \n\n"
   	return [] unless tags.size > 0
   	instagrams = []# Instagram.search_by_tags(tags, user, false)
     flickrs = Flickr.search_by_tags(tags,user,true)
