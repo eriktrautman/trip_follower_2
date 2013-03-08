@@ -45,10 +45,11 @@ TF.Feed = (function(){
     var type = item["type"];
     switch(type){
       case "photo":
+        content = $("<div></div>")
+            .addClass("inner-img")
         var innerContent = $("<a></a>")
             .attr("href", item["url"]);
         var innerPic = $("<img>")
-            .addClass("inner")
             .attr({
               src: item["image_url"],
               alt: "tumble image from " + item["blog_name"]
