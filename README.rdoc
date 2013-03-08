@@ -15,4 +15,5 @@ Features:
 
 
 
-[1]And Instagram once upon a time but... their API doesn't provide the necessary functionality.
+
+[1]And Instagram once upon a time but... their API doesn't provide the necessary functionality for the app's key features so it got cut.
